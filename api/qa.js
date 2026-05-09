@@ -1,18 +1,31 @@
 const content = require("../qa-content.json");
 
-function findRelevant(question) {
-  const words = question
-    .replace(/[^一-鿿㐀-䶿a-zA-Z0-9]/g, " ")
-    .split(/\s+/)
-    .filter((w) => w.length > 0);
+function buildTerms(question) {
+  const terms = new Set();
+  // English words (2+ chars)
+  const en = question.match(/[a-zA-Z]{2,}/g) || [];
+  en.forEach((w) => terms.add(w.toLowerCase()));
+  // Chinese: bigrams + trigrams (more specific → higher weight via length)
+  const zh = question.replace(/[^一-鿿]/g, "");
+  for (let i = 0; i < zh.length; i++) {
+    if (i + 1 < zh.length) terms.add(zh.slice(i, i + 2));
+    if (i + 2 < zh.length) terms.add(zh.slice(i, i + 3));
+  }
+  // Fallback: single Chinese chars for very short queries
+  if (zh.length <= 3) for (const ch of zh) terms.add(ch);
+  return [...terms].filter((t) => t.length > 0);
+}
 
-  if (!words.length) return [];
+function findRelevant(question) {
+  const terms = buildTerms(question);
+  if (!terms.length) return [];
 
   const scored = [];
   for (const lec of content) {
     for (const sec of lec.sections) {
       const text = sec.h + sec.p;
-      const score = words.reduce((s, w) => s + (text.includes(w) ? 1 : 0), 0);
+      // Longer matches score more (bigram=2, trigram=3)
+      const score = terms.reduce((s, t) => s + (text.includes(t) ? t.length : 0), 0);
       if (score > 0) {
         scored.push({ score, lecture: lec.lecture, title: lec.title, h: sec.h, p: sec.p });
       }
