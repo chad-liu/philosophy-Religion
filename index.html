@@ -1443,7 +1443,6 @@ window.qaSubmit = async function() {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ question: q })
     });
-    if (!res.ok) throw new Error('server error');
     const { answer, sources, error } = await res.json();
     if (error) throw new Error(error);
     const srcLinks = (sources || []).map(function(l) {
@@ -1453,7 +1452,7 @@ window.qaSubmit = async function() {
       '<div class="qa-answer">' + answer.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>') + '</div>' +
       (srcLinks ? '<div class="qa-sources">參考講次：' + srcLinks + '</div>' : '');
   } catch(e) {
-    result.innerHTML = '<p class="sr-hint">發生錯誤，請稍後再試。</p>';
+    result.innerHTML = '<p class="sr-hint">錯誤：' + e.message + '</p>';
   }
   btn.disabled = false;
 };
