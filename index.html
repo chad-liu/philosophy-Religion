@@ -159,6 +159,16 @@
   }
 
   .course-block:first-child > h2 { margin-top: 4px; }
+
+  /* ── 橫向時間軸 ── */
+  .tl-wrap { margin-bottom: 2.5rem; }
+  .tl-controls { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; color: var(--muted); }
+  .tl-zoom-btn { background: none; border: 1px solid var(--rule); border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 16px; color: var(--ink); line-height: 1; }
+  .tl-zoom-btn:hover { background: var(--rule); }
+  .tl-zoom-label { min-width: 28px; text-align: center; font-variant-numeric: tabular-nums; }
+  .tl-scroll { overflow-x: auto; overflow-y: visible; padding-bottom: 8px; }
+  .tl-canvas { position: relative; height: 180px; user-select: none; }
+  .tl-tooltip { position: fixed; background: var(--ink); color: var(--paper); font-size: 12px; font-family: 'Noto Serif TC', serif; padding: 5px 9px; border-radius: 4px; pointer-events: none; display: none; z-index: 100; white-space: nowrap; line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -678,6 +688,22 @@
   </div>
 
   <div id="tab-timeline" class="tab-pane">
+<div class="tl-wrap">
+  <div class="tl-controls">
+    <button class="tl-zoom-btn" onclick="tlZoom(-1)">−</button>
+    <span class="tl-zoom-label" id="tl-zoom-label">1×</span>
+    <button class="tl-zoom-btn" onclick="tlZoom(1)">+</button>
+    <span style="margin-left:8px;font-size:12px;">
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#b07d2e;vertical-align:middle;margin-right:4px;"></span>東方
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#8b2e10;vertical-align:middle;margin-left:12px;margin-right:4px;"></span>西方
+    </span>
+  </div>
+  <div class="tl-scroll" id="tl-scroll">
+    <div class="tl-canvas" id="tl-canvas"></div>
+  </div>
+</div>
+<div class="tl-tooltip" id="tl-tooltip"></div>
+<hr class="rule" style="margin-bottom:2rem;">
 <h2>史前與創世（宇宙起源至公元前 1000 年）</h2>
 <p><strong>約140億年前</strong>：宇宙起源於大爆炸（自然科學觀點）</p>
 <p><strong>約6500萬年前</strong>：恐龍稱霸地球，人類祖先只能逃亡</p>
@@ -708,18 +734,18 @@
 <p><strong>公元前106年</strong>：西塞羅出生</p>
 <p><strong>公元前4年</strong>：耶穌誕生</p>
 <p><strong>公元前43年</strong>：西塞羅逝世</p>
-<p><strong>公元29年</strong>：耶穌去世，被視為舊約所啟示的彌賽亞</p>
-<p><strong>公元64年／東漢明帝永平七年</strong>：佛教傳入中國，使臣奉命西行求法，返回後建立洛陽白馬寺，帶回《四十二章經》</p>
-<p><strong>公元250年／三國時代</strong>：朱士行成為中國第一位出家人</p>
-<p><strong>公元323年</strong>：羅馬帝國皇帝接受天主教信仰</p>
+<p><strong>29年</strong>：耶穌去世，被視為舊約所啟示的彌賽亞</p>
+<p><strong>64年／東漢明帝永平七年</strong>：佛教傳入中國，使臣奉命西行求法，返回後建立洛陽白馬寺，帶回《四十二章經》</p>
+<p><strong>250年／三國時代</strong>：朱士行成為中國第一位出家人</p>
+<p><strong>323年</strong>：羅馬帝國皇帝接受天主教信仰</p>
 <p><strong>354年</strong>：奧古斯丁出生</p>
-<p><strong>公元399年</strong>：法顯赴印度取經，為第一位赴印取經者</p>
+<p><strong>399年</strong>：法顯赴印度取經，為第一位赴印取經者</p>
 <p><strong>430年</strong>：奧古斯丁逝世</p>
-<p><strong>公元476年</strong>：西羅馬帝國滅亡</p>
-<p><strong>公元476年－1453年</strong>：中世紀，羅馬天主教主控西歐社會約一千年</p>
+<p><strong>476年</strong>：西羅馬帝國滅亡</p>
+<p><strong>476年－1453年</strong>：中世紀，羅馬天主教主控西歐社會約一千年</p>
 <p><strong>東漢末期（約西元2世紀末）</strong>：道教正式出現，以五斗米教為起點，老子被神格化，距老子約700年</p>
 <p><strong>魏晉時期（約西元3–5世紀）</strong>：竹林七賢活躍，新道家興起；清談興起，辯論有無；格義之學興起；寇謙之等道教大師將老莊納入道教體系，老子被尊為太上老君</p>
-<p><strong>公元645年／唐太宗貞觀十九年</strong>：玄奘取經回國</p>
+<p><strong>645年／唐太宗貞觀十九年</strong>：玄奘取經回國</p>
 <p><strong>唐朝（西元618–907年）</strong>：皇帝姓李，特別推崇道教，使道教大為盛行；華嚴宗、法相宗（唯識宗）、律宗成立</p>
 <p><strong>隋朝</strong>：天台宗（法華宗）及三論宗成立</p>
 <p><strong>宋代</strong>：周敦頤、邵雍、張載、程頤等北宋五子批判佛道兩家；張載提出「民吾同胞，物吾與也」，體現超位格觀念</p>
@@ -1051,7 +1077,137 @@ function showTab(name, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
   btn.classList.add('active');
+  if (name === 'timeline') tlRender();
 }
+
+(function() {
+  const MIN_YEAR = -1300, MAX_YEAR = 2100;
+  const ZOOM_LEVELS = [1, 2, 4, 8];
+  const BASE_PX = 0.2;
+  const TRACK_EAST = 55, TRACK_WEST = 130, CANVAS_H = 180;
+  let zoomIdx = 0;
+
+  const events = [
+    { year: -563,  label: '釋迦牟尼誕生',        side: 'east' },
+    { year: -551,  label: '孔子誕生',             side: 'east' },
+    { year: -483,  label: '釋迦牟尼逝世',          side: 'east' },
+    { year: -479,  label: '孔子逝世',             side: 'east' },
+    { year: -221,  label: '秦始皇統一中國',        side: 'east' },
+    { year:   64,  label: '佛教傳入中國',          side: 'east' },
+    { year:  250,  label: '朱士行成為中國第一位出家人', side: 'east' },
+    { year:  399,  label: '法顯赴印度取經',        side: 'east' },
+    { year:  645,  label: '玄奘取經回國',          side: 'east' },
+    { year: 1032,  label: '程頤誕生',             side: 'east' },
+    { year: 1130,  label: '朱熹誕生',             side: 'east' },
+    { year: 1200,  label: '朱熹逝世',             side: 'east' },
+    { year: -1004, label: '大衛王稱王建國',        side: 'west' },
+    { year:  -933, label: '以色列王國分裂',        side: 'west' },
+    { year:  -722, label: '北以色列被亞述帝國滅亡', side: 'west' },
+    { year:  -586, label: '巴比倫之囚',           side: 'west' },
+    { year:  -384, label: '亞里斯多德誕生',        side: 'west' },
+    { year:  -322, label: '亞里斯多德逝世',        side: 'west' },
+    { year:  -106, label: '西塞羅誕生',           side: 'west' },
+    { year:   -43, label: '西塞羅逝世',           side: 'west' },
+    { year:    -4, label: '耶穌誕生',             side: 'west' },
+    { year:    29, label: '耶穌逝世',             side: 'west' },
+    { year:   354, label: '奧古斯丁誕生',          side: 'west' },
+    { year:   430, label: '奧古斯丁逝世',          side: 'west' },
+    { year:   476, label: '西羅馬帝國滅亡',        side: 'west' },
+    { year:  1054, label: '天主教第一次分裂',      side: 'west' },
+    { year:  1473, label: '哥白尼誕生',           side: 'west' },
+    { year:  1517, label: '馬丁路德宗教改革',      side: 'west' },
+    { year:  1543, label: '哥白尼逝世',           side: 'west' },
+    { year:  1600, label: '布魯諾被處以火刑',      side: 'west' },
+    { year:  1687, label: '牛頓《自然哲學的數學原理》', side: 'west' },
+    { year:  1809, label: '達爾文誕生',           side: 'west' },
+    { year:  1844, label: '尼采誕生',             side: 'west' },
+    { year:  1882, label: '達爾文逝世',           side: 'west' },
+    { year:  1948, label: '以色列建國',           side: 'west' },
+    { year:  2001, label: '911 恐怖攻擊',         side: 'west' },
+  ];
+
+  function pxPerYear() { return BASE_PX * ZOOM_LEVELS[zoomIdx]; }
+  function yearToX(year) { return Math.round((year - MIN_YEAR) * pxPerYear()); }
+  function canvasWidth() { return Math.round((MAX_YEAR - MIN_YEAR) * pxPerYear()); }
+  function formatYear(y) { return y < 0 ? '公元前 ' + (-y) + ' 年' : '公元 ' + y + ' 年'; }
+  function tickStep() {
+    const z = ZOOM_LEVELS[zoomIdx];
+    return z >= 4 ? 100 : z >= 2 ? 200 : 500;
+  }
+
+  function tlRender() {
+    const canvas = document.getElementById('tl-canvas');
+    if (!canvas) return;
+    const w = canvasWidth();
+    canvas.style.width = w + 'px';
+    canvas.innerHTML = '';
+
+    ['east', 'west'].forEach(function(side) {
+      const y = side === 'east' ? TRACK_EAST : TRACK_WEST;
+      const line = document.createElement('div');
+      line.style.cssText = 'position:absolute;top:' + y + 'px;left:0;width:' + w + 'px;height:2px;background:#c8b99a;';
+      canvas.appendChild(line);
+      const lbl = document.createElement('div');
+      lbl.textContent = side === 'east' ? '東方' : '西方';
+      lbl.style.cssText = 'position:absolute;top:' + (y - 16) + 'px;left:4px;font-size:11px;color:#6b5e4e;font-family:\'Noto Serif TC\',serif;letter-spacing:.05em;';
+      canvas.appendChild(lbl);
+    });
+
+    const zeroX = yearToX(0);
+    const zeroLine = document.createElement('div');
+    zeroLine.style.cssText = 'position:absolute;top:0;left:' + zeroX + 'px;width:1px;height:' + (CANVAS_H - 20) + 'px;background:#c8b99a;opacity:0.6;';
+    canvas.appendChild(zeroLine);
+
+    const step = tickStep();
+    const startTick = Math.ceil(MIN_YEAR / step) * step;
+    for (let yr = startTick; yr <= MAX_YEAR; yr += step) {
+      const x = yearToX(yr);
+      const tick = document.createElement('div');
+      tick.style.cssText = 'position:absolute;top:' + (CANVAS_H - 22) + 'px;left:' + x + 'px;width:1px;height:8px;background:#c8b99a;';
+      canvas.appendChild(tick);
+      const tickLbl = document.createElement('div');
+      tickLbl.textContent = yr === 0 ? '公元' : (yr < 0 ? '前' + (-yr) : String(yr));
+      tickLbl.style.cssText = 'position:absolute;top:' + (CANVAS_H - 13) + 'px;left:' + x + 'px;transform:translateX(-50%);font-size:10px;color:#6b5e4e;white-space:nowrap;font-family:\'Noto Serif TC\',serif;';
+      canvas.appendChild(tickLbl);
+    }
+
+    const tooltip = document.getElementById('tl-tooltip');
+    events.forEach(function(ev) {
+      const x = yearToX(ev.year);
+      const trackY = ev.side === 'east' ? TRACK_EAST : TRACK_WEST;
+      const color = ev.side === 'east' ? '#b07d2e' : '#8b2e10';
+      const dot = document.createElement('div');
+      dot.style.cssText = 'position:absolute;left:' + (x - 5) + 'px;top:' + (trackY - 5) + 'px;width:10px;height:10px;border-radius:50%;background:' + color + ';cursor:pointer;border:2px solid #f7f3ec;box-shadow:0 0 0 1px ' + color + ';transition:transform .1s;';
+      dot.addEventListener('mouseenter', function(e) {
+        tooltip.style.display = 'block';
+        tooltip.innerHTML = '<strong>' + formatYear(ev.year) + '</strong><br>' + ev.label;
+        dot.style.transform = 'scale(1.6)';
+      });
+      dot.addEventListener('mousemove', function(e) {
+        tooltip.style.left = (e.clientX + 14) + 'px';
+        tooltip.style.top  = (e.clientY - 38) + 'px';
+      });
+      dot.addEventListener('mouseleave', function() {
+        tooltip.style.display = 'none';
+        dot.style.transform = 'scale(1)';
+      });
+      canvas.appendChild(dot);
+    });
+
+    document.getElementById('tl-zoom-label').textContent = ZOOM_LEVELS[zoomIdx] + '×';
+  }
+
+  window.tlZoom = function(delta) {
+    const scroll = document.getElementById('tl-scroll');
+    const centerYear = (scroll.scrollLeft + scroll.clientWidth / 2) / pxPerYear() + MIN_YEAR;
+    zoomIdx = Math.max(0, Math.min(ZOOM_LEVELS.length - 1, zoomIdx + delta));
+    tlRender();
+    const newLeft = (centerYear - MIN_YEAR) * pxPerYear() - scroll.clientWidth / 2;
+    scroll.scrollLeft = Math.max(0, newLeft);
+  };
+
+  window.tlRender = tlRender;
+})();
 </script>
 </body>
 </html>
