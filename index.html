@@ -1185,6 +1185,7 @@
   </div>
   <div class="qa-controls" id="qa-controls" style="display:none">
     <button onclick="qaSave()" class="qa-ctrl-btn">存檔 HTML</button>
+    <button onclick="qaSaveWord()" class="qa-ctrl-btn">存檔 Word</button>
     <button onclick="qaClear()" class="qa-ctrl-btn">清除對話</button>
   </div>
   <div id="qa-history"><p class="sr-hint">輸入問題後點擊「提問」，系統將根據 R01–R15 課程逐字稿回答。</p></div>
@@ -1535,6 +1536,54 @@ window.qaSave = function() {
   const a = document.createElement('a');
   a.href = url;
   a.download = '宗教哲學問答_' + now.toISOString().slice(0,10) + '.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+};
+
+window.qaSaveWord = function() {
+  if (!qaHistory.length) return;
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('zh-TW') + ' ' + now.toLocaleTimeString('zh-TW');
+
+  function rtfEsc(s) {
+    let r = '';
+    for (let i = 0; i < s.length; i++) {
+      const c = s.charCodeAt(i);
+      if (s[i] === '\\') r += '\\\\';
+      else if (s[i] === '{') r += '\\{';
+      else if (s[i] === '}') r += '\\}';
+      else if (s[i] === '\n') r += '\\line ';
+      else if (c < 128) r += s[i];
+      else r += '\\u' + c + '?';
+    }
+    return r;
+  }
+
+  let body = '{\\b\\fs32 ' + rtfEsc('台大開放式課程：宗教哲學 — 問答紀錄') + '}\\par\n';
+  body += '{\\fs20\\cf1 ' + rtfEsc('儲存時間：' + dateStr + '　共 ' + qaHistory.length + ' 題') + '}\\par\\par\n';
+
+  qaHistory.forEach(function(t, i) {
+    body += '{\\b ' + rtfEsc('問 ' + (i + 1) + '：') + rtfEsc(t.question) + '}\\par\n';
+    body += rtfEsc(t.answer) + '\\par\n';
+    if (t.sources.length) {
+      body += '{\\i\\cf1 ' + rtfEsc('參考講次：' + t.sources.join('、')) + '}\\par\n';
+    }
+    body += '\\par\n';
+  });
+
+  const rtf = '{\\rtf1\\ansi\\ansicpg950\\deff0\n' +
+    '{\\fonttbl{\\f0\\froman\\fcharset136 Times New Roman;}}\n' +
+    '{\\colortbl;\\red107\\green94\\blue78;}\n' +
+    '\\f0\\fs24\\sl360\\slmult1\n' +
+    body + '}';
+
+  const blob = new Blob([rtf], { type: 'application/rtf' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = '宗教哲學問答_' + now.toISOString().slice(0, 10) + '.rtf';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
