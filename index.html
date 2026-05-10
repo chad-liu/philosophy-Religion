@@ -1246,6 +1246,15 @@
 <script>
 var currentCourse = 'religion';
 
+window.addEventListener('DOMContentLoaded', function() {
+  var hash = window.location.hash.slice(1);
+  if (hash === 'life' || hash === 'religion') {
+    document.querySelectorAll('.course-btn').forEach(function(btn) {
+      if (btn.getAttribute('onclick').indexOf("'" + hash + "'") !== -1) btn.click();
+    });
+  }
+});
+
 function switchCourse(course, btn) {
   currentCourse = course;
   document.querySelectorAll('.course-btn').forEach(function(b) { b.classList.remove('active'); });
