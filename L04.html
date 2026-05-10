@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哲學與人生：神話與悲劇</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+  :root {
+    --ink: #1a1610;
+    --paper: #f7f3ec;
+    --accent: #8b2e10;
+    --rule: #c8b99a;
+    --muted: #6b5e4e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px;
+    line-height: 1.95;
+    padding: 60px 20px 100px;
+  }
+
+  .book-wrap { max-width: 740px; margin: 0 auto; }
+
+  .chapter-header {
+    border-top: 3px solid var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding: 40px 0 32px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .chapter-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid var(--rule);
+    margin-bottom: 44px;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    padding: 10px 22px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 700; }
+
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.18rem; font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin: 48px 0 16px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.02rem; font-weight: 700;
+    color: var(--ink);
+    margin: 34px 0 10px;
+  }
+
+  p { margin-bottom: 18px; text-align: justify; }
+  ul { margin: 4px 0 20px 1.4em; }
+  li { margin-bottom: 6px; text-align: justify; }
+
+  blockquote {
+    border-left: 3px solid var(--rule);
+    padding: 4px 20px;
+    margin: 20px 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+  blockquote p { margin-bottom: 6px; }
+
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin: 44px 0; }
+  strong { font-weight: 700; }
+
+  .index-section h2 { font-size: 1.05rem; margin-top: 36px; }
+  .index-section ul { margin-left: 1.2em; }
+  .index-section li { font-size: 15px; margin-bottom: 8px; line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="book-wrap">
+
+  <div class="chapter-header">
+    <div class="chapter-label">台大開放式課程：哲學與人生</div>
+    <div class="chapter-title">哲學與人生：神話與悲劇</div>
+    <div class="chapter-source">
+      <a href="https://www.youtube.com/watch?v=CQk56RFTT2I" target="_blank" rel="noopener">課程影片</a>
+      <a href="index.html">回課程首頁</a>
+    </div>
+  </div>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('full',this)">完整稿</button>
+    <button class="tab-btn" onclick="showTab('outline',this)">大綱</button>
+    <button class="tab-btn" onclick="showTab('terms',this)">專有名詞</button>
+    <button class="tab-btn" onclick="showTab('timeline',this)">時間軸</button>
+    <button class="tab-btn" onclick="showTab('people',this)">重要人物</button>
+  </nav>
+
+  <div id="tab-full"     class="tab-pane active"><h1>神話與悲劇</h1>
+
+<h2>一、神話的定義與本質</h2>
+
+<h3>什麼是神話</h3>
+
+<p>「神話」一詞在希臘文中稱為 <em>mythos</em>，字面意義是「有關神的故事」。神的故事在本質上是一個民族的夢——如同個人會做夢，一個民族也有集體的前意識，以一種不自覺的方式虛構出這些故事。</p>
+
+<p>要理解神話，可以對照「童話」。童話是寫給小孩子看的，因為孩子的心靈尚未成熟，無法承受赤裸的真實。真實的世界複雜、不符合理想，有時甚至醜惡；孩子需要童話故事來培養基本信念。童話的結構很有特色：開頭一定是「很久很久以前」（沒有確切年代），結局一定是「從此以後王子與公主過著快樂的日子」——善惡都有報應，好人一定得到肯定。孩子從小聽童話，心中就有對完美的嚮往，長大後面對殘酷的現實，仍能保留那份純真的信念。</p>
+
+<p>神話對一個民族的作用與童話類似。人活在自然界中，安危與快樂直接牽繫於自然界的運作。人不只想「活下去」（那是生物本能），更想「理解活著是怎麼回事」。這種對意義的追求，需要對世界有整體的認識——從哪裡來、往哪裡去，讓生命中的許多事得到合理的解釋。神話由此而生。</p>
+
+<p>神話一般沒有作者，口耳相傳，無法確知起源，內容都是最原始的、與神有關的故事。</p>
+
+<h3>希臘神話的特色</h3>
+
+<p>希臘神話是以最具代表性的神話體系。在希臘文中，「神」的字根與「力量」相同——神就是「有力量的東西」。風有風神、海有海神、天有天神、太陽月亮各有其神，因為它們都是自然界中具有明顯力量的存在。</p>
+
+<p>中國神話（如《山海經》、《穆天子傳》）經過後代的修改，難以確認原始含義；希臘神話結構最完整、流傳最久遠，因此以希臘神話作為代表最為恰當。</p>
+
+<hr class="rule">
+
+<h2>二、希臘神話的兩大系統</h2>
+
+<h3>系統一：泰坦族（巨人族）</h3>
+
+<p>這是最原始的神話體系，源頭是<strong>混沌</strong>（Chaos）——沒有時間、沒有空間的概念，一切混成一片、當下即是的狀態。</p>
+
+<ul>
+<li><strong>混沌</strong>首先產生：大地女神（Gaia）、深淵、黑暗之神、黑暗女神</li>
+<li><strong>大地女神（Gaia）</strong>產生：天神（Uranus）、海神（Pontus）</li>
+<li><strong>天神（Uranus）</strong>的字根代表「根源」；<strong>地與天</strong>生出泰坦族，其中最重要者包括：</li>
+<li><strong>Oceanus</strong>（海洋）：字根即為英文 <em>ocean</em></li>
+<li><strong>Pontus</strong>（海）與 <strong>Eros</strong> 生出太陽神、月亮神、黎明女神</li>
+<li><strong>Chronos</strong>（克羅諾斯）：字根即為「時間」，英文 <em>chronicle</em>（編年史）即源於此。Chronos 推翻父親 Uranus，象徵「時間一出現，根源就永遠被超越，人從此活在時間過程中，無法回到根源」。</li>
+</ul>
+
+<p>Chronos 生了五個子女後全部吞下，因為他擔心子女會像他推翻父親一樣推翻自己。這也象徵「時間吞噬一切」。最後一個孩子宙斯（Zeus）出生時，母親以石頭代替，讓 Chronos 吞下，秘密將宙斯撫養成人。宙斯長大後逼父親吐出五位兄姐，完成反叛。</p>
+
+<p>這段從 Uranus → Chronos → Zeus 的演變，象徵從「根源」到「時間」，再到「有意志的主宰」——宙斯可以超越時間的控制，不只是隨時間生老病死。</p>
+
+<h3>系統二：奧林帕斯山上的神</h3>
+
+<p>以宙斯（Zeus，天神）為核心，其妻赫拉（Hera）因宙斯與眾多神明生子而充滿嫉妒。天神管轄之外有三位神明是其無法控制的：</p>
+
+<p>1. <strong>愛神（Aphrodite）</strong>：從 Uranus 的後裔、海洋的泡沫中誕生，象徵美與愛的力量。到羅馬時代稱為維納斯（Venus），其子 Eros 到羅馬時代稱為丘比特（Cupid）。唯有雅典娜、赫斯提亞（灶神）、阿耳忒彌斯（月神）三位女神能抵抗愛的吸引。</p>
+
+<p>2. <strong>命運三女神（Moirai）</strong>：掌控命運，連宙斯也無法違逆。</p>
+
+<p>3. <strong>正義女神（Themis）</strong>：宙斯的助手，執行正義。</p>
+
+<p>宙斯所生的其他重要神明：</p>
+
+<table>
+<thead>
+<tr><th>神明</th><th>職司</th><th>備注</th></tr>
+</thead>
+<tbody>
+<tr><td>阿波羅（Apollo）</td><td>太陽、光明、理性、藝術</td><td>伴侶為繆斯九女神，象徵光明理性</td></tr>
+<tr><td>阿耳忒彌斯（Artemis）</td><td>月亮、狩獵</td><td>阿波羅之妹</td></tr>
+<tr><td>雅典娜（Athena）</td><td>智慧、戰爭</td><td>從宙斯頭部誕生；雅典城邦守護神</td></tr>
+<tr><td>赫菲斯托斯（Hephaestus）</td><td>火、建築、鍛造</td><td>赫拉所生</td></tr>
+<tr><td>荷米斯（Hermes）</td><td>傳訊、商業</td><td>腳有翅膀；<em>hermetic</em>（密封學）即源於此</td></tr>
+<tr><td>戴奧尼索斯（Dionysus）</td><td>酒、狂喜、藝術靈感</td><td>喝酒後擺脫理性控制，象徵創作靈感的來源；與理性的阿波羅形成對比</td></tr>
+<tr><td>狄蔻（Dike）</td><td>正義</td><td><em>theodicy</em>（神義論）即源於此字根</td></tr>
+<tr><td>阿瑞斯（Ares）</td><td>戰爭</td><td>兇殘，與智慧女神雅典娜的戰爭不同</td></tr>
+<tr><td>阿斯克勒庇俄斯（Asclepius）</td><td>醫術</td><td>阿波羅之子；蘇格拉底臨死前說「替我向阿斯克勒庇俄斯還一隻雞的願」，意指死亡即是病痛的痊癒</td></tr>
+</tbody>
+</table>
+
+<p>另有宙斯的兄弟：</p>
+
+<ul>
+<li><strong>波塞頓（Poseidon）</strong>：海神，是宙斯的哥哥</li>
+<li><strong>哈帝斯（Hades）</strong>：地獄之神，面容陰沉；宙斯分掌天空，波塞頓掌海洋，哈帝斯掌地下</li>
+<li><strong>狄蜜特（Demeter）</strong>：農業女神</li>
+</ul>
+
+<hr class="rule">
+
+<h2>三、神話的基本信念</h2>
+
+<h3>1. 天人無間</h3>
+
+<p>「天」（即自然界）與「人」是統合的整體，沒有區隔。值得注意的是，中國的「天人合一」概念中，「天」並非自然界，而是超越界——若「天」指自然界，則「天人合一」毫無意義，因為任何動物死後都能「天人合一」（歸塵土）。</p>
+
+<p>儒家應說「天人和德」，道家才可說「天人合一」（天是自然，人是人，都屬於道之中）。莊子說：「天地與我並生，而萬物與我為一。」西方最早的哲學家泰勒斯（Thales）說：「宇宙的起源是水，一切都充滿神明。」他的水是有生命力、有神的力量的水，代表萬物都有生命——正是神話背景的體現。</p>
+
+<h3>2. 萬物有生</h3>
+
+<p>「Everything can become everything」——一切都可以互相轉化。樹木可以說話、動物可以與人溝通，都是這一信念的體現。</p>
+
+<h3>3. 情感主導</h3>
+
+<p>神話的思維是情感的，而非理性的。「神話」（mythos）與「邏輯」（logos）相對——logos 代表理性與言說。人類說話必須有邏輯，否則無法溝通，邏輯是語言溝通的自然條件。神話則是情感的、直覺的表達方式。</p>
+
+<h3>4. 戲劇性格</h3>
+
+<p>神話故事充滿戲劇性，涵蓋人類的喜怒哀樂、恩怨情仇——用十六個字可以概括人生：生老病死、喜怒哀樂、恩怨情仇、悲歡離合。這些在神話中都表達得非常生動。</p>
+
+<hr class="rule">
+
+<h2>四、神話的作用</h2>
+
+<h3>1. 掌握真實</h3>
+
+<p>許多人認為神話是虛構的，恰好與真實相反。但什麼是真實？歷史上發生過的事才算真實？然而歷史是後人書寫的，每個時代都從自身角度重寫一遍，不同史學家有不同版本。西方歷史哲學家說：「所有的歷史都是現代史。」司馬遷的記述也有其個人立場與遭遇。凡一去不復返之事，只能發生一次，沒有第二次複製的機會，所以歷史上沒有永恆的真實。</p>
+
+<p>反之，<strong>神話提供原型（archetype）</strong>——一個永恆的框架，讓人類不斷回到那個模式之中。神話建構了唯一可以持久的真實。</p>
+
+<p>學歷史若不懂哲學，即缺乏歷史哲學——不知道歷史存在的目的，不知道人類在歷史中創作的最終意義，只能被動接受負面的事實：帝王將相殺伐征討，善人短命惡人長壽。</p>
+
+<h3>2. 建立原型</h3>
+
+<p>原型幫助人類<strong>跨越存在的斷裂</strong>。人生中有幾個重大的斷裂時刻：</p>
+
+<ul>
+<li><strong>出生</strong>：有人出生，所有相關人的身份角色都要重新調整（兄弟變叔叔，孩子的女兒結婚後又成公公）。台灣習俗送紅蛋，正是告知眾人「請為新生命留條路」。</li>
+<li><strong>成年</strong>：原住民的成年禮（獨自入山一週）或當兵（磨鍊出脫胎換骨的自我），都是重要的生命轉折。成年禮是從少年走入成人世界的儀式。</li>
+<li><strong>結婚</strong>：公告天下，與特定人結合，是重要的身份轉變。</li>
+<li><strong>死亡</strong>：「慎終追遠，民德歸厚」（曾子語）。父母死亡是「大事」，孟子說：「養生者不足以當大事，為送死可以當大事。」</li>
+</ul>
+
+<p>孟子指出維繫社會秩序的三種力量：</p>
+<ul>
+<li><strong>爵（爵位）</strong>：公事以官位大小為準</li>
+<li><strong>齒（年齡）</strong>：日常生活以年齡為準（孔子在鄉飲酒禮中，拄杖者先離席，不論官位大小）</li>
+<li><strong>德（德行）</strong>：典禮與儀式以德行為主，由品德高尚者主持</li>
+</ul>
+
+<h3>3. 為世界帶來意義與結構</h3>
+
+<p><strong>意義</strong>就是「理解的可能性」。若世界沒有意義，人便缺乏安全感，只能「活在當下」——但那種活在當下是動物式的（所有動物都活在當下），無法創造文化。</p>
+
+<p>神話使人能在了解世界的意義與結構之後，「活在當下，同時投射未來」，從而進行文化創作——建築、農耕、語言、藝術皆由此而生。</p>
+
+<h3>4. 說明三類現象</h3>
+
+<ul>
+<li><strong>自然現象</strong>：自然界的力量（風、海、火山）都有神在背後負責，人可以透過祭祀（送禮行賄）與神溝通，表達希望或請求庇佑。</li>
+<li><strong>社會分工</strong>：每種職業都有守護神，賦予職業神聖性，維繫社會分工秩序（木匠拜魯班、教書拜孔子、黑白兩道都拜關公）。</li>
+<li><strong>人的慾望</strong>：神話透過神的狂暴、淫亂、不合理行為，將人內心的慾望外化，使人得以接受自身的慾望而不至於被嚇倒。</li>
+</ul>
+
+<hr class="rule">
+
+<h2>五、神話的主題類型</h2>
+
+<h3>1. 創世</h3>
+
+<p>從混沌進入秩序（cosmos，即 order），宇宙在空間上有前後左右上下，在時間上有持續性。中文「宇宙」一詞極具深意：「上下四方謂之宇，古往今來謂之宙」——宇是空間，宙是時間。英文 <em>cosmos</em> 即「秩序」，對照混沌（chaos）。</p>
+
+<p>創世的目的在於造人：只有人類能跨越反省的門檻，意識到自身處境並追問意義。人類一出現，宇宙才有意義的問題，但也隨之帶來災難——人類改造自然，引起自然的反撲（洪水等）。</p>
+
+<h3>2. 大洪水與救世主</h3>
+
+<p>人類改造自然生態，造成自然反撲，產生洪水滅世。中國有大禹治水，猶太人有諾亞方舟，其他民族亦有類似神話。大災難之後必有救世主出現，帶來希望：希臘神話中的普羅米修斯為人類盜取天火，是典型的救世主形象。</p>
+
+<h3>3. 文化超人</h3>
+
+<p>突然間出現文明的突破性發展，全部歸功於一位文化超人。中國的黃帝階段，指南車、火藥、文字的發明皆在此時，因古代無著作權觀念，全由黃帝一人代表。</p>
+
+<h3>4. 英雄典型</h3>
+
+<p>成為英雄的三個階段：</p>
+<p>1. <strong>退出</strong>：離開熟悉的家鄉，進入陌生的環境</p>
+<p>2. <strong>考驗</strong>：在陌生環境中接受艱苦的磨鍊（如同連根拔起的樹，看能否在新土壤中存活）</p>
+<p>3. <strong>復返</strong>：帶著蛻變後的自我回歸，鄉人以英雄視之</p>
+
+<p>希臘神話後期充滿英雄故事，皆循此三階段模式。</p>
+
+<hr class="rule">
+
+<h2>六、希臘悲劇</h2>
+
+<h3>悲劇的起源</h3>
+
+<p>「悲劇」（tragedy）一詞源於希臘文 <em>tragos</em>，意為「山羊」。酒神戴奧尼索斯住在葡萄園，園中多山羊，最早的酒神祭典以山羊面具演出，後稱「山羊劇」（tragoedia）。</p>
+
+<p>演出形式逐漸演變：初為一人演出，後增至兩人對話，再增至三人，最終發展為完整的戲碼——交代事件的起因、經過、結果及影響。</p>
+
+<h3>悲劇的特色</h3>
+
+<p><strong>悲劇的主角是命運</strong>，不以人的意志為轉移。觀眾明知結局悲慘，仍全程觀看，並在觀賞過程中產生兩種感受（亞里斯多德所指出）：</p>
+<ul>
+<li><strong>憐憫</strong>：主角並非壞人，從未故意為惡，卻敵不過命運的安排，令人同情</li>
+<li><strong>恐懼</strong>：他人身上發生的事，也可能發生在自己身上</li>
+</ul>
+
+<p>這兩種情感最終帶來<strong>淨化（catharsis）</strong>，洗煉內心，恢復純真，使觀眾重新感受到自身生命的尊嚴與偉大。</p>
+
+<h3>希臘三大悲劇家</h3>
+
+<h4>埃斯奇勒斯（Aeschylus）</h4>
+
+<p>希臘第一位悲劇家，代表作《普羅米修斯》三部曲。普羅米修斯憐憫人類的悲苦，從天上盜取火種給人類，卻得罪宙斯，被鎖在高加索山上，每日被老鷹啄食肝臟，次日肝臟復原，循環不止——象徵「生命存在，痛苦必然伴隨」。三部曲最終以救贖收尾：有一位神願意放棄自身的神性，以換取普羅米修斯的自由。</p>
+
+<p>埃斯奇勒斯的死亡充滿戲劇性：算命者告知他將被「壓死」，他便整日在曠野中遊走。結果一隻老鷹抓著烏龜飛行，因烏龜太重而鬆手，烏龜砸中他而亡——命運精準應驗，分毫不差。</p>
+
+<h4>索福克里斯（Sophocles）</h4>
+
+<p>代表作《伊底帕斯王》（<em>Oedipus Rex</em>），是西方最著名的悲劇。</p>
+
+<p>劇情梗概：</p>
+<ul>
+<li>底比斯（Thebes）王后生一子，神諭預告此子將殺父娶母。國王命僕人殺嬰，僕人不忍，將嬰兒轉交科林斯（Corinth）王的僕人撫養。嬰兒腳後跟被割一刀，故名<strong>伊底帕斯</strong>（Oedipus，即「腫腳」之意）。</li>
+<li>伊底帕斯長大後，有人告訴他將「殺父娶母」，他以為父母是科林斯的養父母，立刻出逃。途中在三岔路口，一中年男子嫌他擋路，他憤而將其打死——那人正是他的生父。</li>
+<li>伊底帕斯到達底比斯城外，怪物<strong>斯芬克斯（Sphinx）</strong>（人面獅身鷹翼）盤據城前，以謎語難殺過路人：「什麼動物早晨四腳、中午兩腳、晚上三腳？」伊底帕斯答出「人」——嬰兒爬行、成人直立、老人持杖。斯芬克斯投崖自盡，全城解困，伊底帕斯順理成章娶了王后——那正是他的生母，並生下兩男兩女。</li>
+<li>多年後城中瘟疫肆虐，神諭指出必須找出殺害前任國王的兇手。追查之下真相大白：伊底帕斯即是那個殺父娶母的孩子。王后自縊，伊底帕斯刺瞎雙眼，自我放逐，流浪天涯。</li>
+</ul>
+
+<p>索福克里斯說：「宇宙萬物之中，沒有比人的存在更令人驚訝的。」</p>
+
+<h4>歐里庇得斯（Euripides）</h4>
+
+<p>悲劇已開始轉變，代表作《伊翁》（<em>Ion</em>）：少女被阿波羅所愛、懷孕生子，後將孩子棄於德爾菲神殿。少女後來嫁人、不孕，前往神殿求子；其夫在外與幼童玩耍，少女誤以為是私生子，欲下毒；毒藥先被鴿子喝下而死，陰謀敗露。最後女祭師揭露伊翁正是少女之子，母子相認，合家團圓——已近喜劇，是真正悲劇的尾聲。</p>
+
+<hr class="rule">
+
+<h2>七、歐洲近代悲劇</h2>
+
+<p>索福克里斯、塞萬提斯（Cervantes）、歌德（Goethe）三人皆生於1616年前後，代表近代歐洲悲劇的高峰。</p>
+
+<table>
+<thead>
+<tr><th>作家</th><th>代表作</th><th>主題</th></tr>
+</thead>
+<tbody>
+<tr><td>莎士比亞（Shakespeare）</td><td>四大悲劇（《哈姆雷特》《馬克白》《李爾王》《奧賽羅》）</td><td>人的內在弱點：猶豫、野心、嫉妒、輕信，導致毀滅</td></tr>
+<tr><td>塞萬提斯（Cervantes）</td><td>《唐吉訶德》</td><td>分不清現實與幻想的騎士，象徵理想在現實中的幻滅</td></tr>
+<tr><td>歌德（Goethe）</td><td>《浮士德》（Faust）</td><td>與魔鬼交換靈魂，追求知識、愛情、名聲，最終發現唯有「幫助他人」才能獲得滿足</td></tr>
+</tbody>
+</table>
+
+<p>近代歐洲悲劇的特色：命運的外在壓迫已退場，代之以人的內在理性與慾望的衝突，結局走向<strong>虛無主義</strong>——野心、嫉妒、貪婪、猜忌，最終皆歸虛無。歌德本人也曾陷入憂鬱：「每天早上起來發現自己還活著，卻不知道活著要做什麼。」</p>
+
+<p>《哈姆雷特》中的名句 <em>To be or not to be</em> 難以精確翻譯：<em>to be</em> 即「存在」，而非單純的「活著」或「死去」。西方文字中，動詞 <em>to be</em> 是最神秘的字——大寫的 <em>Being</em> 指上帝（存在的根源），小寫的 <em>beings</em> 指萬物（存在的事物）。莎士比亞藉此句問：「要活得像一個人，還是不要？」</p>
+
+<hr class="rule">
+
+<h2>八、西方科學精神的三個來源</h2>
+
+<p>英國哲學家懷德海（Alfred North Whitehead）在《科學與現代世界》中指出，西方發展出科學精神的三個歷史根源：</p>
+
+<p>1. <strong>希臘悲劇</strong>：命運的法則完全不以人的意志為轉移，由此培養出「尊重客觀規律」的態度——命運的絕對性轉化為自然規律的固定性，奠定科學心態。</p>
+
+<p>2. <strong>羅馬法律</strong>：演繹法體系，確立基本原則後，如一張大網將所有具體細節涵蓋其中，建立客觀的秩序感。</p>
+
+<p>3. <strong>中世紀對上帝的信仰</strong>：天主教神學認為宇宙是一個完整的系統，「耶穌說一根頭髮掉落都需要神的允許」，代表自然界是連續性的、不跳躍的整體——這種信念後來演化為科學家的「自然界不跳躍」原則。</p>
+
+<p>反觀中國至今仍欠缺科學心態，原因在於習慣混淆事實（客觀）與個人願望（主觀）、重視人情關係勝於客觀原則。</p>
+
+<hr class="rule">
+
+<h2>九、中國有沒有悲劇？</h2>
+
+<p>中國沒有希臘意義上的悲劇。</p>
+
+<p>希臘悲劇以「命運」為主角，命運是整個人類的共同對手，不以任何人的意志為轉移。這種設定讓觀眾感受到人類作為整體面對命運的偉大。</p>
+
+<p>中國的戲劇（《竇娥冤》、《王寶川》等）呈現的是「人為造成的不公」，可以透過清明的官吏（如包青天）來解決；看完後心安，卻不會引發深刻的反思。中國戲劇最多是<strong>道德劇</strong>：善有善報、惡有惡報，不需要觀眾重新反思生命的處境。</p>
+
+<p><strong>悲劇的核心功能</strong>：「詩的正義」（亞里斯多德所論）——現實世界中沒有正義（好人不一定有好報），但在詩（文學創作）中才有正義。正因如此，金庸小說吸引人，是因為「善惡到頭終有報」——這是現實中缺乏的東西，在虛構中得到補償。</p>
+
+<hr class="rule">
+
+<h2>十、神話對現代人的意義</h2>
+
+<p>人不能沒有神話。神話給人「神話式的思維」，讓人在面對赤裸的現實時，仍能保有希望與意義。</p>
+
+<p>台灣曾有「三民主義統一中國」這樣的集體神話，使人活得有方向；失去神話後，人便只剩現實問題。個人也如此：夫妻有孩子後，對孩子的期待就是一種神話思維——孩子越小，父母期望越大；孩子越大，父母希望越小，這是人類「一代欺騙一代、自欺欺人」的生存方式。</p>
+
+<p>命運女神提醒我們：不要以為橫財或好運是單純的祝福。研究顯示，彩券中獎者平均七年後回到原點——因為突如其來的財富帶來不良交友、奢靡習慣，最終摧毀生命。真正的意義在於付出，而非獲得。</p>
+
+<p><strong>一個人有偉大的敵人，才能成為偉大的人。</strong>希臘人把命運當做對手，因此心胸廣大、生命昂揚。人若能將「無法改變的現實」視為自己必須面對的偉大挑戰，便能珍惜生命的每一刻。</p>
+</div>
+  <div id="tab-outline"  class="tab-pane"><h1>神話與悲劇</h1>
+
+<h2>一、神話的定義與本質</h2>
+
+<h3>神話的本質</h3>
+
+<p>神話（希臘文 <em>mythos</em>）是「有關神的故事」，本質上是一個民族的集體前意識所產生的不自覺虛構——猶如個人會做夢，民族也有集體的夢。</p>
+
+<h3>神話與童話的對照</h3>
+
+<ul>
+<li>童話供孩子使用，以緩衝赤裸的現實；結構固定：開頭「很久很久以前」（無確切年代），結局「從此過著快樂的日子」</li>
+<li>神話對民族的功能類似：幫助人理解「活著是怎麼回事」，提供生命的整體意義——從哪裡來、往哪裡去</li>
+</ul>
+
+<h3>神話的基本特徵</h3>
+
+<ul>
+<li>無作者，口耳相傳</li>
+<li>內容與神（力量）有關</li>
+<li>希臘文「神」與「力量」字根相同，自然界各種力量（風、海、太陽）皆有對應神明</li>
+</ul>
+
+<hr class="rule">
+
+<h2>二、希臘神話的兩大系統</h2>
+
+<h3>系統一：泰坦族（巨人族）</h3>
+
+<table>
+<thead>
+<tr><th>層次</th><th>神明</th><th>象徵意涵</th></tr>
+</thead>
+<tbody>
+<tr><td>混沌（Chaos）</td><td>一切根源</td><td>無時間、無空間的原初狀態</td></tr>
+<tr><td>大地女神（Gaia）</td><td>地</td><td>產生天神、海神</td></tr>
+<tr><td>天神（Uranus）</td><td>根源</td><td>字根代表「根源」</td></tr>
+<tr><td>克羅諾斯（Chronos）</td><td>時間</td><td>推翻父親＝時間超越根源；吞食子女＝時間吞噬一切</td></tr>
+<tr><td>宙斯（Zeus）</td><td>有意志的主宰</td><td>超越時間控制，不只順著生老病死</td></tr>
+</tbody>
+</table>
+
+<h3>系統二：奧林帕斯山的神</h3>
+
+<ul>
+<li>宙斯管轄之外的三股力量：愛神（Aphrodite）、命運三女神（Moirai）、正義女神（Themis）</li>
+<li>主要神明及其職司：</li>
+</ul>
+
+<table>
+<thead>
+<tr><th>神明</th><th>職司</th><th>補充</th></tr>
+</thead>
+<tbody>
+<tr><td>阿波羅（Apollo）</td><td>太陽、光明、理性</td><td>伴侶為繆斯九女神</td></tr>
+<tr><td>阿耳忒彌斯（Artemis）</td><td>月亮、狩獵</td><td>阿波羅之妹</td></tr>
+<tr><td>雅典娜（Athena）</td><td>智慧、戰爭</td><td>從宙斯頭部誕生</td></tr>
+<tr><td>荷米斯（Hermes）</td><td>傳訊</td><td><em>hermetic</em> 語源</td></tr>
+<tr><td>戴奧尼索斯（Dionysus）</td><td>酒、靈感</td><td>與理性的阿波羅形成對比</td></tr>
+<tr><td>波塞頓（Poseidon）</td><td>海</td><td>宙斯的哥哥</td></tr>
+<tr><td>哈帝斯（Hades）</td><td>地獄</td><td>宙斯的哥哥</td></tr>
+<tr><td>阿斯克勒庇俄斯（Asclepius）</td><td>醫術</td><td>阿波羅之子</td></tr>
+</tbody>
+</table>
+
+<hr class="rule">
+
+<h2>三、神話的基本信念</h2>
+
+<p>1. <strong>天人無間</strong>：自然與人是統合的整體，無所區隔</p>
+<ul>
+<li>道家「天人合一」（天＝自然，人與萬物同屬道）</li>
+<li>儒家應說「天人和德」（天是超越的道德根源）</li>
+</ul>
+<p>2. <strong>萬物有生</strong>：一切都可以互相轉化（Everything can become everything）</p>
+<p>3. <strong>情感主導</strong>：神話（mythos）相對於邏輯（logos），是情感的、直覺的</p>
+<p>4. <strong>戲劇性格</strong>：涵蓋人類的喜怒哀樂、恩怨情仇</p>
+
+<hr class="rule">
+
+<h2>四、神話的四大作用</h2>
+
+<h3>1. 掌握真實</h3>
+
+<ul>
+<li>歷史是後人書寫的，每個時代都以自身角度重寫，沒有永恆的客觀真實</li>
+<li>神話提供<strong>原型（archetype）</strong>：永恆的框架，讓人類不斷回到那個模式之中</li>
+</ul>
+
+<h3>2. 建立原型——跨越存在的斷裂</h3>
+
+<p>人生有四大斷裂時刻，各需相應的神話作背景：</p>
+<ul>
+<li><strong>出生</strong>：他人的身份角色因新生命而改變</li>
+<li><strong>成年</strong>：從少年進入成人世界（原住民入山考驗、當兵磨鍊）</li>
+<li><strong>結婚</strong>：公告天下的身份轉變</li>
+<li><strong>死亡</strong>：「慎終追遠，民德歸厚」；孟子：「養生者不足以當大事，為送死可以當大事」</li>
+</ul>
+
+<p>孟子提出維繫社會秩序的三種力量：爵（官位）、齒（年齡）、德（德行）</p>
+
+<h3>3. 為世界帶來意義與結構</h3>
+
+<ul>
+<li><strong>意義</strong>＝理解的可能性</li>
+<li>有意義的世界使人能「活在當下，同時投射未來」，進而創造文化</li>
+<li>動物式的「活在當下」是被迫的；人類有神話後，是主動選擇的</li>
+</ul>
+
+<h3>4. 說明三類現象</h3>
+
+<table>
+<thead>
+<tr><th>類別</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td>自然現象</td><td>自然力量（風、海）由神明負責，人可透過祭祀溝通</td></tr>
+<tr><td>社會分工</td><td>每種職業都有守護神，賦予神聖性（魯班、孔子、關公）</td></tr>
+<tr><td>人的慾望</td><td>透過神的狂暴行為將內心慾望外化，使人得以接受自身本性</td></tr>
+</tbody>
+</table>
+
+<hr class="rule">
+
+<h2>五、神話的主題類型</h2>
+
+<p>1. <strong>創世</strong>：從混沌（chaos）進入秩序（cosmos，即 order）；「宇宙」＝宇（空間）＋宙（時間）</p>
+<p>2. <strong>大洪水與救世主</strong>：人類改造自然，引起反撲，救世主帶來希望（普羅米修斯盜火、大禹治水、諾亞方舟）</p>
+<p>3. <strong>文化超人</strong>：文明突破的集中象徵（中國的黃帝）</p>
+<p>4. <strong>英雄典型</strong>：退出→考驗→復返，三個階段缺一不可</p>
+
+<hr class="rule">
+
+<h2>六、希臘悲劇</h2>
+
+<h3>起源</h3>
+
+<p>「悲劇」（tragedy）源於希臘文 <em>tragos</em>（山羊），源自酒神祭典中以山羊面具演出的儀式，逐漸演變為完整戲碼。</p>
+
+<h3>三大悲劇家</h3>
+
+<h4>埃斯奇勒斯（Aeschylus）——希臘第一位悲劇家</h4>
+
+<ul>
+<li>代表作：《普羅米修斯》三部曲</li>
+<li>普羅米修斯盜天火給人類，被宙斯鎖在高加索山，每日肝臟被老鷹啄食、次日復原——象徵「生命存在，痛苦必然伴隨」</li>
+<li>最終以救贖收尾：有神願意放棄神性換取其自由</li>
+</ul>
+
+<h4>索福克里斯（Sophocles）——代表作《伊底帕斯王》</h4>
+
+<ul>
+<li>神諭：底比斯王之子將殺父娶母</li>
+<li>嬰兒被棄，由科林斯王撫養，命名伊底帕斯（腫腳，因腳後跟被割）</li>
+<li>伊底帕斯為逃命運，逃離科林斯，途中殺死生父（不知情）</li>
+<li>解開斯芬克斯之謎（「人」：嬰兒爬、成人立、老人持杖），成為底比斯王，娶了生母</li>
+<li>瘟疫爆發後真相大白，王后自縊，伊底帕斯刺瞎雙眼自我放逐</li>
+<li>名言：「宇宙萬物之中，沒有比人的存在更令人驚訝的。」</li>
+</ul>
+
+<h4>歐里庇得斯（Euripides）——悲劇的轉型</h4>
+
+<ul>
+<li>代表作：《伊翁》</li>
+<li>結局趨於大團圓，已接近喜劇——真正的希臘悲劇至此結束</li>
+</ul>
+
+<h3>悲劇的核心功能</h3>
+
+<p>亞里斯多德指出，觀看悲劇使人產生：</p>
+<ul>
+<li><strong>憐憫</strong>：主角並非壞人，卻敵不過命運</li>
+<li><strong>恐懼</strong>：同樣的事也可能發生在自己身上</li>
+<li><strong>淨化（catharsis）</strong>：洗煉情感，恢復純真，感受生命的尊嚴與偉大</li>
+</ul>
+
+<p>「詩的正義」（亞里斯多德）：現實世界中善惡無法判定，只有在文學創作中才有正義——這就是金庸小說吸引人的根本原因。</p>
+
+<h3>核心命題</h3>
+
+<p><strong>「一個人有偉大的敵人，才能成為偉大的人。」</strong></p>
+
+<p>希臘人以命運為對手，心胸廣大，生命昂揚。命運的規律轉化為自然界的客觀規律，奠定了西方科學精神的基礎。</p>
+
+<hr class="rule">
+
+<h2>七、西方科學精神的三個歷史根源</h2>
+
+<p>懷德海（Whitehead）《科學與現代世界》：</p>
+
+<table>
+<thead>
+<tr><th>來源</th><th>貢獻</th></tr>
+</thead>
+<tbody>
+<tr><td>希臘悲劇</td><td>命運不以人意志為轉移→尊重客觀規律→科學心態</td></tr>
+<tr><td>羅馬法律</td><td>演繹法體系，確立基本原則並涵蓋細節→客觀秩序感</td></tr>
+<tr><td>中世紀對上帝的信仰</td><td>宇宙是完整系統，自然界連續不跳躍→科學家的自然法則觀</td></tr>
+</tbody>
+</table>
+
+<p>中國缺乏科學心態，在於習慣混淆客觀事實與個人情感願望，重人情、重關係、輕客觀原則。</p>
+
+<hr class="rule">
+
+<h2>八、近代歐洲悲劇</h2>
+
+<table>
+<thead>
+<tr><th>作家</th><th>代表作</th><th>悲劇特色</th></tr>
+</thead>
+<tbody>
+<tr><td>莎士比亞（Shakespeare）</td><td>四大悲劇</td><td>人的內在弱點（猶豫、野心、嫉妒）導致毀滅</td></tr>
+<tr><td>塞萬提斯（Cervantes）</td><td>《唐吉訶德》</td><td>理想在現實中的幻滅</td></tr>
+<tr><td>歌德（Goethe）</td><td>《浮士德》</td><td>追求知識、愛情、名聲，最終發現唯有「幫助他人」才能滿足</td></tr>
+</tbody>
+</table>
+
+<p>近代悲劇走向<strong>虛無主義</strong>：理性的極限帶來毀滅感。</p>
+
+<p><em>To be or not to be</em>（《哈姆雷特》）：<em>to be</em> 是「存在」的動詞，大寫 <em>Being</em> 指上帝（存在根源），小寫 <em>beings</em> 指萬物——莎士比亞問的是「要不要活得像一個真正的人」。</p>
+
+<hr class="rule">
+
+<h2>九、中國有沒有悲劇？</h2>
+
+<ul>
+<li>中國沒有希臘意義上的悲劇</li>
+<li>中國戲劇（《竇娥冤》等）呈現「人為造成的不公」，可由清官解決</li>
+<li>屬於<strong>道德劇</strong>：善惡有報，觀後心安，不引發深刻的生命反思</li>
+<li>希臘悲劇讓觀眾感受到人類面對命運的偉大；中國戲劇缺乏這種整體性的命運意識</li>
+</ul>
+
+<hr class="rule">
+
+<h2>十、神話對現代人的意義</h2>
+
+<ul>
+<li>人不能沒有神話：神話提供希望、意義、超越日常的精神支撐</li>
+<li>失去集體神話（如台灣的「三民主義統一中國」），人只剩現實問題</li>
+<li>個人的神話思維（對孩子的期待、對未來的想像）是生命動力的來源</li>
+<li>命運女神提醒：橫財不一定是祝福（彩券中獎者七年後平均回到原點）</li>
+<li>真正的滿足不在「獲得」，而在「付出」（浮士德的結論）</li>
+</ul>
+
+<hr class="rule"></div>
+  <div id="tab-terms"    class="tab-pane index-section"><h2>關鍵專有名詞</h2>
+
+<ul>
+<li><strong>神話（Mythos）</strong>：希臘文「有關神的故事」，民族集體前意識不自覺的虛構，代表民族的夢</li>
+<li><strong>原型（Archetype）</strong>：神話提供的永恆框架，人類不斷回歸的基本模式</li>
+<li><strong>混沌（Chaos）</strong>：神話體系的起源，無時間、無空間的原初狀態</li>
+<li><strong>宇宙（Cosmos）</strong>：希臘文意為「秩序」，相對於混沌；中文「宇」＝空間，「宙」＝時間</li>
+<li><strong>泰坦族（Titans）</strong>：希臘神話第一代神族，以巨人形象為主</li>
+<li><strong>克羅諾斯（Chronos）</strong>：泰坦族中象徵「時間」的神，字根見於英文 <em>chronicle</em>（編年史）</li>
+<li><strong>奧林帕斯山（Mount Olympus）</strong>：第二代希臘神族的居所，以宙斯為核心</li>
+<li><strong>命運三女神（Moirai）</strong>：掌控人類命運，連宙斯也無法違逆</li>
+<li><strong>普羅米修斯（Prometheus）</strong>：為人類盜取天火的神，象徵救世主；遭宙斯懲罰，每日肝臟被老鷹啄食</li>
+<li><strong>斯芬克斯（Sphinx）</strong>：人面獅身鷹翼怪物，以謎語「什麼動物早四腳、中兩腳、晚三腳」殺害過路人</li>
+<li><strong>悲劇（Tragedy）</strong>：源於希臘文 <em>tragos</em>（山羊），起於酒神祭典；以命運為主角，令觀眾產生憐憫與恐懼，達到淨化</li>
+<li><strong>淨化（Catharsis）</strong>：亞里斯多德提出，觀看悲劇後情感得到洗煉，恢復純真的心靈狀態</li>
+<li><strong>詩的正義（Poetic Justice）</strong>：亞里斯多德所論，現實世界中善惡無明確報應，只有在文學創作中才有正義</li>
+<li><strong>戴奧尼索斯（Dionysus）</strong>：酒神，象徵狂喜與藝術靈感；與象徵理性的阿波羅形成對比</li>
+<li><strong>logos（理性／言說）</strong>：人類語言與思維的邏輯結構，相對於神話的情感思維</li>
+<li><strong>神議論（Theodicy）</strong>：討論「神是否正義」的神學問題，源於希臘文正義女神 Dike</li>
+<li><strong>懷德海（Whitehead）</strong>：英國哲學家，羅素之師，著有《科學與現代世界》，分析西方科學精神的三個歷史根源</li>
+<li><strong>虛無主義（Nihilism）</strong>：認為一切皆無意義，近代歐洲悲劇的共同結局</li>
+<li><strong>浮士德（Faust）</strong>：歌德代表作主角，與魔鬼交換靈魂，歷盡追求後發現唯有付出才有意義</li>
+</ul>
+
+<hr class="rule"></div>
+  <div id="tab-timeline" class="tab-pane index-section"><h2>時間軸</h2>
+
+<ul>
+<li><strong>約前8–前7世紀</strong>：荷馬（Homer）創作史詩《伊利亞德》與《奧德賽》，希臘神話正式文學化</li>
+<li><strong>前525–前456年</strong>：埃斯奇勒斯（Aeschylus）生卒，希臘第一位悲劇家，著《普羅米修斯》三部曲</li>
+<li><strong>前496–前406年</strong>：索福克里斯（Sophocles）生卒，代表作《伊底帕斯王》</li>
+<li><strong>前480–前406年</strong>：歐里庇得斯（Euripides）生卒，代表作《伊翁》，悲劇風格已轉型</li>
+<li><strong>前384–前322年</strong>：亞里斯多德（Aristotle）生卒，《詩學》中提出悲劇的定義與「淨化」理論</li>
+<li><strong>前469–前399年</strong>：蘇格拉底（Socrates）生卒，臨死前說「替我還阿斯克勒庇俄斯一隻雞的願」</li>
+<li><strong>1516–1616年</strong>：莎士比亞（Shakespeare）、塞萬提斯（Cervantes）同年去世（1616），代表近代歐洲悲劇高峰</li>
+<li><strong>1749–1832年</strong>：歌德（Goethe）生卒，著《浮士德》</li>
+<li><strong>1533–1592年</strong>：蒙田（Montaigne）生卒，法國散文大師，開創法國精神文明傳統</li>
+<li><strong>1861–1947年</strong>：懷德海（Alfred North Whitehead）生卒，著《科學與現代世界》</li>
+</ul>
+
+<hr class="rule"></div>
+  <div id="tab-people"   class="tab-pane index-section"><h2>重要人物</h2>
+
+<ul>
+<li><strong>宙斯（Zeus）</strong>：希臘神話中的天神（天父），第二代神族的主宰，象徵有意志的秩序力量</li>
+<li><strong>普羅米修斯（Prometheus）</strong>：為人類盜取天火的神，希臘神話中的救世主象徵；被宙斯懲罰，肝臟每日被老鷹啄食</li>
+<li><strong>斯芬克斯（Sphinx）</strong>：以謎語殺人的怪物，在《伊底帕斯王》中代表命運的試驗</li>
+<li><strong>愛神（Aphrodite）</strong>：希臘愛與美的女神，象徵無人能抗拒的愛慾力量</li>
+<li><strong>阿波羅（Apollo）</strong>：太陽神，象徵光明、理性與藝術；與酒神戴奧尼索斯形成理性vs.靈感的對比</li>
+<li><strong>戴奧尼索斯（Dionysus）</strong>：酒神，象徵非理性的靈感與狂喜，是希臘悲劇的起源之神</li>
+<li><strong>埃斯奇勒斯（Aeschylus，前525–前456，古希臘）</strong>：希臘第一位偉大悲劇家，著《普羅米修斯》三部曲</li>
+<li><strong>索福克里斯（Sophocles，前496–前406，古希臘）</strong>：希臘三大悲劇家之一，著《伊底帕斯王》；名言「宇宙萬物中沒有比人的存在更令人驚訝的」</li>
+<li><strong>歐里庇得斯（Euripides，前480–前406，古希臘）</strong>：希臘三大悲劇家之一，著《伊翁》；其悲劇已趨近喜劇，是古典悲劇的終結</li>
+<li><strong>亞里斯多德（Aristotle，前384–前322，古希臘）</strong>：著《詩學》，提出悲劇定義：以憐憫與恐懼達到情感淨化（catharsis）</li>
+<li><strong>蘇格拉底（Socrates，前469–前399，古希臘）</strong>：哲學家，臨死前說「替我還阿斯克勒庇俄斯一隻雞的願」，意指死亡是病痛的痊癒</li>
+<li><strong>泰勒斯（Thales，約前624–約前546，古希臘）</strong>：西方第一位哲學家，提出「宇宙起源是水，一切充滿神明」</li>
+<li><strong>莎士比亞（William Shakespeare，1564–1616，英國）</strong>：近代最偉大的悲劇家，著四大悲劇《哈姆雷特》《馬克白》《李爾王》《奧賽羅》</li>
+<li><strong>塞萬提斯（Miguel de Cervantes，1547–1616，西班牙）</strong>：著《唐吉訶德》，象徵理想在現實中的幻滅</li>
+<li><strong>歌德（Johann Wolfgang von Goethe，1749–1832，德國）</strong>：著《浮士德》，探討人類追求意義的終極問題，結論是「唯有付出才能獲得滿足」</li>
+<li><strong>蒙田（Michel de Montaigne，1533–1592，法國）</strong>：法國散文大師，著《隨筆集》三冊，開創法國精神文明傳統</li>
+<li><strong>懷德海（Alfred North Whitehead，1861–1947，英國）</strong>：哲學家，羅素之師，著《科學與現代世界》，分析西方科學精神的三個歷史根源：希臘悲劇、羅馬法律、中世紀信仰</li>
+<li><strong>孟子（約前372–約前289）</strong>：提出維繫社會秩序的三種力量（爵、齒、德），以及「為送死可以當大事」的觀點</li>
+<li><strong>莊子（約前369–約前286）</strong>：提出「天地與我並生，萬物與我為一」，道家天人合一思想的代表</li>
+<li><strong>曾子（前505–前435）</strong>：「慎終追遠，民德歸厚」，強調喪葬儀式對社會風氣的重要性</li>
+</ul></div>
+
+</div>
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
