@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哲學與人生：康德與倫理學</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+  :root {
+    --ink: #1a1610;
+    --paper: #f7f3ec;
+    --accent: #8b2e10;
+    --rule: #c8b99a;
+    --muted: #6b5e4e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px;
+    line-height: 1.95;
+    padding: 60px 20px 100px;
+  }
+
+  .book-wrap { max-width: 740px; margin: 0 auto; }
+
+  .chapter-header {
+    border-top: 3px solid var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding: 40px 0 32px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .chapter-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+
+  .chapter-source { margin-top: 18px; font-size: 13px; color: var(--muted); }
+  .chapter-source a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+  .chapter-source a:hover { text-decoration: underline; }
+
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid var(--rule);
+    margin-bottom: 44px;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    padding: 10px 22px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 700; }
+
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.18rem; font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin: 48px 0 16px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.02rem; font-weight: 700;
+    color: var(--ink);
+    margin: 34px 0 10px;
+  }
+
+  p { margin-bottom: 18px; text-align: justify; }
+  ul { margin: 4px 0 20px 1.4em; }
+  li { margin-bottom: 6px; text-align: justify; }
+
+  blockquote {
+    border-left: 3px solid var(--rule);
+    padding: 4px 20px;
+    margin: 20px 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+  blockquote p { margin-bottom: 6px; }
+
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin: 44px 0; }
+  strong { font-weight: 700; }
+
+  .index-section h2 { font-size: 1.05rem; margin-top: 36px; }
+  .index-section ul { margin-left: 1.2em; }
+  .index-section li { font-size: 15px; margin-bottom: 8px; line-height: 1.7; }
+
+  table { border-collapse: collapse; width: 100%; margin: 1.2em 0; font-size: 0.95em; }
+  th, td { border: 1px solid var(--rule); padding: 0.45em 0.8em; text-align: left; vertical-align: top; }
+  th { background: rgba(200, 185, 154, 0.25); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="book-wrap">
+
+  <div class="chapter-header">
+    <div class="chapter-label">台大開放式課程：哲學與人生</div>
+    <div class="chapter-title">哲學與人生：康德與倫理學</div>
+    <div class="chapter-source">
+      <a href="https://www.youtube.com/watch?v=27XKphKoGA4" target="_blank" rel="noopener">課程影片</a>
+      <a href="index.html#life">回課程首頁</a>
+    </div>
+  </div>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('full',this)">完整稿</button>
+    <button class="tab-btn" onclick="showTab('outline',this)">大綱</button>
+    <button class="tab-btn" onclick="showTab('terms',this)">專有名詞</button>
+    <button class="tab-btn" onclick="showTab('timeline',this)">時間軸</button>
+    <button class="tab-btn" onclick="showTab('people',this)">重要人物</button>
+  </nav>
+
+  <div id="tab-full"     class="tab-pane active"><h1>康德與倫理學</h1>
+
+<h2>一、宗教與道德的關係</h2>
+
+<p>明朝末年，西方傳教士利瑪竇來到中國，接觸士大夫階層。他向羅馬教皇寫信特別提到：中國知識份子很多人並沒有信奉上帝，卻有很高的道德水準。</p>
+
+<p>這句話之所以令利瑪竇驚訝，是因為西方在中世紀宗教薰陶一千多年後，已習慣以宗教作為道德的基礎。也就是說，在西方的脈絡中，一個人若沒有信仰——無論是無神論或唯物論——「為什麼要有道德」本身就是一個嚴肅的哲學問題。</p>
+
+<p>俄國作家杜斯妥也夫斯基年輕時參加革命，被捕判死刑。他排在第二組等待行刑，第一組三人已被槍斃，正要帶他出去之際，沙皇特赦，改為放逐西伯利亞。從鬼門關前走過一圈後，他終身思考兩個問題：</p>
+
+<p>1. 如果沒有上帝，我為什麼不能為所欲為？</p>
+<p>2. 如果人死後沒有靈魂繼續存在，我為什麼要有道德？</p>
+
+<p>這兩個問題充分反映了西方人的基本心態，也是今天這個主題的出發點。</p>
+
+<h2>二、為何人的社會需要道德</h2>
+
+<p>人的社會始終存在道德判斷：這個人善良嗎？孝順嗎？守信用嗎？<strong>道德判斷是以普遍化的命題形式指導人們的行為，協調人際關係，促進群體和諧。</strong>類似的社會機制還有法律與宗教：沒有法律是亂世，沒有宗教是人人求僥倖。</p>
+
+<p>人的社會需要道德，根本原因在於人在兩方面有明顯的限制：</p>
+
+<p>1. <strong>理性有限</strong>：人知道對別人好、別人也會對自己好，但往往只顧眼前，損人利己。理性傾向先照顧親近的人，忽略陌生人與遠方的人。人類雖然知道只有一個地球，卻照樣有各種競爭、鬥爭與戰爭。</p>
+<p>2. <strong>同情心不足</strong>：看到別人受苦，有時願意幫忙，更多時候卻事不關己，甚至幸災樂禍。很多人的快樂建立在別人的痛苦上。</p>
+
+<p>若沒有道德來阻止或提升，人類的未來不堪設想。</p>
+
+<h2>三、道德與倫理的區別</h2>
+
+<p>中文常將「倫理道德」四字並用，但兩者側重不同：</p>
+
+<ul>
+<li><strong>道德</strong>：指涉個人，看個人是否有善良動機、使用正確方法、達成對別人有益的效果。強調個人主體的自我抉擇。</li>
+<li><strong>倫理</strong>：源自中國「五倫」（五種人與人之間的適當關係），側重行為規範，照著規範走可使社會更穩定和諧。許多人謹守倫理規範，但不太在意個人道德修為。</li>
+</ul>
+
+<p>哲學系的「倫理學」又稱「道德哲學」，最早指一個社會的風俗習慣，其中含有禁忌與對個人的約束，逐漸發展為系統性的道德理論。</p>
+
+<h2>四、西方倫理學三大流派</h2>
+
+<h3>1. 效益論（Utilitarianism）</h3>
+
+<p>效益論舊譯「功利主義」，代表人物有英國哲學家休謨（Hume）、邊沁（Bentham）與約翰·彌爾（John Stuart Mill）。核心主張如下：</p>
+
+<ul>
+<li><strong>行為的價值依效果衡量</strong>：不管動機多好，沒有效果就沒有正當性。</li>
+<li><strong>行為的對錯不在行為本身，而在其產生的總體善或惡</strong>：例如，排隊上車的原因不是排隊本身有道德價值，而是排隊能使每個人都有機會上車，總體效果是好的，所以應該排隊。</li>
+<li><strong>行為對所有相關的人的普遍福利產生的後果</strong>：決定行為的對錯。因此地位越高、職務越重的人，道德要求也越高，因為其行為牽涉範圍更廣。</li>
+</ul>
+
+<p><strong>最大幸福原則</strong>：效益主義即「最大多數人的最大幸福」，但幸福涉及量與質兩個面向。彌爾提出：</p>
+
+<p>1. 人們都喜歡不涉及道德責任的幸福（輕鬆自在）。</p>
+<p>2. 耗費更大精力的生存方式更能引起持久的興趣——幸福不等於滿足。</p>
+
+<p>彌爾的名問：「你要做一個痛苦的蘇格拉底，還是做一隻快樂的豬？」點出質的重要性，不能只計算量。</p>
+
+<p>效益主義完全符合民主制度（多數決），但它主張一個社會應在兩方面努力：</p>
+
+<p>1. 法律與社會應盡可能協調每個人的幸福與整體利益。</p>
+<p>2. 教育與輿論應讓每個人理解：自己的幸福與整體的利益息息相關，個人不能為了私利而拖垮整個社會。</p>
+
+<h3>2. 德行論（Virtue Ethics）</h3>
+
+<p>德行論源於古希臘亞里斯多德，焦點不在行為的結果或動機，而在<strong>行為者本人</strong>。效益論問「我們應該做什麼？」德行論問的是「<strong>我們應該成為什麼樣的人？</strong>」</p>
+
+<p>核心概念：</p>
+
+<ul>
+<li><strong>德行</strong>（希臘文 aretē，傑出的品性）：不佔別人便宜、對好人以善報、尊重他人——這些都是傑出的品性。</li>
+<li><strong>重點在氣質的培養</strong>：個人固有的氣質，經由長期訓練，使德行的活動成為習慣。「習慣是第二天性。」</li>
+<li><strong>德行既非天生固有，亦非違反本性</strong>：沒有人生下來就具有德行，但行善也絕不違反本性，而是順著本性去做到。</li>
+</ul>
+
+<p>這個觀點與儒家「人性向善」的詮釋有相似之處——人性不是本善，但人性可以行善，且行善不違反本性。</p>
+
+<p>培養善良氣質，可以區分為四種：</p>
+<p>1. <strong>仁慈</strong>：不預設惡意，不把別人先想成壞人。在充滿政治對立的社會中，無惡意是最難做到的第一步。</p>
+<p>2. <strong>無惡意</strong>：理解別人的立場往往是命運或背景使然，不值得因此干擾正常的人際關係。</p>
+<p>3. <strong>公平</strong>：不欺瞞。有時候不說，是因為說了會傷人；但不公平的沉默也是一種欺瞞。</p>
+<p>4. <strong>不欺瞞</strong>：莊子說「親父不畏其子」——父親替兒子作眉，一定說自己兒子多好，這不公平。</p>
+
+<p>最終歸結為兩大原則：<strong>仁慈（仁愛）</strong>與<strong>正義</strong>。人活在世界上只有兩個基本要求：</p>
+
+<ul>
+<li><strong>仁慈</strong>：給每個人活下去的機會，因為生而為人就有活下去的天賦權利。</li>
+<li><strong>正義</strong>：你努力付出就應該有收穫，不應被剝削。</li>
+</ul>
+
+<p>亞里斯多德提出最理想的生活方式是<strong>中庸之道</strong>：在「過」與「不及」之間採取適當的立場，往上提升，而非取平均。例如，勇敢不是粗暴也不是懦弱，而是兩者之間經過理性運作的綜合氣質。</p>
+
+<h3>3. 義務論（Deontology）——康德</h3>
+
+<p>在介紹康德之前，先做一個比較：一個人去救災</p>
+
+<p>1. 公務員：希望將來升官（效益論）</p>
+<p>2. 老百姓：希望日後選出當民意代表（效益論）</p>
+<p>3. 認為救災是自己的義務（義務論）</p>
+
+<p>前兩者是效益論——把救災當手段，後果才是目的。第三種才是康德的義務論：為了義務而盡義務。</p>
+
+<h2>五、康德的哲學</h2>
+
+<p>康德是近代德國最重要的哲學家。若要從西方哲學史中選兩人做代表，前有柏拉圖，後有康德。兩人有兩個共同點：都活到八十歲，都沒有結婚。</p>
+
+<p>康德之前，歐洲哲學以法語系統為主（以笛卡爾為代表）；康德之後，學歐洲哲學必須學德文。康德是轉捩點，之後德國哲學高手輩出：黑格爾、叔本華、尼采、費爾巴哈、馬克思，皆用德語創作。</p>
+
+<h3>先驗哲學</h3>
+
+<p>康德的哲學稱為<strong>先驗哲學</strong>。「先驗」指先於經驗並作為經驗之基礎者。只從發生的事收集、歸納、分析，是「後驗」，永遠無法根本解決問題；哲學要找到先於經驗的根基，這就是為什麼哲學家必須討論「什麼叫人性」。</p>
+
+<h3>康德的四個問題</h3>
+
+<p>康德一生考慮四個根本問題：</p>
+
+<p>1. <strong>我能夠知道什麼？</strong></p>
+<p>2. <strong>我應該做什麼？</strong></p>
+<p>3. <strong>我可以希望什麼？</strong></p>
+<p>4. <strong>人是什麼？</strong></p>
+
+<p><strong>問題一：我能夠知道什麼？</strong></p>
+
+<p>答案：人的認知能力很有限，永遠不可能知道<strong>本體</strong>。本體有三個皆不可知：</p>
+
+<ul>
+<li><strong>自我不可知</strong>：人常常不瞭解自己，情緒受天氣影響，善惡在不同時刻截然不同。</li>
+<li><strong>世界不可知</strong>：科學家所認識的物質，遠少於不認識的「黑物質」；人活的時間有限，對宇宙的認識永遠微不足道。</li>
+<li><strong>上帝不可知</strong>：更不用說。</li>
+</ul>
+
+<p>人只能知道<strong>現象</strong>。我們的認知必須透過感官，感官直接接觸外物；理性使用概念，概念與外物之間隔了一層（聽到「椅子」這個概念，和真正坐在椅子上，完全是兩回事）。</p>
+
+<p><strong>問題二：我應該做什麼？</strong></p>
+
+<p>「應該」兩個字意味著人有自由可以選擇，也涉及道德問題。康德認為，透過「我應該做什麼」這個問題，雖然自我本體不可知，卻透過道德行動重新展現出來——因為昨天答應了某人今天見面，就應該赴約，這說明有一個連貫的、承擔道德責任的「自我」確實存在。</p>
+
+<p>康德哲學的重點全在這裡：透過道德實踐，把本來在認知上無法掌握的自我與上帝重新連結起來。孔子的「殺身成仁」、孟子的「捨身取義」之所以有意義，是因為有「天」這個概念作為背後的支撐。</p>
+
+<p><strong>問題三：我可以希望什麼？</strong></p>
+
+<p>涉及康德的審美判斷——對美的評價，對內心意願的反省。</p>
+
+<p><strong>問題四：人是什麼？</strong></p>
+
+<p>回到哲學人類學：人在哲學上如何異於其他生物？人有內心世界嗎？人覺得自己身負某種罪惡嗎？人有能力行善、改良自己嗎？</p>
+
+<h2>六、康德的義務論</h2>
+
+<h3>唯一的善是善良意志</h3>
+
+<p>康德主張：世間<strong>唯一的善是善良意志</strong>。所有其他的善——金錢、勇敢、才智——若缺乏善良意志，都可能被用來做不善的事。</p>
+
+<p>善良意志的定義：<strong>行為的唯一動機是基於義務，完全不為自己，也不為效果。</strong></p>
+
+<p>因此：</p>
+
+<ul>
+<li>出錢幫助別人但目的是獲得好名聲 → 沒有道德價值（把行善當手段）。</li>
+<li>因為義務而行善 → 有道德價值。</li>
+</ul>
+
+<p>這裡有一個迴圈：我如何知道自己的意志是善的？因為我唯一的動機是盡義務，不考慮其他目的。我盡的義務是所有人都應該盡的，所以我的行為普遍有效。</p>
+
+<h3>自律的意志</h3>
+
+<p><strong>「當一個人根據對人人皆有約束力的道德規則去行動，他就有了自律的意志。」</strong></p>
+
+<p>「自律」意思是自己給自己規則、規律。出於義務而做的行為才有道德價值。</p>
+
+<h3>絕對命令（Categorical Imperative）</h3>
+
+<p>康德明確說：<strong>「我應該永遠如此行動，使我的行動準則成為一個普遍的法則。」</strong></p>
+
+<ul>
+<li>借錢之後要還：因為「借錢還錢」是所有人都可以遵守的普遍法則。</li>
+<li>不可欺騙：因為「不欺騙」是普遍法則。</li>
+<li>借錢不還：若普遍化，社會上人與人將完全無法信賴，社會瓦解。</li>
+</ul>
+
+<p><strong>絕對命令：有絕對的約束力，不允許例外。</strong></p>
+
+<h3>費希特與康德的故事</h3>
+
+<p>費希特幼年家貧，以替人放鵝為生。因驚人的記憶力，被鄉下富翁資助念書，一路念到博士，成為德國重要哲學家。念康德的書兩個月後，費希特決定去追隨康德。</p>
+
+<p>他去聽康德的課，錢用光後前去借錢。康德拒絕了，理由完全符合自己的哲學：</p>
+
+<p>1. <strong>普遍化原則</strong>：若借你錢，那每一個聽過我課的人跟我借錢，我都要借。</p>
+<p>2. <strong>不可普遍化則不做</strong>：今天借你，代表每天你來借我都應該借，不符合普遍化。</p>
+<p>3. <strong>為你著想</strong>：知道你很窮，將來還不出，會使你陷於不守信用的困境，這對你不好。</p>
+
+<p>康德的解決方法：介紹費希特去他的出版商，幫助他寫書出版。費希特最終一夜成名，成為德國重要哲學家。</p>
+
+<h3>把人當目的，而非僅僅當手段</h3>
+
+<p>康德最核心的觀念：<strong>「你不能只把一個人當做手段來利用，而不同時也把他當做目的來尊重。」</strong></p>
+
+<p>例如坐計程車，不能只把司機當交通工具，要同時尊重他是一個有完整生命的人。如果你尊重他，他也可能以友善回報——車費差一點他可能不計較。</p>
+
+<p>這就是康德所揭示的人文主義，也是理解人文主義最好的一個切入點。</p>
+
+<p>《論語》中有十二個字：「廄焚，子退朝，曰：傷人乎？不問馬。」馬廄失火，孔子回家第一句話只問有沒有人受傷，不問馬的損失。馬在當時極貴重，但對孔子來說，每一個人——馬車夫、工人、傭人——都與自己平等。這是標準的人文主義，與康德的標準完全符合。</p>
+
+<h2>七、對三大流派的批評</h2>
+
+<h3>批評義務論</h3>
+
+<p>1. <strong>理論上與實踐上都困難</strong>：「為自己立法」的說法太理想化。人從小學到的道德規範，都是父母、老師與社會環境給的，何曾真正自己為自己立法？</p>
+<p>2. <strong>自相矛盾</strong>：若道德行動者應該自律，那我「接受這個說法」本身就不是自律，而是因為這句話才這麼做——這就矛盾了。</p>
+<p>3. <strong>人生充滿矛盾，非善良意志一言而決</strong>：講康德義務論的人，不見得真的具有善良意志。人格的高尚與否，不會因為你主張什麼理論而改變。</p>
+<p>4. <strong>義務式的行善令人不舒服</strong>：朋友生病，一個人說「我來看你是基於對朋友的義務」，另一個說「我來是因為關心你、想念你」——大多數人更歡迎第二種。康德哲學因此被批評為「形式主義」：有空洞的形式，落實到具體內容卻寸步難行。</p>
+
+<h3>批評效益論</h3>
+
+<p><strong>計算效益太困難</strong>，因為每個人都有自己的考量。民主制度下，每條路線、每個政策都被各方利益左右，最終面目全非（高鐵變低速、路線彎曲的例子）。效益論雖符合多數決，但少數人的利益如何保障是長期未解的難題。</p>
+
+<p>當代美國最重要的哲學家羅爾斯（John Rawls，1921–2002）提出「<strong>無知的帷幕</strong>」觀念：制定任何公共政策時，要先假設自己完全不認識任何受影響的人，不知道自己身處哪個階層，才能做出公平的決定。這個概念可以避免：①自然的偶然事件（如天生健康或體弱）帶來的不公平；②因人設事的特殊安排。</p>
+
+<h3>批評德行論</h3>
+
+<p>德行論最大的問題：<strong>修養的品德與標準由誰來定？</strong> 一旦把人分為「有道德的人」和「沒道德的人」，就過於簡化。</p>
+
+<p>另外須分清：</p>
+<ul>
+<li><strong>聖人</strong>：一生都行善，難度極高。</li>
+<li><strong>英雄</strong>：在一件事情上做出偉大的善即可，比較容易達到。</li>
+</ul>
+
+<h2>八、解決道德爭議的五個步驟</h2>
+
+<p>以「死刑存廢」為例，解決任何道德爭議的方式：</p>
+
+<p>1. <strong>掌握關鍵事實</strong>：針對不同立場所依據的事實，先有清楚的認知，否則只是情緒激動。</p>
+<p>2. <strong>澄清概念與定義</strong>：對雙方使用的語言加以界定，例如「悔改」「罪不至死」各自的意思。</p>
+<p>3. <strong>尋找共同的道德框架</strong>：確認雙方是否同意三個基本共識——①尊重人；②行善（對別人好）；③正義（講真話、替別人申冤）。美國國家委員會研究的結果也不過這幾點。</p>
+<p>4. <strong>使用立證與反立證</strong>：舉例說明在什麼情況下主張行得通、什麼情況下行不通，收集資料討論。</p>
+<p>5. <strong>揭示對方論證的不充分性與意料之外的後果</strong>：辯論中找出對方疏忽之處，但贏得辯論不代表真理在手。</p>
+
+<h2>九、結語：混合使用三種倫理學</h2>
+
+<p>現實中，人的道德行為通常是三種理論的混合：</p>
+
+<ul>
+<li>看到別人受傷，不知道他是誰而去幫忙 → 義務論</li>
+<li>但事實上看到漂亮女生更願意幫，看到老頭子卻躊躇 → 效益論</li>
+<li>讓座已成習慣，不需要思考就自動站起來 → 德行論</li>
+</ul>
+
+<p><strong>德行論是比較根本的</strong>：養成行善的習慣，問題就解決了一半。有了習慣，在小事上練習；遇到大問題，就更容易做出正確的抉擇。</p>
+
+<p>道德是一個抉擇，你在小地方練習，到最後成了習慣，你遇到大的問題，很容易做抉擇，做正確的抉擇。</p>
+</div>
+  <div id="tab-outline"  class="tab-pane"><h1>康德與倫理學 — 大綱</h1>
+
+<h2>一、宗教與道德的關係</h2>
+
+<ul>
+<li>利瑪竇來華，發現中國知識份子無神信仰卻有高度道德水準</li>
+<li>西方經中世紀長期薰陶，習慣以宗教作為道德基礎</li>
+<li>問題：沒有信仰的人，為什麼要有道德？</li>
+<li>杜斯妥也夫斯基：26 歲被捕判死刑，在鬼門關前被特赦，終身思考兩個問題：</li>
+</ul>
+<p>1. 如果沒有上帝，我為什麼不能為所欲為？</p>
+<p>2. 如果人死後沒有靈魂繼續存在，我為什麼要有道德？</p>
+
+<hr class="rule">
+
+<h2>二、為何人的社會需要道德</h2>
+
+<ul>
+<li><strong>道德判斷</strong>：以普遍化命題指導行為、協調人際關係、促進群體和諧</li>
+<li>類似機制：法律（防亂）、宗教（防僥倖心態）</li>
+<li>道德的必要性根植於人的兩個根本限制：</li>
+</ul>
+<p>1. <strong>理性有限</strong>：只顧眼前利益、先照顧親近者，忽略遠方陌生人</p>
+<p>2. <strong>同情心不足</strong>：對他人痛苦事不關己，甚至幸災樂禍</p>
+
+<hr class="rule">
+
+<h2>三、道德與倫理的區別</h2>
+
+<table>
+<thead>
+<tr><th>概念</th><th>側重</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>道德</strong></td><td>個人</td><td>善良動機 + 正確方法 + 對人有益的效果；個人主體的自我抉擇</td></tr>
+<tr><td><strong>倫理</strong></td><td>行為規範</td><td>源自五倫，照規範走使社會穩定和諧；可與個人道德修為分離</td></tr>
+</tbody>
+</table>
+
+<ul>
+<li>「倫理學」最早指社會風俗習慣，其中含禁忌與約束，發展為系統性道德理論</li>
+</ul>
+
+<hr class="rule">
+
+<h2>四、西方倫理學三大流派</h2>
+
+<h3>4.1 效益論（Utilitarianism）</h3>
+
+<ul>
+<li>代表人物：休謨（Hume）、邊沁（Bentham）、彌爾（Mill）——多為英國哲學家</li>
+<li>三個核心主張：</li>
+</ul>
+<p>1. 行為價值依效果衡量（動機再好，無效果則無正當性）</p>
+<p>2. 行為的對錯不在行為本身，在其產生的總體善或惡</p>
+<p>3. 衡量行為對所有相關人的普遍福利</p>
+<ul>
+<li><strong>最大幸福原則</strong>：最大多數人的最大幸福（含量與質）</li>
+<li>量：金錢、可做的事；質：涉及性質更重要</li>
+<li>彌爾：「不滿足的蘇格拉底」＞「滿足的豬」→ 人追求質的幸福</li>
+<li>社會層面應做到：</li>
+</ul>
+<p>1. 法律與社會協調個人幸福與整體利益</p>
+<p>2. 教育與輿論使人理解個人與整體不可分割</p>
+<ul>
+<li>完全符合民主制度（多數決）</li>
+</ul>
+
+<h3>4.2 德行論（Virtue Ethics）</h3>
+
+<ul>
+<li>源自亞里斯多德；問的不是「應該做什麼」，而是「<strong>應該成為什麼樣的人</strong>」</li>
+<li>核心：德行（希臘文 aretē，傑出的品性）經由氣質培養 → 形成習慣（「習慣是第二天性」）</li>
+<li>德行「既非天生固有，亦非違反本性」——可以養成，且順著本性</li>
+<li>與儒家「人性向善」詮釋相似</li>
+<li>培養善良氣質的四個面向：</li>
+</ul>
+<p>1. <strong>仁慈</strong>：不預設惡意</p>
+<p>2. <strong>無惡意</strong>：別人的立場多是命運使然</p>
+<p>3. <strong>公平</strong>：不欺瞞</p>
+<p>4. <strong>不欺瞞</strong>：莊子「親父不畏其子」——偏私的辯護本質上不公平</p>
+<ul>
+<li>兩大根本原則：<strong>仁慈（仁愛）</strong> + <strong>正義</strong></li>
+<li>仁慈：給每人活下去的機會（天賦權利）</li>
+<li>正義：努力付出應有收穫，不被剝削</li>
+<li>最理想的生活方式：<strong>中庸之道</strong>（在「過」與「不及」之間往上提升，非取平均）</li>
+<li>例：勇敢 = 不粗暴 + 不懦弱，是理性運作的綜合氣質</li>
+</ul>
+
+<h3>4.3 義務論（Deontology）——康德</h3>
+
+<ul>
+<li>比較三種救災者：</li>
+</ul>
+<p>1. 公務員→希望升官（效益論）</p>
+<p>2. 老百姓→希望選上代表（效益論）</p>
+<p>3. 認為救災是義務（<strong>義務論</strong>）</p>
+<ul>
+<li>義務論：為了義務而盡義務，不考慮義務之外的效果</li>
+</ul>
+
+<hr class="rule">
+
+<h2>五、康德的哲學</h2>
+
+<ul>
+<li>近代德國最重要的哲學家，西方哲學史代表人物（前有柏拉圖，後有康德）</li>
+<li>共同特點：活到 80 歲；皆未結婚</li>
+<li>歷史地位：康德前歐洲哲學以法語（笛卡爾）為主；康德後德語主導（黑格爾、叔本華、尼采、馬克思…）</li>
+</ul>
+
+<h3>先驗哲學</h3>
+
+<ul>
+<li><strong>先驗</strong>：先於經驗並作為經驗之基礎者</li>
+<li>後驗方法（只收集、歸納、分析經驗）永遠無法根本解決問題</li>
+<li>哲學必須追問先於經驗的根基 → 必須討論「人性是什麼」</li>
+</ul>
+
+<h3>康德的四個根本問題</h3>
+
+<table>
+<thead>
+<tr><th>問題</th><th>領域</th><th>核心答案</th></tr>
+</thead>
+<tbody>
+<tr><td>我能夠知道什麼？</td><td>認識論</td><td>人只能知道現象，三個本體（自我、世界、上帝）不可知</td></tr>
+<tr><td>我應該做什麼？</td><td>道德哲學</td><td>透過道德實踐，自我與上帝得以重新確立</td></tr>
+<tr><td>我可以希望什麼？</td><td>審美判斷</td><td>對美與內心意願的反省</td></tr>
+<tr><td>人是什麼？</td><td>哲學人類學</td><td>人如何異於其他生物，如何行善改良自己</td></tr>
+</tbody>
+</table>
+
+<p><strong>問題一的展開：三個本體皆不可知</strong></p>
+
+<ul>
+<li><strong>自我不可知</strong>：情緒受天氣影響，善惡在不同時刻迥異</li>
+<li><strong>世界不可知</strong>：科學認識的物質遠少於「黑物質」，宇宙無法窮盡</li>
+<li><strong>上帝不可知</strong>：更無需說</li>
+</ul>
+
+<p>人只能知道現象：感官接觸外物，理性使用概念——概念與外物之間隔了一層。</p>
+
+<p><strong>問題二的展開：道德實踐重建自我與上帝</strong></p>
+
+<ul>
+<li>「應該」 → 人有自由選擇 → 涉及道德</li>
+<li>透過「我應該昨天答應今天赴約」→ 確認有一個連貫的、承擔道德責任的「自我」存在</li>
+<li>道德實踐使本來不可知的自我與上帝重新連結</li>
+<li>認知上關了大門 → 道德實踐開了一扇窗</li>
+</ul>
+
+<hr class="rule">
+
+<h2>六、康德義務論的核心主張</h2>
+
+<h3>唯一的善是善良意志</h3>
+
+<ul>
+<li>金錢、勇敢、才智等，若離開善良意志，都可被用來做不善的事</li>
+<li><strong>善良意志</strong>：行為唯一動機是義務，完全不為自己，也不為效果</li>
+<li>有善良意志的行為才有道德價值</li>
+</ul>
+
+<h3>自律的意志</h3>
+
+<ul>
+<li>按對人人有約束力的道德規則行動 → 自律的意志</li>
+<li>「自律」：自己給自己規則；出於義務而做才有道德價值</li>
+</ul>
+
+<h3>絕對命令（Categorical Imperative）</h3>
+
+<ul>
+<li><strong>「我應該永遠如此行動，使我的行動準則成為一個普遍的法則。」</strong></li>
+<li>「借錢要還」可普遍化 → 應該做</li>
+<li>「借錢不還」普遍化 → 社會信賴崩潰 → 不應該做</li>
+<li>絕對命令：有絕對約束力，不允許例外</li>
+</ul>
+
+<h3>把人當目的，而非僅僅當手段</h3>
+
+<ul>
+<li><strong>「不能只把別人當手段來利用，而不同時也把他當目的來尊重。」</strong></li>
+<li>例：坐計程車不能只把司機當交通工具，要同時尊重他是一個完整的人</li>
+<li>論語對照：「廄焚，子退朝，曰：傷人乎？不問馬。」——孔子只問人，不問財產損失，標準的人文主義</li>
+</ul>
+
+<h3>費希特與康德的故事</h3>
+
+<ul>
+<li>費希特：幼年放鵝為生，憑驚人記憶力獲資助念書至博士，讀康德後決心追隨</li>
+<li>向康德借錢，康德以三條義務論原則拒絕：</li>
+</ul>
+<p>1. 普遍化原則（每個聽課者都要借→不可能）</p>
+<p>2. 不可普遍化則不做（每天借錢→不符合）</p>
+<p>3. 為你著想（你將陷於不守信用的困境）</p>
+<ul>
+<li>解決方式：介紹費希特去出版社，費希特寫書後被誤認為康德之作，大賣一夜成名</li>
+</ul>
+
+<hr class="rule">
+
+<h2>七、三大流派的批評</h2>
+
+<h3>批評義務論</h3>
+
+<p>1. <strong>理論與實踐均不可能</strong>：人從小的道德規範都是別人給的，何曾真正「為自己立法」？</p>
+<p>2. <strong>自相矛盾</strong>：「接受自律說法」本身就不是自律</p>
+<p>3. <strong>人生矛盾非善良意志可一言而決</strong>：講義務論的人不見得真有善良意志</p>
+<p>4. <strong>義務式行善令人不舒服</strong>：「我因義務而來看你」vs.「我因關心你而來」——人更接受後者；康德哲學因此被批評為「<strong>形式主義</strong>」</p>
+
+<h3>批評效益論</h3>
+
+<ul>
+<li><strong>計算效益太困難</strong>：每個人都有不同考量，政策在各方利益拉扯下面目全非</li>
+<li><strong>少數人的利益難以保障</strong>：多數決原則對少數人的犧牲問題始終未解</li>
+</ul>
+
+<p><strong>羅爾斯（John Rawls，1921–2002）的補充——無知的帷幕</strong></p>
+
+<ul>
+<li>制定公共政策時，假設自己不認識任何受影響的人，不知道自己的階層</li>
+<li>可避免：①自然偶然事件帶來的不公平；②因人設事的特殊安排</li>
+<li>例：荷蘭保障每位公民以正式薪水的 20% 付房租，三十年後房子歸己（重稅換高福利）</li>
+</ul>
+
+<h3>批評德行論</h3>
+
+<ul>
+<li><strong>標準由誰來定？</strong> 修養到什麼程度才算有德，沒有明確界定</li>
+<li>把人分為「有道德的人」與「沒道德的人」過於簡化</li>
+</ul>
+
+<p><strong>聖人 vs. 英雄的區別</strong></p>
+
+<table>
+<thead>
+<tr><th></th><th>定義</th><th>難度</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>英雄</strong></td><td>在一件事上做出偉大的善</td><td>較易（電影「小人物大英雄」）</td></tr>
+<tr><td><strong>聖人</strong></td><td>一生都行善</td><td>難度遠高於英雄</td></tr>
+</tbody>
+</table>
+
+<hr class="rule">
+
+<h2>八、解決道德爭議的五個步驟</h2>
+
+<p>（以死刑存廢為例）</p>
+
+<p>1. <strong>掌握關鍵事實</strong>：對爭議的知識背景先有清楚認識，否則只是情緒激動</p>
+<p>2. <strong>澄清概念與定義</strong>：對雙方使用的語言（如「悔改」「罪不至死」）加以界定</p>
+<p>3. <strong>尋找共同的道德框架</strong>：確認雙方是否同意三個基本共識——①尊重人；②行善；③正義</p>
+<p>4. <strong>使用立證與反立證</strong>：舉例說明主張在哪些情況下行得通或行不通</p>
+<p>5. <strong>揭示論證的不充分性與意料之外的後果</strong>：找出對方忽略之處（但贏辯論不代表真理）</p>
+
+<hr class="rule">
+
+<h2>九、結語：混合使用三種倫理學</h2>
+
+<ul>
+<li>現實中道德行為通常是三種理論的混合：</li>
+<li>不知對象身份卻去幫忙 → 義務論</li>
+<li>看到漂亮女生更願意幫 → 效益論</li>
+<li>讓座成為習慣，不需思考 → 德行論</li>
+<li><strong>德行論是比較根本的</strong>：養成行善的習慣，問題就解決了一半</li>
+<li>道德是一個抉擇：在小地方練習 → 成為習慣 → 遇大問題時自然做出正確抉擇</li>
+</ul>
+
+<hr class="rule"></div>
+  <div id="tab-terms"    class="tab-pane index-section"><h2>關鍵專有名詞</h2>
+
+<ul>
+<li><strong>道德判斷</strong>：以普遍化命題形式指導行為、協調人際關係的社會機制</li>
+<li><strong>倫理（Ethics）</strong>：最早指風俗習慣，強調行為規範；源自五倫關係</li>
+<li><strong>道德（Morality）</strong>：側重個人善良動機與自我抉擇</li>
+<li><strong>效益論（Utilitarianism）</strong>：行為對錯依總體後果判斷；最大多數人的最大幸福</li>
+<li><strong>最大幸福原則</strong>：效益主義的核心，含量（數量）與質（性質）兩個面向</li>
+<li><strong>德行論（Virtue Ethics）</strong>：焦點在行為者本身，培養氣質與習慣，問「我應成為什麼樣的人」</li>
+<li><strong>德行（aretē）</strong>：希臘文，意為傑出的品性；不佔便宜、尊重他人</li>
+<li><strong>中庸之道</strong>：亞里斯多德的理想生活方式，在「過」與「不及」之間往上提升</li>
+<li><strong>義務論（Deontology）</strong>：為義務而盡義務，不考慮效果；代表人物康德</li>
+<li><strong>先驗哲學</strong>：先於經驗並作為經驗之基礎的哲學，康德的方法論</li>
+<li><strong>本體（Noumenon）</strong>：事物本身，康德認為自我、世界、上帝三者皆不可知</li>
+<li><strong>現象（Phenomenon）</strong>：感官所能接觸到的，是人唯一能知道的範圍</li>
+<li><strong>善良意志</strong>：康德認為世間唯一的善，動機完全出於義務而非其他考量</li>
+<li><strong>自律</strong>：自己給自己規則，按普遍有效的道德規則行動</li>
+<li><strong>絕對命令（Categorical Imperative）</strong>：「使行動準則成為普遍法則」，有絕對約束力，不允許例外</li>
+<li><strong>普遍化原則</strong>：行為準則若不能普遍化，則不應做</li>
+<li><strong>人文主義</strong>：以尊重每個人的完整生命為核心，把人當目的而非僅作手段</li>
+<li><strong>無知的帷幕（Veil of Ignorance）</strong>：羅爾斯提出，制定公共政策時假設不知自己的社會位置，以確保公平</li>
+<li><strong>形式主義</strong>：對康德義務論的批評，指其只有空洞形式，缺乏具體內容</li>
+<li><strong>聖人 vs. 英雄</strong>：聖人一生行善；英雄在一件事上做出偉大的善</li>
+</ul>
+
+<hr class="rule"></div>
+  <div id="tab-timeline" class="tab-pane index-section"><h2>時間軸</h2>
+
+<table>
+<thead>
+<tr><th>年代</th><th>事件</th></tr>
+</thead>
+<tbody>
+<tr><td>西元前 384–322 年</td><td>亞里斯多德，德行論的奠基者</td></tr>
+<tr><td>明朝末年（約 1600 年）</td><td>利瑪竇來華，觀察中國知識份子的道德水準</td></tr>
+<tr><td>1711–1776 年</td><td>休謨（David Hume），效益論先驅，英國</td></tr>
+<tr><td>1724–1804 年</td><td>康德（Immanuel Kant），義務論，德國哥尼斯堡</td></tr>
+<tr><td>1748–1832 年</td><td>邊沁（Jeremy Bentham），效益論，英國</td></tr>
+<tr><td>1762–1814 年</td><td>費希特（Johann Gottlieb Fichte），德國哲學家，康德學生</td></tr>
+<tr><td>1806–1873 年</td><td>彌爾（John Stuart Mill），效益論的完善者，英國</td></tr>
+<tr><td>1821–1881 年</td><td>杜斯妥也夫斯基（Fyodor Dostoevsky），俄國作家，討論道德與上帝的問題</td></tr>
+<tr><td>1921–2002 年</td><td>羅爾斯（John Rawls），美國哲學家，提出「無知的帷幕」</td></tr>
+</tbody>
+</table>
+
+<hr class="rule"></div>
+  <div id="tab-people"   class="tab-pane index-section"><h2>重要人物</h2>
+
+<ul>
+<li><strong>康德（Immanuel Kant，1724–1804，德國哥尼斯堡）</strong>：近代德國最重要的哲學家，創立先驗哲學，提出善良意志、絕對命令、自律、把人當目的等義務論核心概念；生活極有規律，終身未婚，未曾離開家鄉</li>
+<li><strong>亞里斯多德（Aristotle，西元前 384–322，希臘）</strong>：德行論的代表人物，主張德行是傑出品性，需透過培養與習慣而形成，強調中庸之道</li>
+<li><strong>休謨（David Hume，1711–1776，英國）</strong>：效益論先驅之一</li>
+<li><strong>邊沁（Jeremy Bentham，1748–1832，英國）</strong>：效益論代表人物，主張最大多數人的最大幸福</li>
+<li><strong>彌爾（John Stuart Mill，1806–1873，英國）</strong>：效益論的完善者，強調幸福的質重於量；名言「不滿足的蘇格拉底勝過滿足的豬」</li>
+<li><strong>費希特（Johann Gottlieb Fichte，1762–1814，德國）</strong>：康德的重要繼承者，幼年貧困以放鵝為生，後成德國重要哲學家；其著作《對一切啟示之批判》初版被誤認為康德所作，一夜成名</li>
+<li><strong>杜斯妥也夫斯基（Fyodor Dostoevsky，1821–1881，俄國）</strong>：俄國文學家，26 歲因革命被捕判死刑，後獲特赦；終身探討「沒有上帝是否可以為所欲為」等宗教與道德問題</li>
+<li><strong>利瑪竇（Matteo Ricci，1552–1610，義大利傳教士）</strong>：明末來華傳教，向羅馬教皇報告中國知識份子無神信仰卻具高道德水準的觀察</li>
+<li><strong>羅爾斯（John Rawls，1921–2002，美國）</strong>：當代最重要的政治哲學家，提出「無知的帷幕」，為公平的社會制度奠定理論基礎</li>
+<li><strong>陳素菊</strong>：台東菜市場賣菜的女士，將大部分收入捐給學校購書，每天生活只靠台幣一百塊，以宗教信仰支撐持續行善的力量</li>
+<li><strong>孔子（西元前 551–479，中國魯國）</strong>：儒家創始人；「廄焚，子退朝，曰：傷人乎？不問馬」充分體現人文主義精神</li>
+</ul></div>
+
+</div>
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
