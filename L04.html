@@ -53,6 +53,10 @@
     color: var(--ink);
   }
 
+  .chapter-source { margin-top: 18px; font-size: 13px; color: var(--muted); }
+  .chapter-source a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+  .chapter-source a:hover { text-decoration: underline; }
+
   .tab-nav {
     display: flex;
     justify-content: center;
@@ -126,6 +130,10 @@
   .index-section h2 { font-size: 1.05rem; margin-top: 36px; }
   .index-section ul { margin-left: 1.2em; }
   .index-section li { font-size: 15px; margin-bottom: 8px; line-height: 1.7; }
+
+  table { border-collapse: collapse; width: 100%; margin: 1.2em 0; font-size: 0.95em; }
+  th, td { border: 1px solid var(--rule); padding: 0.45em 0.8em; text-align: left; vertical-align: top; }
+  th { background: rgba(200, 185, 154, 0.25); font-weight: 500; }
 </style>
 </head>
 <body>
@@ -148,8 +156,7 @@
     <button class="tab-btn" onclick="showTab('people',this)">重要人物</button>
   </nav>
 
-  <div id="tab-full"     class="tab-pane active"><h1>神話與悲劇</h1>
-
+  <div id="tab-full"     class="tab-pane active">
 <h2>一、神話的定義與本質</h2>
 
 <h3>什麼是神話</h3>
@@ -424,8 +431,7 @@
 
 <p><strong>一個人有偉大的敵人，才能成為偉大的人。</strong>希臘人把命運當做對手，因此心胸廣大、生命昂揚。人若能將「無法改變的現實」視為自己必須面對的偉大挑戰，便能珍惜生命的每一刻。</p>
 </div>
-  <div id="tab-outline"  class="tab-pane"><h1>神話與悲劇</h1>
-
+  <div id="tab-outline"  class="tab-pane">
 <h2>一、神話的定義與本質</h2>
 
 <h3>神話的本質</h3>
