@@ -205,6 +205,12 @@
   .qa-answer { background:#fff; border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin-bottom:12px; line-height:1.9; font-size:14.5px; color:var(--ink); white-space:pre-wrap; }
   .qa-sources { font-size:13px; color:var(--muted); display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
   .qa-loading { text-align:center; padding:40px 0; color:var(--muted); font-size:14px; }
+  .qa-controls { display:flex; gap:8px; margin-bottom:16px; }
+  .qa-ctrl-btn { padding:6px 14px; border:1px solid var(--rule); border-radius:6px; background:var(--paper); color:var(--muted); font-family:'Noto Serif TC',serif; font-size:13px; cursor:pointer; }
+  .qa-ctrl-btn:hover { background:var(--rule); color:var(--ink); }
+  .qa-turn { margin-bottom:28px; }
+  .qa-q-label { font-size:12px; color:var(--muted); letter-spacing:.08em; margin-bottom:4px; }
+  .qa-q-text { border:1px solid var(--rule); border-radius:6px; padding:10px 14px; margin-bottom:10px; font-size:14.5px; color:var(--ink); line-height:1.8; }
 </style>
 </head>
 <body>
@@ -1177,7 +1183,11 @@
     <textarea id="qa-input" placeholder="請用自然語言提問，例如：「什麼是終極關懷？」「儒家如何看待死亡？」「上帝存在的本體論論證是什麼？」" rows="3"></textarea>
     <button onclick="qaSubmit()" class="qa-go" id="qa-btn">提問</button>
   </div>
-  <div id="qa-result"><p class="sr-hint">輸入問題後點擊「提問」，系統將根據 R01–R15 課程逐字稿回答。</p></div>
+  <div class="qa-controls" id="qa-controls" style="display:none">
+    <button onclick="qaSave()" class="qa-ctrl-btn">存檔 HTML</button>
+    <button onclick="qaClear()" class="qa-ctrl-btn">清除對話</button>
+  </div>
+  <div id="qa-history"><p class="sr-hint">輸入問題後點擊「提問」，系統將根據 R01–R15 課程逐字稿回答。</p></div>
   </div>
 </div>
 <script>
@@ -1433,13 +1443,33 @@ const SI=[{"t":"term","l":"R01","n":"哲學（Philosophy）","d":"源自古希�
 })();
 
 // ── Q&A ─────────────────────────────────────────────────
+var qaHistory = [];
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 window.qaSubmit = async function() {
   const q = (document.getElementById('qa-input').value || '').trim();
   if (!q) return;
   const btn = document.getElementById('qa-btn');
-  const result = document.getElementById('qa-result');
+  const histEl = document.getElementById('qa-history');
   btn.disabled = true;
-  result.innerHTML = '<div class="qa-loading">AI 回答生成中，請稍候…</div>';
+
+  const hint = histEl.querySelector('.sr-hint');
+  if (hint) hint.remove();
+
+  const turnEl = document.createElement('div');
+  turnEl.className = 'qa-turn';
+  turnEl.innerHTML =
+    '<div class="qa-q-label">問</div>' +
+    '<div class="qa-q-text">' + escHtml(q) + '</div>' +
+    '<div class="qa-loading">AI 回答生成中，請稍候…</div>';
+  histEl.appendChild(turnEl);
+  turnEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  document.getElementById('qa-input').value = '';
+
   try {
     const res = await fetch('/api/qa', {
       method: 'POST',
@@ -1451,13 +1481,64 @@ window.qaSubmit = async function() {
     const srcLinks = (sources || []).map(function(l) {
       return '<a href="' + l + '.html" target="_blank" class="sr-lec">' + l + '</a>';
     }).join('');
-    result.innerHTML =
-      '<div class="qa-answer">' + answer.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>') + '</div>' +
+    turnEl.innerHTML =
+      '<div class="qa-q-label">問</div>' +
+      '<div class="qa-q-text">' + escHtml(q) + '</div>' +
+      '<div class="qa-answer">' + escHtml(answer).replace(/\n/g,'<br>') + '</div>' +
       (srcLinks ? '<div class="qa-sources">參考講次：' + srcLinks + '</div>' : '');
+    qaHistory.push({ question: q, answer: answer, sources: sources || [] });
+    document.getElementById('qa-controls').style.display = 'flex';
   } catch(e) {
-    result.innerHTML = '<p class="sr-hint">錯誤：' + e.message + '</p>';
+    turnEl.querySelector('.qa-loading').outerHTML =
+      '<p class="sr-hint">錯誤：' + e.message + '</p>';
   }
   btn.disabled = false;
+};
+
+window.qaClear = function() {
+  qaHistory = [];
+  document.getElementById('qa-history').innerHTML =
+    '<p class="sr-hint">輸入問題後點擊「提問」，系統將根據 R01–R15 課程逐字稿回答。</p>';
+  document.getElementById('qa-controls').style.display = 'none';
+};
+
+window.qaSave = function() {
+  if (!qaHistory.length) return;
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('zh-TW') + ' ' + now.toLocaleTimeString('zh-TW');
+  const turns = qaHistory.map(function(t) {
+    const srcs = t.sources.map(function(l) {
+      return '<a href="' + l + '.html">' + l + '</a>';
+    }).join(' ');
+    return '<div class="turn">' +
+      '<div class="q"><span class="label">問｜</span>' + escHtml(t.question) + '</div>' +
+      '<div class="a"><span class="label">答｜</span>' + escHtml(t.answer).replace(/\n/g,'<br>') + '</div>' +
+      (srcs ? '<div class="src">參考講次：' + srcs + '</div>' : '') +
+      '</div>';
+  }).join('');
+  const html = '<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">' +
+    '<title>宗教哲學問答紀錄</title>' +
+    '<style>body{font-family:serif;max-width:720px;margin:40px auto;padding:0 20px;background:#f7f3ec;color:#1a1610;line-height:1.9}' +
+    'h1{font-size:1.3rem;border-bottom:2px solid #c8b99a;padding-bottom:10px}' +
+    '.meta{font-size:13px;color:#6b5e4e;margin-bottom:32px}' +
+    '.turn{margin-bottom:28px;border-bottom:1px solid #e0d6c8;padding-bottom:20px}' +
+    '.label{font-weight:bold;color:#8b2e10;margin-right:6px}' +
+    '.q{background:#fff;border:1px solid #c8b99a;border-radius:6px;padding:10px 14px;margin-bottom:8px;font-size:14.5px}' +
+    '.a{background:#fff;border:1px solid #c8b99a;border-radius:8px;padding:16px 20px;margin-bottom:6px;font-size:14.5px}' +
+    '.src{font-size:13px;color:#6b5e4e}a{color:#8b2e10}</style>' +
+    '</head><body>' +
+    '<h1>台大開放式課程：宗教哲學 — 問答紀錄</h1>' +
+    '<div class="meta">儲存時間：' + dateStr + '　共 ' + qaHistory.length + ' 題</div>' +
+    turns + '</body></html>';
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = '宗教哲學問答_' + now.toISOString().slice(0,10) + '.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 };
 
 document.addEventListener('DOMContentLoaded', function() {
