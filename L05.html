@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哲學與人生：蘇格拉底</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+  :root {
+    --ink: #1a1610;
+    --paper: #f7f3ec;
+    --accent: #8b2e10;
+    --rule: #c8b99a;
+    --muted: #6b5e4e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px;
+    line-height: 1.95;
+    padding: 60px 20px 100px;
+  }
+
+  .book-wrap { max-width: 740px; margin: 0 auto; }
+
+  .chapter-header {
+    border-top: 3px solid var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding: 40px 0 32px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .chapter-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+
+  .chapter-source { margin-top: 18px; font-size: 13px; color: var(--muted); }
+  .chapter-source a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+  .chapter-source a:hover { text-decoration: underline; }
+
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid var(--rule);
+    margin-bottom: 44px;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    padding: 10px 22px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 700; }
+
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.18rem; font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin: 48px 0 16px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.02rem; font-weight: 700;
+    color: var(--ink);
+    margin: 34px 0 10px;
+  }
+
+  p { margin-bottom: 18px; text-align: justify; }
+  ul { margin: 4px 0 20px 1.4em; }
+  li { margin-bottom: 6px; text-align: justify; }
+
+  blockquote {
+    border-left: 3px solid var(--rule);
+    padding: 4px 20px;
+    margin: 20px 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+  blockquote p { margin-bottom: 6px; }
+
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin: 44px 0; }
+  strong { font-weight: 700; }
+
+  .index-section h2 { font-size: 1.05rem; margin-top: 36px; }
+  .index-section ul { margin-left: 1.2em; }
+  .index-section li { font-size: 15px; margin-bottom: 8px; line-height: 1.7; }
+
+  table { border-collapse: collapse; width: 100%; margin: 1.2em 0; font-size: 0.95em; }
+  th, td { border: 1px solid var(--rule); padding: 0.45em 0.8em; text-align: left; vertical-align: top; }
+  th { background: rgba(200, 185, 154, 0.25); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="book-wrap">
+
+  <div class="chapter-header">
+    <div class="chapter-label">台大開放式課程：哲學與人生</div>
+    <div class="chapter-title">哲學與人生：蘇格拉底</div>
+    <div class="chapter-source">
+      <a href="https://www.youtube.com/watch?v=lhPDNs9qFYY" target="_blank" rel="noopener">課程影片</a>
+      <a href="index.html#life">回課程首頁</a>
+    </div>
+  </div>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('full',this)">完整稿</button>
+    <button class="tab-btn" onclick="showTab('outline',this)">大綱</button>
+    <button class="tab-btn" onclick="showTab('terms',this)">專有名詞</button>
+    <button class="tab-btn" onclick="showTab('timeline',this)">時間軸</button>
+    <button class="tab-btn" onclick="showTab('people',this)">重要人物</button>
+  </nav>
+
+  <div id="tab-full"     class="tab-pane active"><h1>蘇格拉底</h1>
+
+<h2>一、西方哲學的起源與早期發展</h2>
+
+<p>西方哲學發源於希臘，但起點並非雅典，而是靠近小亞細亞的希臘殖民地。那一帶地處重要文明的交通要衝，資訊豐富、資源充足，宗教控制較為鬆懈，人們因此有閒暇探討切身需求以外的事物。</p>
+
+<p>最初的哲學關注自然界，稱為「自然哲學」。在希臘文中，「自然」代表有形可見、充滿變化的一切，即萬物。早期哲學家如泰勒斯提出「宇宙起源是水」，並補充「萬物都充滿神明」——水並非純粹的物質，古代人尚未嚴格區分物質與神明，認為每樣能夠存在的東西都有力量，而「力量」與「神」的字根在希臘文中是相同的。</p>
+
+<p>另一個重要學派是畢達哥拉斯學派，他們重視形式而非質料，結合數學與宗教，主張靈魂輪迴，深刻影響了後來的柏拉圖。</p>
+
+<h2>二、蘇格拉底的時代背景</h2>
+
+<p>蘇格拉底（西元前 469–399）生活於希臘歷史的動盪階段。</p>
+
+<p>西元前 490、480 年，希臘城邦聯合抵禦兩次波斯入侵，最終獲勝。外患解除後，希臘各城邦為爭取支持，形成以斯巴達為首與以雅典為首的兩個同盟，爆發「伯羅奔尼撒戰爭」（西元前 431–404，歷時 27 年）。雙方每年定期交戰幾個月，戰後各自返回城邦，對本土日常生活影響有限。</p>
+
+<p>蘇格拉底從成長到壯年都在這段戰爭期間度過，並曾實際參戰，以重武裝步兵身份作戰，勇敢著稱，體格強健，冬天赤腳行軍也不以為苦。</p>
+
+<p>戰後，雅典在戰敗斯巴達一方的寬容下得以保全（斯巴達將軍聽聞雅典詩歌的高尚，決定不毀滅這座城邦），但自此走向沒落，進入民主政治與寡頭政治的交替循環。</p>
+
+<h2>三、辨識學派（詭辯學派）的危機</h2>
+
+<p>蘇格拉底時代的雅典，流行兩種思潮：一是自然哲學（研究自然界），二是辨識學派（Sophists）。</p>
+
+<p>辨識學派在哲學史上常被譯為「智者學派」，但這個名稱帶有反諷：哲學（philosophy）是「愛好智慧」，辨識學派自稱「智者」（sophist），意味著已超越哲學——然而他們所做的，實為用高超的辯論技巧製造混淆、禍亂人心。「辨識」一詞出自莊子，指能言善辯、搬弄名詞的人，更為貼切。</p>
+
+<p>辨識學派專門教導年輕人修辭與說服的技巧，收費極高（據說需賣掉半棟房子才能從師），因為從事政治必須具備出眾的口才。他們走訪各城邦，發現每個地方的法律與習俗都是相對的，由此得出「人的世界沒有普遍原理」的結論。</p>
+
+<p>這帶來嚴重的後果：若一個行為的善惡不由內在判斷，而由外在環境決定，那麼換個地方，善惡的標準便隨之改變。價值觀的混淆在善惡方面最為危險——美醜混淆影響尚小，善惡混淆則直接威脅人類的共同生活。</p>
+
+<p>蘇格拉底敏銳地察覺到這個時代危機，並以此為使命的核心。正如尼采所說：「哲學家是文化的醫生。」蘇格拉底就是在雅典沒落的時刻，試圖喚醒人們對人性與價值的正確認識。</p>
+
+<h2>四、蘇格拉底的使命：探問未經反省的人生</h2>
+
+<p>蘇格拉底放棄自然哲學的探究，轉向人的內在世界。他說：「我的朋友不是城外的樹木，而是城內的居民。」</p>
+
+<p>他從不做演講，因為演講必須迎合群眾，無法進行真誠的思想交流。他每天上街，不選擇對象，與任何願意交談的人對話。每當聽到別人對價值的陳述——例如「張三是個好人」——他便追問：「你說他是好人，代表你知道什麼是善。請告訴我，什麼是善？」</p>
+
+<p>透過反覆的追問，他讓對方發現：自己所使用的價值詞彙（勇敢、虔誠、正義、善），其實並沒有真正理解其含義，只是人云亦云，生活在模糊之中。</p>
+
+<p>他在接受審判時說出了千古名言：<strong>「沒有經過反省的人生是不值得活的。」</strong></p>
+
+<h2>五、蘇格拉底的知德合一</h2>
+
+<p>蘇格拉底提出「知識即是德行」，也稱「知德合一」（有別於王陽明後來的「知行合一」）。</p>
+
+<p>其核心論點是：一個人若有德行但不理解德行的本質，他的德行是偶然的，無法在遭受考驗或需要犧牲時堅持。例如，一個孝順父母的孩子，若不知道為何要孝順，一旦與自身利益衝突，孝順便可能消失。</p>
+
+<p>反之，若一個人真正理解德的價值在內不在外——不是因為別人要求才行善，而是自己願意——那麼他就能堅持德行，甚至為之犧牲。</p>
+
+<p>因此，認真探討有關價值的概念，不只是學術上的練習，而是建立德行的必要條件。</p>
+
+<h2>六、「無知之知」——蘇格拉底的自知</h2>
+
+<p>蘇格拉底的朋友蔡爾豐（Chaerephon）前往戴爾菲神殿（供奉阿波羅神的神殿）詢問神諭：「雅典有誰比蘇格拉底更有智慧？」神諭答曰：「無人。」</p>
+
+<p>蘇格拉底聽聞後感到困惑，決定親自驗證，便帶著年輕友人拜訪三種人：</p>
+
+<p>1. <strong>政治家</strong>：政治領袖理應了解城邦百姓的最大福祉，然而拜訪後發現，所有政治家只知道拼經濟，對人生真正的幸福何在一無所知。</p>
+<p>2. <strong>悲劇作家</strong>：被公認為青年導師的暢銷書作家，卻發現他們往往不清楚自己在寫什麼，旁邊任何一個讀者的解釋都比作者本身更準確。</p>
+<p>3. <strong>技術專家</strong>（造城牆、造軍艦者）：他們是各自領域的專家，但不懂其背後的原理，更嚴重的是，常常因為在一個領域有權威，便誤以為在其他領域也有智慧。</p>
+
+<p>蘇格拉底得出結論：<strong>「在雅典，只有我一個人知道自己是無知的；別人連自己的無知都不知道，卻強不知以為知。所以神認為我最有智慧。」</strong></p>
+
+<p>孔子曾有類似表述：「吾有知乎哉？無知也。有鄙夫問於我，空空如也；我叩其兩端而竭焉。」孔子比蘇格拉底早生，孔子去世十年後蘇格拉底才出生。</p>
+
+<h2>七、對話法與辯證法</h2>
+
+<p>蘇格拉底的方法核心是「對話」（dialogue，希臘文 dia-logos，兩個人的言說）。對話預設雙方立場不同，透過正反論述不斷提升，尋求共識。這種方法後來發展為「辯證法」（dialectic）：</p>
+
+<ul>
+<li>正方提出論點</li>
+<li>反方提出反駁</li>
+<li>雙方吸收對方優點，提升至更高的合題（synthesis）</li>
+<li>合題本身又成為新的論點，繼續辯證，不斷向上</li>
+</ul>
+
+<p>柏拉圖後來認為，哲學就是辯證法的訓練：讓人的腦袋保持開放，說任何話都要考量反方意見，納入對方觀點再加以超越，直到最終進入真善美的統一。</p>
+
+<p>柏拉圖對話錄留下二十六篇，大部分沒有最終結論，只說明「問題還沒有答案，需要繼續探討」——這本身就是蘇格拉底方法的精神：不是給你一個包裝好的答案，而是引導你自己去思考。</p>
+
+<p>蘇格拉底的母親是一位助產師，他以此比喻自己的工作：「智慧的助產」（maieutics）。智慧不是商品，無法透過層層轉售得到；它只能經過自己的覺悟。讓別人陷入茫然、發現自身的無知，正是「智慧的胎兒誕生前必要的陣痛」。</p>
+
+<h2>八、蘇格拉底的精靈（Daimon）與對傳統的尊重</h2>
+
+<p>蘇格拉底自述：從年輕起，每當他即將做一件不該做的事，便有一個「精靈」（daimon）在耳邊說「不要做」。他認為這是他的幸運。</p>
+
+<p>用儒家的語言來說，這相當於「良知」：孔子問「你心裡安不安」，孟子問「你心裡忍不忍」——良知在你要做不對的事情時，會讓你感到不安或不忍，這是人天生的道德本能。「幸福」一詞在希臘文中（eudaimonia）字義正是「有好的精靈引導」。</p>
+
+<p>蘇格拉底雖以理性探索著稱，卻對傳統高度尊重，特別是兩個方面：</p>
+<ul>
+<li><strong>信仰</strong>：城邦祖先所相信的神明，讓人知道人生的最終目的</li>
+<li><strong>法律</strong>：城邦的法律，維持社會生活的穩定</li>
+</ul>
+
+<p>他認為信仰與法律是人生下來便繼承的框架，在這框架之內，個人才有自由選擇的空間。</p>
+
+<h2>九、蘇格拉底的審判與死亡</h2>
+
+<p>蘇格拉底得罪了所有有權力的人，他們聯合起來以兩大罪名控告他：</p>
+
+<p>1. <strong>腐化雅典青年</strong>：被他影響的年輕人開始質疑長輩，不再輕信權威。</p>
+<p>2. <strong>不信城邦神明，自立新神</strong>：指他所說的「精靈」是自立的神。</p>
+
+<p>雅典的審判制度效法民主精神，設五百人審判團（每個區選派五十人輪值），以多數決定有罪或無罪，第二階段再決定刑罰，被告可提出刑罰建議。</p>
+
+<p>蘇格拉底替自己辯護（柏拉圖對話錄第一篇《申辯篇》，Apology，即「替自己辯護」，非道歉），侃侃而談，毫不示弱，態度充滿正氣。審判結果以 280 票對 220 票判定有罪。</p>
+
+<p>刑罰建議階段，眾人希望他提議放逐，以便輕鬆通過。但蘇格拉底說：他不願意去別的城邦受人嘲笑說「這個人在家鄉待不下去」；若要懲罰他，唯一辦法是把他關進國家英雄館（供奉奧林匹克得獎英雄的地方）。這番話激怒審判團，最終以更大比數判處死刑。</p>
+
+<p>死刑前需等待一個節慶（不能殺人的三十天）。這段期間，柏拉圖等友人每天前往探視，與他討論靈魂不朽、死亡的本質。</p>
+
+<p>蘇格拉底對死亡的看法：死亡只有兩種可能：</p>
+<p>1. <strong>完全沒有知覺</strong>：如同無夢的安眠，連波斯大王都難以享受的深層寧靜，未嘗不是幸福。</p>
+<p>2. <strong>靈魂繼續存在</strong>：靈魂擺脫身體的局限，去尋找與自己同類的靈魂——他就去找古代愛好智慧的人，與他們共同探討何謂正義。</p>
+
+<p>最後，獄卒送來毒酒，蘇格拉底平靜飲下，描述自己的反應讓獄卒確認一切正常，直到臨終前仍不忘說：「克利多，別忘了我還欠醫神一隻雞的願。」</p>
+
+<h2>十、洞穴比喻（柏拉圖的寓言）</h2>
+
+<p>柏拉圖以寓言描述蘇格拉底的使命：</p>
+
+<p>人活在世界上，如同住在洞穴裡，雙手雙腳被綁，只能看著前方牆壁上的投影——那是蠟燭透過道具映照出的影像。有人解開繩索，回頭才發現後方才是真實：有道具，有蠟燭，有出口。</p>
+
+<p>他爬出洞穴，初見天光幾乎目盲（「使人目盲的光明」），但隨後見到陽光下的真實世界，喜悅難以言喻。</p>
+
+<p>他不忍心讓同伴繼續生活在幻象中，重新回到洞穴喚醒大家。然而從光明進入黑暗，他跌跌撞撞，無法站穩。同伴嘲笑他，最終將他打死，繼續觀看自己的影像。</p>
+
+<p>這個洞穴裡被打死的人，就是蘇格拉底的化身。</p>
+
+<h2>十一、柏拉圖的理型論（Theory of Forms）</h2>
+
+<p>蘇格拉底影響了柏拉圖，柏拉圖將其思想加以系統化，提出「理型論」。</p>
+
+<p>核心觀點：凡是感官所得的知識都不可靠，因為感官所見充滿變化。真正的知識必須靠理性掌握，掌握的對象是「形式」（Form，理型）——事物永遠不改變的本質。</p>
+
+<p>例如：天下沒有兩張完全相同的桌子，但它們都有「桌子的形式」，我們才能識別它們都是桌子。同樣，天下沒有兩個完全相同的人，但人的形式使我們知道他是人。</p>
+
+<p><strong>三種抽象能力：</strong></p>
+
+<p>1. <strong>物理抽象</strong>：把某類事物個別的物理特性去掉，只看其共同的形式。例如，圖畫書上的獅子和動物園的獅子體型差異懸殊，孩子仍能認出那都是獅子，這就是物理抽象。最基礎，每個人都會。</p>
+
+<p>2. <strong>數學抽象</strong>：把事物是什麼完全去掉，只看數目的形式。「一個蘋果加一個蘋果等於兩個蘋果」，進而抽象為「1 + 1 = 2」。你從未見過真正的圓形或直線，只見過圓形的東西；真正的圓形是數學抽象的產物，在現實中不存在。</p>
+
+<p>3. <strong>形上抽象</strong>：只看一樣東西是否存在，凡存在之物即為相同。萬物只有兩種情況：存在或不存在。凡存在的，就都是「存在」這一個東西。形上抽象使人看見萬物作為整體的統一性，這正是莊子「天地與我並生，萬物與我為一」的哲學根據。若無形上抽象，便無法真正理解「愛人如己」——因為你我他都是同一個存在。</p>
+
+<p>柏拉圖真正關心的，不是桌子和椅子的形式，而是<strong>價值上的形式</strong>：什麼是勇敢、什麼是虔誠、什麼是謙虛、什麼是善、什麼是美——理解這些，才能判斷人的行為，也才知道自己應該往哪個方向發展。</p>
+
+<p>柏拉圖在 40 歲回到雅典，建立學院（Academy，取自雅典附近的英雄山 Academus）。學院門口掛牌：「不懂幾何學者請勿入。」因為幾何學是抽象訓練的入門，哲學需要比幾何學更高層次的抽象能力。</p>
+
+<h2>十二、柏拉圖的城邦哲學與四大德行</h2>
+
+<p>柏拉圖認為人的靈魂由三部分構成：</p>
+<p>1. <strong>理性</strong></p>
+<p>2. <strong>意氣</strong>（重榮譽）</p>
+<p>3. <strong>情感／欲望</strong></p>
+
+<p>對應城邦的三個階層：</p>
+<p>1. <strong>領袖</strong>（理性主導）</p>
+<p>2. <strong>衛士</strong>（意氣主導，保家衛國）</p>
+<p>3. <strong>百姓</strong>（情感／欲望主導）</p>
+
+<p>對應四大德行：</p>
+<p>1. <strong>明智</strong>（phronesis）：領袖應有，懂得如何在生活中運用理性作決策（注意：不同於智慧 sophia）</p>
+<p>2. <strong>勇敢</strong>（andreia）：衛士應有，保家衛國、重視榮耀</p>
+<p>3. <strong>節制</strong>（sophrosyne）：百姓應有，生活有節制</p>
+<p>4. <strong>正義</strong>（dikaiosyne）：以上三者各恰如其分，得到應有的位置與修養，即為正義</p>
+
+<p>西方後來七大德行 = 希臘四德（明智、勇敢、節制、正義）+ 天主教三德（信、望、愛）。</p>
+
+<h2>十三、亞里斯多德與「第一不動的推動者」</h2>
+
+<p>亞里斯多德 17 歲進入柏拉圖學院，直到柏拉圖去世後（37 歲）才離開。其父是馬其頓國王的御醫，他後來成為馬其頓王子亞歷山大大帝的老師。</p>
+
+<p>亞里斯多德對柏拉圖的修正：<strong>把哲學從純理性的理型世界，重新拉回人間的變化世界。</strong>他提問：變化的世界既然不可逃脫，我如何解釋變化的原理？什麼在變、什麼不變？</p>
+
+<p>他提出的神的定義：<strong>第一不動的推動者</strong>（The First Unmoved Mover）。</p>
+
+<ul>
+<li>萬物充滿變化；變動的東西一定有別的力量使它變動（「凡動者皆為他物所動」）</li>
+<li>追溯到最源頭，必有一個「本身不動、卻推動萬物」的第一存在</li>
+<li>它如何推動萬物？透過其完美的形式吸引萬物歸向它</li>
+<li>萬物皆不完美，皆有「潛能」（前能）要走向「實現」（actuality）；追求完美就是萬物運動的根本動力</li>
+</ul>
+
+<p>對「先有雞還是先有蛋」的問題，亞里斯多德的回答：<strong>先有雞</strong>。實現在先，潛能在後——若沒有先有雞的形式，你根本無法知道那個蛋是「雞蛋」。</p>
+
+<p>西方哲學因此形成兩大傳統：</p>
+<ul>
+<li><strong>柏拉圖傳統</strong>：重視理性與理型，偏向唯心</li>
+<li><strong>亞里斯多德傳統</strong>：重視感官經驗與現實世界的解釋，偏向唯物</li>
+</ul>
+
+<h2>十四、結語：哲學的意義</h2>
+
+<p>哲學提供一個完整的宇宙觀與人生觀，讓你能夠對所有正在發生的事進行定位：這件事應該怎麼面對？怎麼理解？我能做什麼？</p>
+
+<p>人生就是一個追求完美的過程——這句話同時意味著人生永遠不可能完美。在不完美的人生中追求完美的境界，需要正確的理解、必要的條件，以及持續的行動。</p>
+
+<p>耶魯大學校長的開學訓詞只有三句：<strong>學習（to learn）、理解（to understand）、品味（to enjoy）</strong>。對應孔子：「知之者不如好之者，好之者不如樂之者。」</p>
+
+<p>美國作家梭羅（Henry David Thoreau）大學畢業後，在華爾登湖畔獨居兩個月，探索「人能不能什麼都沒有而活下去」。他受過哲學訓練，因此做任何事都給自己特別的理由——不是盲目跟從別人的生活方式，而是清楚知道「我為什麼這樣做」。這就是蘇格拉底留給後人最重要的遺產：<strong>反省的生命</strong>。</p>
+
+<p>如同賈伯斯所說：「我願意用一生的成就與財富，換取與蘇格拉底共處一個下午。」</p>
+</div>
+  <div id="tab-outline"  class="tab-pane"><h1>蘇格拉底 — 大綱</h1>
+
+<h2>一、西方哲學的起源與早期發展</h2>
+
+<ul>
+<li>西方哲學發源於希臘殖民地（靠近小亞細亞），而非雅典</li>
+<li>地處文明交通要衝，宗教控制鬆懈，有餘暇探討切身需求以外的事物</li>
+<li><strong>自然哲學</strong>：探討自然界（有形可見、充滿變化的萬物）</li>
+<li>泰勒斯：「宇宙起源是水」；「萬物都充滿神明」（物質與神明未嚴格區分）</li>
+<li><strong>畢達哥拉斯學派</strong>：重形式而非質料，結合數學與宗教，主張靈魂輪迴，深刻影響柏拉圖</li>
+</ul>
+
+<hr class="rule">
+
+<h2>二、蘇格拉底的時代背景</h2>
+
+<ul>
+<li>蘇格拉底（西元前 469–399）生活於希臘動盪時期</li>
+<li>波斯戰爭（西元前 490、480）→ 希臘聯合獲勝 → 城邦競爭</li>
+<li><strong>伯羅奔尼撒戰爭</strong>（西元前 431–404，歷時 27 年）：斯巴達同盟 vs. 雅典同盟</li>
+<li>蘇格拉底以重武裝步兵身份實際參戰，勇敢著稱</li>
+<li>雅典戰敗後走向沒落，陷入民主政治與寡頭政治的交替循環</li>
+</ul>
+
+<hr class="rule">
+
+<h2>三、辨識學派（詭辯學派）的危機</h2>
+
+<ul>
+<li>當時雅典流行兩種思潮：自然哲學 + 辨識學派（Sophists）</li>
+<li><strong>辨識學派</strong>（詭辯學派）：</li>
+<li>傳授修辭與說服技巧，收費極高；走訪各城邦</li>
+<li>觀察各地法律與習俗的相對性，得出「人的世界沒有普遍原理」</li>
+<li>造成價值觀混淆——善惡標準隨環境改變，直接威脅人類共同生活</li>
+<li>蘇格拉底以此為使命核心：「哲學家是文化的醫生」（尼采語）</li>
+</ul>
+
+<hr class="rule">
+
+<h2>四、蘇格拉底的使命：探問未經反省的人生</h2>
+
+<ul>
+<li>放棄自然哲學，轉向人的內在世界：「我的朋友不是城外的樹木，而是城內的居民」</li>
+<li>不做演講，每天上街與任何願意交談的人對話</li>
+<li>方法：聽到價值陳述 → 追問其含義 → 使對方發現自身對價值概念的無知</li>
+<li>名言：<strong>「沒有經過反省的人生是不值得活的。」</strong></li>
+</ul>
+
+<hr class="rule">
+
+<h2>五、蘇格拉底的知德合一</h2>
+
+<ul>
+<li>主張「知識即是德行」（知德合一，有別於王陽明「知行合一」）</li>
+<li>論點：</li>
+<li>有德但不理解德行本質 → 德行是偶然的，遇考驗或需犧牲時難以堅持</li>
+<li>真正理解「德的價值在內不在外」 → 能堅持甚至為之犧牲</li>
+<li>探討價值概念不只是學術練習，而是建立德行的必要條件</li>
+</ul>
+
+<hr class="rule">
+
+<h2>六、「無知之知」——蘇格拉底的自知</h2>
+
+<ul>
+<li>戴爾菲神殿神諭：「雅典無人比蘇格拉底更有智慧」</li>
+<li>蘇格拉底親自驗證，拜訪三類人：</li>
+</ul>
+<p>1. <strong>政治家</strong>：只知拼經濟，對真正的人生幸福一無所知</p>
+<p>2. <strong>悲劇作家</strong>：不清楚自己作品的含義，讀者解釋往往比作者更準確</p>
+<p>3. <strong>技術專家</strong>：精通一域，卻誤以為在其他領域也有智慧</p>
+<ul>
+<li>結論：<strong>「只有我知道自己是無知的；別人連自身無知都不知道，卻強不知以為知。」</strong></li>
+<li>孔子類比：「吾有知乎哉？無知也。……我叩其兩端而竭焉。」（孔子比蘇格拉底早生約十年）</li>
+</ul>
+
+<hr class="rule">
+
+<h2>七、對話法與辯證法</h2>
+
+<ul>
+<li><strong>對話</strong>（dialogue，dia-logos）：預設雙方立場不同，透過正反論述尋求共識</li>
+<li><strong>辯證法</strong>（dialectic）：</li>
+<li>正方提出論點 → 反方提出反駁 → 雙方提升至更高合題（synthesis）</li>
+<li>合題成為新論點，繼續辯證，不斷向上</li>
+<li>柏拉圖視哲學為辯證法的訓練：保持開放，直至進入真善美的統一</li>
+<li>柏拉圖對話錄二十六篇，多數無最終結論，精神在於引導自我思考</li>
+<li><strong>智慧的助產</strong>（maieutics）：取自蘇格拉底之母的助產師職業；智慧只能經由自己的覺悟，不能轉售</li>
+</ul>
+
+<hr class="rule">
+
+<h2>八、蘇格拉底的精靈（Daimon）與對傳統的尊重</h2>
+
+<ul>
+<li><strong>精靈</strong>（daimon）：蘇格拉底自述的內在聲音，每當他將做不當之事時說「不要做」</li>
+<li>儒家類比：良知（讓人感到不安或不忍的道德本能）</li>
+<li>「幸福」（eudaimonia）字義即「有好的精靈引導」</li>
+<li>對傳統的尊重：</li>
+<li><strong>信仰</strong>：城邦祖先的神明，指引人生最終目的</li>
+<li><strong>法律</strong>：維持社會生活穩定的框架；個人自由在此框架之內</li>
+</ul>
+
+<hr class="rule">
+
+<h2>九、蘇格拉底的審判與死亡</h2>
+
+<ul>
+<li>兩大罪名：①腐化雅典青年；②不信城邦神明、自立新神（指其「精靈」）</li>
+<li>審判制度：五百人審判團（各區選派五十人輪值），多數決</li>
+<li>《申辯篇》（Apology）：蘇格拉底的辯護——侃侃而談，毫不示弱</li>
+<li>280 票對 220 票判定有罪</li>
+<li>刑罰建議：拒絕提議放逐，建議關進「國家英雄館」→ 激怒審判團 → 判處死刑</li>
+<li>死前三十天（節慶禁殺人），柏拉圖等友人每日探視，討論靈魂不朽</li>
+<li>蘇格拉底對死亡的兩種可能：</li>
+</ul>
+<p>1. 完全無知覺：如無夢安眠，深層寧靜</p>
+<p>2. 靈魂繼續存在：擺脫身體局限，與古代愛智者共同探討正義</p>
+<ul>
+<li>臨終前對克利多說：「別忘了我還欠醫神一隻雞的願。」</li>
+</ul>
+
+<hr class="rule">
+
+<h2>十、洞穴比喻（柏拉圖的寓言）</h2>
+
+<ul>
+<li>比喻：人如洞穴囚徒，只能看見牆壁上的投影（幻象）</li>
+<li>解開繩索者：回頭發現後方才是真實（道具、蠟燭、出口）</li>
+<li>爬出洞穴：初見天光目盲，隨後見到真實世界，喜悅難言</li>
+<li>回洞穴喚醒同伴：從光明進入黑暗跌跌撞撞 → 同伴嘲笑 → 最終被打死</li>
+<li>洞穴中被打死的人 = 蘇格拉底的化身</li>
+</ul>
+
+<hr class="rule">
+
+<h2>十一、柏拉圖的理型論（Theory of Forms）</h2>
+
+<ul>
+<li>核心：感官知識不可靠（充滿變化）；真正的知識靠理性掌握事物永恆不變的「形式」（Form，理型）</li>
+<li>例：天下無兩張相同的桌子，但它們共享「桌子的形式」</li>
+</ul>
+
+<h3>三種抽象能力</h3>
+
+<table>
+<thead>
+<tr><th>層次</th><th>名稱</th><th>說明</th><th>例子</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td><strong>物理抽象</strong></td><td>去掉個別物理特性，只看共同形式</td><td>圖畫書與動物園的獅子，都被識別為獅子</td></tr>
+<tr><td>2</td><td><strong>數學抽象</strong></td><td>去掉事物本身，只看數目形式</td><td>「1 + 1 = 2」；真正的圓形在現實中不存在</td></tr>
+<tr><td>3</td><td><strong>形上抽象</strong></td><td>只看事物是否存在；凡存在之物即為相同</td><td>萬物作為整體的統一性；「天地與我並生，萬物與我為一」</td></tr>
+</tbody>
+</table>
+
+<ul>
+<li>形上抽象是理解「愛人如己」的哲學根據（你我他都是同一個存在）</li>
+<li>柏拉圖真正關心的是<strong>價值的形式</strong>：勇敢、虔誠、謙虛、善、美</li>
+<li>柏拉圖學院（Academy）：建於雅典附近英雄山 Academus，40 歲創立</li>
+<li>門口掛牌：「不懂幾何學者請勿入」（幾何學是抽象訓練的入門）</li>
+</ul>
+
+<hr class="rule">
+
+<h2>十二、柏拉圖的城邦哲學與四大德行</h2>
+
+<h3>靈魂三部分 → 城邦三階層 → 四大德行</h3>
+
+<table>
+<thead>
+<tr><th>靈魂</th><th>城邦階層</th><th>對應德行</th></tr>
+</thead>
+<tbody>
+<tr><td>理性</td><td>領袖</td><td><strong>明智</strong>（phronesis）：運用理性作決策</td></tr>
+<tr><td>意氣（重榮譽）</td><td>衛士</td><td><strong>勇敢</strong>（andreia）：保家衛國、重視榮耀</td></tr>
+<tr><td>情感／欲望</td><td>百姓</td><td><strong>節制</strong>（sophrosyne）：生活有節制</td></tr>
+<tr><td>三者各恰如其分</td><td>—</td><td><strong>正義</strong>（dikaiosyne）：各得其所</td></tr>
+</tbody>
+</table>
+
+<ul>
+<li>西方七大德行 = 希臘四德（明智、勇敢、節制、正義）+ 天主教三德（信、望、愛）</li>
+</ul>
+
+<hr class="rule">
+
+<h2>十三、亞里斯多德與「第一不動的推動者」</h2>
+
+<ul>
+<li>亞里斯多德：17 歲入柏拉圖學院，37 歲（柏拉圖去世後）離開；其父為馬其頓御醫，本人為亞歷山大大帝之師</li>
+<li>修正柏拉圖：把哲學從純理性的理型世界，拉回人間的變化世界</li>
+<li><strong>第一不動的推動者</strong>（The First Unmoved Mover）：</li>
+<li>萬物充滿變化 → 變動者必有他物使之變動（「凡動者皆為他物所動」）</li>
+<li>追溯到源頭：本身不動卻推動萬物的第一存在</li>
+<li>推動方式：以其完美形式吸引萬物歸向它</li>
+<li>萬物皆有「潛能」（前能），走向「實現」（actuality）；追求完美是萬物運動的根本動力</li>
+<li>「先有雞還是先有蛋」：先有雞——實現在先，潛能在後</li>
+<li>兩大西方哲學傳統：</li>
+<li><strong>柏拉圖傳統</strong>：重視理性與理型，偏向唯心</li>
+<li><strong>亞里斯多德傳統</strong>：重視感官經驗與現實世界，偏向唯物</li>
+</ul>
+
+<hr class="rule">
+
+<h2>十四、結語：哲學的意義</h2>
+
+<ul>
+<li>哲學提供完整宇宙觀與人生觀，讓人對所有發生的事進行定位</li>
+<li>人生是追求完美的過程，同時意味著永遠不可能完美</li>
+<li>耶魯大學校長開學訓詞：<strong>學習（to learn）、理解（to understand）、品味（to enjoy）</strong></li>
+<li>對應孔子：「知之者不如好之者，好之者不如樂之者。」</li>
+<li>梭羅（Henry David Thoreau）：大學畢業後獨居華爾登湖畔，探索「人能不能什麼都沒有而活下去」</li>
+<li>哲學訓練使人做任何事都給自己特別的理由，而非盲目跟從</li>
+<li><strong>反省的生命</strong>：蘇格拉底留給後人最重要的遺產</li>
+<li>賈伯斯：「我願意用一生的成就與財富，換取與蘇格拉底共處一個下午。」</li>
+</ul>
+
+<hr class="rule"></div>
+  <div id="tab-terms"    class="tab-pane index-section"><h2>關鍵專有名詞</h2>
+
+<ul>
+<li><strong>自然哲學</strong>：最早的希臘哲學，探討自然界（有形可見的萬物）的本源</li>
+<li><strong>辨識學派（Sophists）</strong>：傳授修辭說服技巧的學派，認為世界沒有普遍原理，導致價值相對化</li>
+<li><strong>知德合一</strong>：蘇格拉底主張，真正認識德行才能真正實踐德行</li>
+<li><strong>無知之知</strong>：蘇格拉底的自知——知道自己無知，優於強不知以為知</li>
+<li><strong>對話（dialogue）</strong>：dia-logos，兩人正反論述、尋求共識的方法</li>
+<li><strong>辯證法（dialectic）</strong>：正→反→合，不斷提升至更高層次的思辨方法</li>
+<li><strong>智慧的助產（maieutics）</strong>：蘇格拉底以助產比喻引導他人自行覺悟智慧</li>
+<li><strong>精靈（daimon）</strong>：蘇格拉底的內在聲音，阻止其做不當之事；eudaimonia（幸福）= 有好的精靈引導</li>
+<li><strong>申辯篇（Apology）</strong>：柏拉圖對話錄第一篇，記錄蘇格拉底的辯護詞</li>
+<li><strong>洞穴比喻</strong>：柏拉圖以洞穴囚徒比喻人活在感官幻象中，哲學家喚醒眾人卻遭殺害</li>
+<li><strong>理型論（Theory of Forms）</strong>：真正的知識是對事物永恆不變「形式」的理性掌握</li>
+<li><strong>物理抽象</strong>：去掉個別物理特性，識別共同形式（最基礎）</li>
+<li><strong>數學抽象</strong>：去掉事物本身，只看數目形式</li>
+<li><strong>形上抽象</strong>：只看事物是否存在，見萬物統一性</li>
+<li><strong>第一不動的推動者（The First Unmoved Mover）</strong>：亞里斯多德的神學概念，萬物運動的終極源頭</li>
+<li><strong>潛能（前能）與實現（actuality）</strong>：亞里斯多德的變化原理，萬物從潛能走向實現</li>
+<li><strong>柏拉圖學院（Academy）</strong>：西元前 387 年創立，門口掛「不懂幾何學者請勿入」</li>
+<li><strong>明智（phronesis）</strong>：運用理性於生活決策的德行（有別於智慧 sophia）</li>
+<li><strong>勇敢（andreia）</strong>：衛士的德行，保家衛國、重視榮耀</li>
+<li><strong>節制（sophrosyne）</strong>：百姓的德行，生活有節制</li>
+<li><strong>正義（dikaiosyne）</strong>：靈魂三部分各恰如其分，人與城邦的最高德行</li>
+<li><strong>eudaimonia（幸福）</strong>：希臘文，字義「有好的精靈引導」</li>
+<li><strong>伯羅奔尼撒戰爭</strong>（西元前 431–404）：斯巴達同盟對抗雅典同盟，歷時 27 年</li>
+</ul>
+
+<hr class="rule"></div>
+  <div id="tab-timeline" class="tab-pane index-section"><h2>時間軸</h2>
+
+<table>
+<thead>
+<tr><th>年代</th><th>事件</th></tr>
+</thead>
+<tbody>
+<tr><td>西元前 580 年左右</td><td>泰勒斯活躍，提出「宇宙起源是水」</td></tr>
+<tr><td>西元前 570 年左右</td><td>畢達哥拉斯出生，建立數學宗教學派</td></tr>
+<tr><td>西元前 551 年</td><td>孔子出生（比蘇格拉底早生約 82 年）</td></tr>
+<tr><td>西元前 490 年</td><td>第一次波斯入侵希臘（馬拉松戰役）</td></tr>
+<tr><td>西元前 480 年</td><td>第二次波斯入侵希臘（薩拉米斯海戰）</td></tr>
+<tr><td>西元前 469 年</td><td>蘇格拉底出生於雅典</td></tr>
+<tr><td>西元前 431 年</td><td>伯羅奔尼撒戰爭爆發</td></tr>
+<tr><td>西元前 428/427 年</td><td>柏拉圖出生</td></tr>
+<tr><td>西元前 404 年</td><td>伯羅奔尼撒戰爭結束，雅典戰敗走向沒落</td></tr>
+<tr><td>西元前 399 年</td><td>蘇格拉底受審，以 280:220 票判有罪，飲毒酒身亡（享壽 70 歲）</td></tr>
+<tr><td>西元前 387 年</td><td>柏拉圖（40 歲）在雅典建立學院（Academy）</td></tr>
+<tr><td>西元前 384 年</td><td>亞里斯多德出生</td></tr>
+<tr><td>西元前 367 年</td><td>亞里斯多德（17 歲）進入柏拉圖學院</td></tr>
+<tr><td>西元前 347 年</td><td>柏拉圖去世；亞里斯多德（37 歲）離開學院</td></tr>
+<tr><td>西元前 343 年</td><td>亞里斯多德成為馬其頓王子亞歷山大的老師</td></tr>
+<tr><td>西元前 323 年</td><td>亞里斯多德去世</td></tr>
+</tbody>
+</table>
+
+<hr class="rule"></div>
+  <div id="tab-people"   class="tab-pane index-section"><h2>重要人物</h2>
+
+<ul>
+<li><strong>蘇格拉底（Socrates，西元前 469–399，希臘）</strong>：西方哲學的奠基者之一，以對話法、知德合一、「無知之知」著稱；因腐化青年和不信城邦神明被判死刑，飲毒酒身亡</li>
+<li><strong>柏拉圖（Plato，西元前 428/427–347，希臘）</strong>：蘇格拉底最重要的學生，提出理型論與洞穴比喻，建立柏拉圖學院，著有二十六篇對話錄</li>
+<li><strong>亞里斯多德（Aristotle，西元前 384–322，希臘）</strong>：柏拉圖學院學生，提出「第一不動的推動者」，將哲學拉回現實世界；亞歷山大大帝之師</li>
+<li><strong>泰勒斯（Thales，西元前約 624–546，希臘米利都）</strong>：西方最早的哲學家，提出「宇宙起源是水」、「萬物都充滿神明」</li>
+<li><strong>畢達哥拉斯（Pythagoras，西元前約 570–495，希臘薩摩斯）</strong>：重視形式與數學，主張靈魂輪迴，建立結合數學與宗教的學派，深刻影響柏拉圖</li>
+<li><strong>蔡爾豐（Chaerephon，生卒年不詳，希臘）</strong>：蘇格拉底的朋友，前往戴爾菲神殿詢問神諭「誰比蘇格拉底更有智慧」</li>
+<li><strong>克利多（Crito，生卒年不詳，希臘）</strong>：蘇格拉底的友人，臨終時在場，是蘇格拉底最後的話語對象</li>
+<li><strong>亞歷山大大帝（Alexander the Great，西元前 356–323，馬其頓）</strong>：亞里斯多德的學生，建立橫跨歐亞非的帝國</li>
+<li><strong>孔子（西元前 551–479，中國魯國）</strong>：中國儒家創始人，比蘇格拉底早生約 82 年；其「無知」表述（「吾有知乎哉？無知也」）與蘇格拉底「無知之知」具有哲學共鳴</li>
+<li><strong>尼采（Friedrich Nietzsche，1844–1900，德國）</strong>：德國哲學家，提出「哲學家是文化的醫生」，呼應蘇格拉底的診斷功能</li>
+<li><strong>梭羅（Henry David Thoreau，1817–1862，美國）</strong>：美國作家，大學畢業後獨居華爾登湖畔，以哲學精神探索簡單生活</li>
+<li><strong>賈伯斯（Steve Jobs，1955–2011，美國）</strong>：蘋果公司創辦人，曾言「願以一生成就換取與蘇格拉底共處一個下午」</li>
+</ul></div>
+
+</div>
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
