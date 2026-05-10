@@ -30,14 +30,16 @@
 
 ## 網站結構
 
-### 首頁（index.html）
+## index.html Tab 結構（首頁 6 tab）
 
-提供四個跨講整合的索引 tab：
-
-- **課程**：15 講章節清單與連結
-- **專有名詞**：跨 15 講整合，依主題分組，共 116 條術語
-- **時間軸**：去重複，合併為 5 個時代分期，共 78 條歷史記錄
-- **重要人物**：依西方人物／東方人物分類，共 84 位
+| Tab ID | 名稱 | 內容 |
+|--------|------|------|
+| `courses` | 課程 | 15 講章節清單與連結 |
+| `terms` | 專有名詞 | 跨 15 講整合，共 116 條術語 |
+| `timeline` | 時間軸 | 5 個時代分期，共 78 條歷史記錄 |
+| `people` | 重要人物 | 84 位西方／東方人物 |
+| `search` | 搜尋 | 全文關鍵字搜尋 |
+| `qa` | 問答 | 自然語言提問（呼叫 `/api/qa`） 
 
 ### 各講頁面（R01.html – R15.html）
 
@@ -52,6 +54,22 @@
 | 重要人物 | 該講出現的人物介紹 |
 
 ---
+
+## 問答功能（`api/qa.js`）
+
+架構：前端 POST `/api/qa` → Vercel Serverless Function → 關鍵字比對 `qa-content.json` top 5 段落 → 呼叫 Anthropic API → 回傳 `{answer, sources}`。
+
+- 使用 Node.js 內建 `fetch` 呼叫 Anthropic API，**無需 `package.json`**
+- 模型：`claude-haiku-4-5-20251001`，max_tokens: 800
+- 中文關鍵字切詞：bigram（2 字）+ trigram（3 字）n-gram，長度加權計分
+- 英文關鍵字：`/[a-zA-Z]{2,}/g` 比對
+- `ANTHROPIC_API_KEY` 存放於 Vercel 環境變數（Sensitive/Encrypted），**不能在程式碼或 git 中出現**
+- 更新環境變數後需重新部署（empty commit 或 `git push`）才生效
+
+**qa-content.json 重新生成**：若 R*.html 內容更新，需重新執行 `_extract_qa_content.py`（位於專案根目錄，完成後可刪除）。
+
+---
+
 
 ## 來源
 
