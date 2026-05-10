@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哲學與人生：存在主義</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+  :root {
+    --ink: #1a1610;
+    --paper: #f7f3ec;
+    --accent: #8b2e10;
+    --rule: #c8b99a;
+    --muted: #6b5e4e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px;
+    line-height: 1.95;
+    padding: 60px 20px 100px;
+  }
+
+  .book-wrap { max-width: 740px; margin: 0 auto; }
+
+  .chapter-header {
+    border-top: 3px solid var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding: 40px 0 32px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .chapter-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+
+  .chapter-source { margin-top: 18px; font-size: 13px; color: var(--muted); }
+  .chapter-source a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+  .chapter-source a:hover { text-decoration: underline; }
+
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid var(--rule);
+    margin-bottom: 44px;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    padding: 10px 22px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 700; }
+
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.18rem; font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin: 48px 0 16px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.02rem; font-weight: 700;
+    color: var(--ink);
+    margin: 34px 0 10px;
+  }
+
+  p { margin-bottom: 18px; text-align: justify; }
+  ul { margin: 4px 0 20px 1.4em; }
+  li { margin-bottom: 6px; text-align: justify; }
+
+  blockquote {
+    border-left: 3px solid var(--rule);
+    padding: 4px 20px;
+    margin: 20px 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+  blockquote p { margin-bottom: 6px; }
+
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin: 44px 0; }
+  strong { font-weight: 700; }
+
+  .index-section h2 { font-size: 1.05rem; margin-top: 36px; }
+  .index-section ul { margin-left: 1.2em; }
+  .index-section li { font-size: 15px; margin-bottom: 8px; line-height: 1.7; }
+
+  table { border-collapse: collapse; width: 100%; margin: 1.2em 0; font-size: 0.95em; }
+  th, td { border: 1px solid var(--rule); padding: 0.45em 0.8em; text-align: left; vertical-align: top; }
+  th { background: rgba(200, 185, 154, 0.25); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="book-wrap">
+
+  <div class="chapter-header">
+    <div class="chapter-label">台大開放式課程：哲學與人生</div>
+    <div class="chapter-title">哲學與人生：存在主義</div>
+    <div class="chapter-source">
+      <a href="https://www.youtube.com/watch?v=LAqe8zBt9Mo" target="_blank" rel="noopener">課程影片</a>
+      <a href="index.html#life">回課程首頁</a>
+    </div>
+  </div>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('full',this)">完整稿</button>
+    <button class="tab-btn" onclick="showTab('outline',this)">大綱</button>
+    <button class="tab-btn" onclick="showTab('terms',this)">專有名詞</button>
+    <button class="tab-btn" onclick="showTab('timeline',this)">時間軸</button>
+    <button class="tab-btn" onclick="showTab('people',this)">重要人物</button>
+  </nav>
+
+  <div id="tab-full"     class="tab-pane active">
+<h2>一、存在主義的出現與現代人的處境</h2>
+
+<p>存在主義在二十世紀中葉之後產生重大影響，其關心的核心主題——個人生命的價值問題——至今仍與我們息息相關。</p>
+
+<p>傳統社會有一個特色：個人的生命依託在群體裡面。無論是部落、階級、國家，還是希臘的城邦，個人一旦脫離群體，生命不但無法安頓，更無法被理解——而沒有被理解的可能性，就是沒有意義。社會學家喜歡把人比喻為蜘蛛：蜘蛛不能離開它的網，那張網就是意義之網。</p>
+
+<p>《易經》中有一段描述「九四」爻的文字：「上不在天，下不在田，中不在人。」用來描寫現代人的處境，格外貼切：</p>
+
+<ul>
+<li><strong>上不在天</strong>：失去了宗教信仰，對超越界、對人生的來源與歸宿失去聯繫。沒有信仰的人固然可以活下去，但在面對痛苦、罪惡、死亡等重大關鍵時刻，便無從給自己一個解釋。</li>
+<li><strong>下不在田</strong>：與自然界疏離。發展經濟的代價往往是犧牲自然，人與土地、與自然界的聯繫日益斷裂。</li>
+<li><strong>中不在人</strong>：個人與群體的關係慢慢斷絕。在資訊化時代，每個人可以在虛擬世界中獨自生活很長時間，反而與身邊真實的人失去真正的溝通。</li>
+</ul>
+
+<p>存在主義還補充了第四個斷裂：<strong>內不在己</strong>——一個人跟自己也發生了疏離。這正是存在主義最核心的關懷所在。</p>
+
+<h2>二、齊克果：存在、絕望與人生三階段</h2>
+
+<h3>存在的重新定義</h3>
+
+<p>存在主義的始祖一般追溯到丹麥哲學家<strong>齊克果</strong>（Kierkegaard）。在西方，宗教信仰對生命有決定性的影響，而齊克果家族本身就深受其影響——他父親少年時曾詛咒上帝，後因遠房親戚遺產致富，終身帶著宗教意義上的罪惡感。這樣的家庭背景，使齊克果從小心靈極度敏銳。</p>
+
+<p>他在社交場合常常談笑風生，卻忽然會出現一個念頭：「自己可恥，為什麼跟這麼多人如此融洽？這一定是隨俗從眾，背離了自己真實的面貌去回應別人的要求。」他甚至在訂婚之後解除婚約，因為認為兩個人不可能完全相互理解。對他這樣要求完美的敏銳心靈而言，人間所有事情都不太對勁。</p>
+
+<p>齊克果將「存在」這個詞重新定義：<strong>存在只能用於個人</strong>。桌子、椅子、太陽、月亮，那些是「存而不在」；存在應當是一個動詞，是以個人為主體的選擇——選擇成為自己，那才是存在。</p>
+
+<p><strong>存在 = 選擇成為自己的可能性。</strong></p>
+
+<h3>人生三種絕望</h3>
+
+<p>1. <strong>不知道有自我而絕望</strong>：一輩子跟著前輩的方式走，從不追問自己是誰。前輩怎麼做就怎麼做，最後只剩下在群體名冊上掛一個人頭。大江東去，浪淘盡，千古風流人物——哪一個人在世界上是不可少的呢？</p>
+<p>2. <strong>知道有自我卻不願意有自我</strong>：透過閱讀與思考知道了自我的存在，卻不願意承擔。有了自我就要負責任，壓力很大，而那個責任不見得負得起。很多大學生按照父母的意思填志願，是因為這樣可以保留「將來向父母抱怨」的權利。</p>
+<p>3. <strong>不能有自我</strong>：知道自我的獨特，也希望實現自我，但做不到。實現自我不容易，並非每個人都能走到那一步。</p>
+
+<h3>人生三個階段</h3>
+
+<p>齊克果提出人生有三個階段（注意：第一個階段常被誤譯為「美感階段」，應為「感性階段」）：</p>
+
+<p><strong>第一階段：感性階段</strong></p>
+
+<p>希臘文中美與感覺是同一個字（aesthetics 最原始的意思是感覺），齊克果取其最原始的含義。這個階段的人只注意當下的感覺，用一句話描述：「今朝有酒今朝醉。」感覺永遠是當下，不能有連續性的自我，不能承擔責任。在感性階段裡，以量取代質，到最後必然走向憂鬱（melancholy）——就像看見夕陽西下，不知明日是否仍有陽光。</p>
+
+<p><strong>第二階段：倫理階段</strong></p>
+
+<p>進入倫理階段，人能夠在時間上把自己連起來，有過去、現在、未來，能夠答應別人並守諾言。「我答應你明天來，即使不確定明天地球是否仍在，我還是會來。」這是生命的連續性與責任感。</p>
+
+<p>然而，倫理階段的問題在於：久而久之容易產生「自以為是」——「我沒有逃稅，沒有殺人，沒有欺騙，所以我是正義的標準。」這是道德上的驕傲，而驕傲正是天主教所謂七大死罪的第一罪。</p>
+
+<p>孔子說：「如有周公之才之美，使驕且吝，其餘不足觀也已。」才華卓越如周公，若既驕傲又吝嗇，就不值得一看。驕傲代表自認高人一等，吝嗇代表有多餘的也不願給人，這樣的人對社會毫無幫助。</p>
+
+<p><strong>第三階段：宗教階段</strong></p>
+
+<p>齊克果將宗教分成 A 與 B 兩種：</p>
+
+<ul>
+<li><strong>宗教 A</strong>：一般的宗教情操——感覺到生命有來源有歸宿，感覺到有一個神明高高在上。這種神聖感不必信特定的教才能有，有些人從小就具備這種敬畏之心。</li>
+<li><strong>宗教 B</strong>：特指基督教新教。人活在世界上只有一個目標：與神取得和諧，拯救自己的靈魂。</li>
+</ul>
+
+<p>人生自古誰無死。宗教是那扇門——唯一能通向另外一個生命的門。脫離宗教脈絡之後說「我很幸福、我的人生很滿意」，恐怕都需要重新思考。</p>
+
+<h2>三、尼采：上帝之死與超人</h2>
+
+<p><strong>尼采</strong>（Nietzsche，1844–1900）一生痛苦掙扎，家族三代都是牧師，他的童年綽號是「小牧師」。但這個在深厚宗教環境中成長的天才，長大後卻成為著名的無神論者——因為他身邊所謂「虔誠的信徒」表現出的虛偽，讓他無法忍受。事實上，尼采最後十年已精神分裂，在療養院度過（1890–1900）。</p>
+
+<h3>上帝死了</h3>
+
+<p>《歡愉的智慧》中，尼采借一個大清早在菜市場拿著燈籠找上帝的人說出：「你們沒有發現嗎？上帝已經死了，大地一片漆黑。」——因為若沒有上帝，所有的一切都不能被理解，也沒有意義。</p>
+
+<p>西方哲學界流傳一句笑話：「尼采說上帝死了；上帝說尼采瘋了。最後是誰對？」——當然是上帝，因為尼采真的瘋了。</p>
+
+<p>尼采說「上帝死了」，並不是說有一個真實的上帝死掉了，而是指：<strong>西方社會的價值觀建立在宗教信仰上，但這個信仰的根已經腐朽了</strong>。大家禮拜天上教堂，心裡如意，看似虔誠，離開教堂後該做什麼就做什麼，該打仗打仗，該賺錢賺錢。宗教作為價值基礎，早就名存實亡，只剩一個空殼。</p>
+
+<p>因此：<strong>「上帝死了」的後半句是：要重新固定一切價值。</strong>你不要再把道德推給宗教當藉口，你必須自己為自己負責。</p>
+
+<h3>超人（Overman）</h3>
+
+<p>尼采的「超人」原文是德文 <strong>Übermensch</strong>，英文應譯為 <strong>Overman</strong>（「走過去的人」），而非 Superman（穿著內衣反穿的那種）。</p>
+
+<p>人類是懸在深淵之上的繩索——不走過去，永遠停留在這一側，無法成為真正的人；走過去，身心都要承受考驗與磨礪，最終變得更強壯，成為人類中的精英。</p>
+
+<p>尼采的例子：凱撒的武功加上耶穌的心靈，或拿破崙的武功加上歌德的心靈——這當然只是一種象徵，說明人類要繼續發展、走過去。再加上一句更強的話：<strong>「超人是大地的意義。」</strong> 這個地球有無數芸芸眾生，大地的意義來自於超人。</p>
+
+<p>正因如此，傅佩榮教授強烈反對「臺灣之光」這樣的說法——好像一個人沒有受那道光的照耀就不知道自己的價值。每一個人應該由內在自發光，而不是等待別人的光照亮自己。</p>
+
+<h3>精神三變</h3>
+
+<p>《查拉圖斯特拉如是說》中，尼采提出精神的三種變化：</p>
+
+<p>1. <strong>駱駝</strong>：聽別人對你說「你應該如何」，只知服從。從小父母老師告訴你應該學習、應該聽話、應該守規矩——這就是駱駝階段。</p>
+<p>2. <strong>獅子</strong>：你對自己說「我要如何」。進入社會，開始有自我的覺醒，能夠自己負責，開創自己的世界。</p>
+<p>3. <strong>嬰兒</strong>：只說「我是」（英文 I am，德文 ich bin）。動詞用現在式代表永遠如此——嬰兒代表永遠的開始，每一刹那都是新的開始，充滿無限的生機與希望。</p>
+
+<h3>權利意志（Will to Power）</h3>
+
+<p>尼采的「權利意志」（the will to power）是每一個生命追求更大力量發揮的本能。不是求權勢或統治，而是「追求我的力量最大極限的發揮」。</p>
+
+<h2>四、雅斯培：界限狀況與軸心時代</h2>
+
+<h3>文化軸心時代</h3>
+
+<p><strong>雅斯培</strong>（Karl Jaspers）作為存在主義哲學家，本身深通心理學與醫學，從小體弱多病，對生命的脆弱深有體會。他最廣為人知的觀念是「<strong>文化軸心時代</strong>」（Axial Age）：</p>
+
+<p>在西元前 800 年到 200 年之間，各大文明不約而同出現一些人物，提出重要的觀念，從此改變人類心靈的發展。在人類有記載的幾千年歷史中，這六百年只佔十分之一，卻轉變了整個人類的思維。</p>
+
+<p>核心變化：遠古時代，個人生命必須依附群體才有意義；但這些先知先覺之士提出：每一個人都可以透過自我的覺醒，肯定自己生命的獨特價值，選擇符合自己需要的人生途徑——個人生命不必再依靠城邦、部落、階級或國家。</p>
+
+<p><strong>四大聖哲</strong>：</p>
+<p>1. 希臘的蘇格拉底</p>
+<p>2. 印度的釋迦牟尼</p>
+<p>3. 中國的孔子</p>
+<p>4. （稍晚的）耶穌</p>
+
+<p>這四人的共同特點：在當時都是人間的「失敗者」——耶穌被釘死十字架，蘇格拉底被判死刑，孔子被認為是「喪家之狗」，釋迦牟尼兩百多年後才因阿育王的支持得到廣傳，最終還是幾乎被趕出印度。然而他們對痛苦、罪惡、死亡都直接面對，並以自己的生命作為見證，給出充分的答案。</p>
+
+<p>雅斯培也指出，這四人的原始精神早已在後代的傳承中被扭曲：孔子思想從秦漢以降被帝王用來鞏固統治，淪為法家工具；耶穌的精神在中世紀變成教條，教會成為世俗權力機構。因此他認為，在今天這個開放自由的時代，若還不能覺悟，他們原始的理想恐怕就真的永遠消失了。</p>
+
+<h3>界限狀況</h3>
+
+<p>雅斯培提出「<strong>界限狀況</strong>」（Limit Situations）：當我們遭遇生命的極限，才會被迫面對根本的問題。</p>
+
+<ul>
+<li><strong>身體的界限</strong>：生病、車禍、面臨死亡威脅的時候，平常從未浮現的問題忽然出現——人生終究要走，死神不問年紀。羅馬人說命運女神「沒有不敢做的事」：你是好人，你是無辜的孩子，她讓你遭殃你就遭殃。</li>
+<li><strong>心智的界限</strong>：人的知性永遠有極限。念書念不懂，是自己學問不夠；但越謙卑認識自己的無知，越能誠實面對自己。</li>
+<li><strong>道德的界限</strong>：光天化日之下看起來都是正人君子，但心裡常有黑暗的衝動。從小到大考試從沒作過弊的人，為什麼不舉手？</li>
+<li><strong>存在的界限</strong>：生命到最後的界限就是齊克果所說的三種絕望——沒有信仰的人，生命歸結為兩個字：等死。這個世界上等死的人可真多，只是用各種名義在等：追求這個追求那個，熱鬧得很，但不會對自己說「我在等死」。</li>
+</ul>
+
+<p><strong>佛洛斯特的詩</strong>（The Road Not Taken）：進入森林有兩條路，一條有很多人走的清晰足跡，另一條很少人走。為了安全先走多人走的路，心想不合適再回頭——但一旦走上去，路前接路，你永遠回不了頭。人生很多偏差，就在年輕時的一個念頭，一輩子留下遺憾。</p>
+
+<h3>刹那（密碼）</h3>
+
+<p>雅斯培說人生看到世界上很多東西看不懂，但是一旦解開那個密碼，所有的一切豁然開朗。那一刹那代表什麼？等於永恆。</p>
+
+<p>幾個例子：</p>
+<ul>
+<li>一個男生平常不修邊幅，有天看到他喜歡的女孩，立刻衣冠整齊、說話得體、見人有禮——戀愛的那一刹那，他發現了理想中的自我。柏拉圖說：透過戀愛，人可以發現理想的自我。</li>
+<li>馬丁·路德某天在修道院聽修士念「我信罪之赦」，忽然覺悟：「信就得救」——信者得救（因信稱義），從此開啟宗教改革。</li>
+<li>奧古斯丁青年時才華洋溢、生活放縱，某天聽到小孩念「拿起來念」，隨手翻開聖經，讀到「要讓自己清潔，不要沉溺在罪惡之中」，一刹那豁然覺悟，此後投身天主教神學，成為重要教父。</li>
+<li>馬克吐溫的話：「人生只有兩天最重要：第一天是你出生那天，第二天是你知道自己為什麼而活的那天。」</li>
+</ul>
+
+<h3>超越界</h3>
+
+<p>雅斯培提出「超越界」（Transcendence），又稱「統設者」（the Encompassing）——無所制約者，不能說「假如世界存在，上帝才存在」，他的存在沒有任何條件。若沒有這個超越界，所有的一切就不可理解。</p>
+
+<p><strong>靈魂不死</strong>：康德透過道德論證說明：若道德真的存在，善有善報惡有惡報，但這種報應在人死的時候不可能完全圓滿，因此需要靈魂不死，以接受生前善惡的報應；而執行報應的最高力量就是神。康德原本認為自我、世界、上帝皆不可知，卻透過道德實踐的要求，恢復了靈魂的存在、自由的可能，以及上帝的存在——「否則道德是假的，人的世界就很容易瓦解。」</p>
+
+<h3>雅斯培的困境：納粹迫害</h3>
+
+<p>雅斯培的太太是猶太人，在納粹統治時代他飽受迫害（根據納粹政策，按梯次：全血猶太人→猶太人娶非猶太人→非猶太人娶猶太人，均被送集中營，雅斯培屬第三批）。相較之下，海德格（Heidegger）在納粹期間曾任弗萊堡大學校長（僅任一年即辭職），成為他終身的污點，戰後被限制教學與出國。</p>
+
+<h2>五、加百列·馬塞爾：有與是、問題與奧秘</h2>
+
+<p>法國哲學家<strong>加百列·馬塞爾</strong>（Gabriel Marcel）的思想有三個重點：</p>
+
+<h3>有（Having）與是（Being）</h3>
+
+<p>「你有什麼」不等於「你是什麼」。現代人卻常常以擁有的東西來代表自己生命的內涵與價值。</p>
+
+<p>馬塞爾有一句話：<strong>"To possess is to be possessed."（擁有就是被擁有。）</strong> 你有的越多，你也越被那些東西所擁有。</p>
+
+<p>例子：</p>
+<ul>
+<li>先租房子——是房子的客人；努力買了一棟——是房子的主人；買了五棟——變成房子的奴隸。每天煩惱租金、怕人不搬、怕房子出問題，愁眉苦臉，比什麼都沒有的人還可憐。</li>
+<li>名片上印滿頭銜、著作、歷任職務的人，其實完全不知道存在主義在說什麼。</li>
+</ul>
+
+<h3>問題（Problem）與奧秘（Mystery）</h3>
+
+<p><strong>問題</strong>預設有一個答案，答案出來，問題就解決了。</p>
+
+<p><strong>人的生命不是可以解決的問題，它是一個奧秘（mystery）。</strong></p>
+
+<p>奧秘只有一個辦法：<strong>跟它一起活下去</strong>。這就是為什麼心理醫師到最後自己也常常瀕臨崩潰——因為他試圖用解決問題的方式去面對一個奧秘。所謂「問題兒童」，不是找到問題就解決了，他是一個人，你只能陪他、跟他一起活下去。</p>
+
+<h3>直接互相臨在</h3>
+
+<p>真正的奧秘，一定要兩個人以<strong>主體的身份</strong>、在<strong>現場</strong>直接互動。群眾式的演講能讓很多人受益，但真正改變人生的，是那種一對一、直接面對面的臨在。這也是馬塞爾所說存在主義的核心精神：你和另一個人，作為完整的主體，彼此相遇。</p>
+
+<h2>六、結語</h2>
+
+<p>存在主義給現代人的核心提醒：</p>
+
+<ul>
+<li><strong>齊克果</strong>：存在就是選擇成為自己。你必須勇敢地面對三種絕望，跨越感性、倫理，到達宗教層次，才能讓生命有真正的嚴肅性。</li>
+<li><strong>尼采</strong>：上帝死了，不要再以宗教為藉口為自己的道德惰性開脫；你要超越自己，讓精神從駱駝變獅子再變嬰兒，把生命的能量盡所有可能發揮出來。</li>
+<li><strong>雅斯培</strong>：遭遇界限狀況時才能真正面對自己；尋找那解開密碼的刹那，認識超越界的存在；四大聖哲的原始精神至今仍在，就看我們能否覺醒。</li>
+<li><strong>馬塞爾</strong>：不要用「有」代替「是」；人生的很多困境不是可以解決的問題，而是需要一起活下去的奧秘。</li>
+</ul>
+</div>
+  <div id="tab-outline"  class="tab-pane">
+<h2>一、存在主義的出現與現代人的處境</h2>
+
+<ul>
+<li>存在主義興起於 20 世紀中葉，關心<strong>個人生命的價值問題</strong>，至今仍有影響力</li>
+<li>傳統社會：個人生命依託群體（部落、城邦、國家），脫離群體即失去意義（意義 = 理解的可能性）</li>
+<li>社會學比喻：人是蜘蛛，網就是意義之網</li>
+<li><strong>《易經》九四爻：「上不在天，下不在田，中不在人」</strong> → 現代人的四重斷裂：</li>
+</ul>
+<p>1. <strong>上不在天</strong>：失去宗教信仰，對來源與歸宿失去聯繫</p>
+<p>2. <strong>下不在田</strong>：與自然界疏離（發展經濟犧牲自然）</p>
+<p>3. <strong>中不在人</strong>：資訊化時代，虛擬世界取代真實人際</p>
+<p>4. <strong>內不在己</strong>（存在主義補充）：人與自身也發生疏離</p>
+
+<hr class="rule">
+
+<h2>二、齊克果（Kierkegaard）</h2>
+
+<h3>背景與性格</h3>
+
+<ul>
+<li>丹麥哲學家，存在主義始祖</li>
+<li>父親少年時曾詛咒上帝，後因遺產致富，終身帶著罪惡感；齊克果在嚴格宗教教育下成長，心靈極度敏銳</li>
+<li>社交場合談笑風生，卻忽然自覺「這是隨俗從眾，背離真實面貌」</li>
+<li>訂婚後又解除婚約——認為任何人間的感情最終都流於日常，天才無法忍受</li>
+</ul>
+
+<h3>存在的重新定義</h3>
+
+<ul>
+<li>「存在只能用於個人」：桌椅太陽是「存而不在」</li>
+<li><strong>存在 = 選擇成為自己的可能性</strong>（存在是動詞，以個人為主體）</li>
+<li>面對神時，你是單獨的個人，沒有任何回避的餘地</li>
+</ul>
+
+<h3>人生三種絕望</h3>
+
+<p>1. <strong>不知道有自我而絕望</strong>：跟著前輩方式活，未曾追問自己是誰</p>
+<p>2. <strong>知道有自我卻不願意有自我</strong>：有了自我就要負責任，壓力太大（如按父母意願填志願）</p>
+<p>3. <strong>不能有自我</strong>：想實現自我但做不到（實現自我需要長期努力）</p>
+
+<h3>人生三個階段</h3>
+
+<table>
+<thead>
+<tr><th>階段</th><th>關鍵詞</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>感性階段</strong>（常誤譯為「美感階段」）</td><td>今朝有酒今朝醉</td><td>只注意當下感覺；無連續的自我；以量取代質；終點是憂鬱（melancholy）</td></tr>
+<tr><td><strong>倫理階段</strong></td><td>我答應你明天來</td><td>在時間上連接自我（過去・現在・未來）；守諾言、承擔責任；缺點：易產生道德驕傲（自以為是正義標準）</td></tr>
+<tr><td><strong>宗教階段</strong></td><td>生命有來源有歸宿</td><td>宗教 A：一般宗教情操，對超越界的敬畏；宗教 B（基督教新教）：與神和諧、拯救靈魂</td></tr>
+</tbody>
+</table>
+
+<ul>
+<li>倫理階段的最大陷阱：驕傲（天主教七大死罪之首）</li>
+<li>孔子：「如有周公之才之美，使驕且吝，其餘不足觀也已。」</li>
+<li>宗教是人生最後的門：人生自古誰無死，唯有宗教通向另一個生命</li>
+</ul>
+
+<hr class="rule">
+
+<h2>三、尼采（Nietzsche，1844–1900）</h2>
+
+<h3>背景</h3>
+
+<ul>
+<li>家族三代牧師，童年綽號「小牧師」→ 成年後成為著名無神論者</li>
+<li>原因：身邊信徒的虛偽讓他無法忍受</li>
+<li>1890 年精神分裂，最後十年在療養院度過</li>
+</ul>
+
+<h3>上帝死了</h3>
+
+<ul>
+<li>出自《歡愉的智慧》：大清早一人拿燈籠找上帝，「上帝死了，大地一片漆黑」</li>
+<li>笑話：「尼采說上帝死了；上帝說尼采瘋了——誰對？」（尼采真的瘋了）</li>
+<li><strong>「上帝死了」的真正意思</strong>：不是有個上帝死掉，而是西方社會價值觀的根已腐朽</li>
+<li>人們禮拜天上教堂，心裡如意，離開後依然故我</li>
+<li>宗教作為價值基礎名存實亡，只剩空殼</li>
+<li><strong>後半句</strong>：<strong>重新固定一切價值</strong>——不以宗教為藉口，自己為自己負責</li>
+</ul>
+
+<h3>超人（Überman / Overman）</h3>
+
+<ul>
+<li>原文 Übermensch = Overman（走過去的人），<strong>非</strong> Superman</li>
+<li>「人類是懸在深淵之上的繩索」——不走過去無法成為真正的人</li>
+<li>概念源自達爾文演化論：人不能停在現有形態，必須繼續演化</li>
+<li>例子象徵：凱撒的武功 + 耶穌的心靈；拿破崙的武功 + 歌德的心靈</li>
+<li><strong>「超人是大地的意義」</strong> → 教授反對「臺灣之光」：每個人應由內在自發光，不需等人照耀</li>
+</ul>
+
+<h3>精神三變</h3>
+
+<table>
+<thead>
+<tr><th>變化</th><th>象徵</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>駱駝</strong></td><td>你應該如何</td><td>服從他人指令，沙漠之舟</td></tr>
+<tr><td><strong>獅子</strong></td><td>我要如何</td><td>自我覺醒，自己負責，開創世界</td></tr>
+<tr><td><strong>嬰兒</strong></td><td>我是（I am）</td><td>現在式代表永遠如此；每一刹那都是新的開始，充滿無限生機</td></tr>
+</tbody>
+</table>
+
+<h3>權利意志（Will to Power）</h3>
+
+<ul>
+<li>德文 Wille zur Macht，英文 the will to power</li>
+<li>每一個生命追求更大力量發揮的本能；不是求統治，而是<strong>追求自我力量的最大極限發揮</strong></li>
+</ul>
+
+<hr class="rule">
+
+<h2>四、雅斯培（Karl Jaspers）</h2>
+
+<h3>背景</h3>
+
+<ul>
+<li>德國存在主義哲學家，深通心理學與醫學，從小體弱，對生命脆弱深有體會</li>
+<li>納粹時代：太太是猶太人，飽受迫害（按梯次：全血猶太人→猶太人配偶→非猶太人娶猶太人，雅斯培屬第三批）</li>
+<li>對比：海德格（Heidegger）曾在納粹期間擔任弗萊堡大學校長（僅一年），成為終身污點，戰後被禁止教學與出國</li>
+</ul>
+
+<h3>文化軸心時代（Axial Age）</h3>
+
+<ul>
+<li>西元前 800–200 年，各大文明不約而同出現重要人物與觀念，轉變人類心靈</li>
+<li>核心轉變：個人可透過自我覺醒，肯定自己生命的獨特價值，不再依附群體</li>
+</ul>
+
+<p><strong>四大聖哲</strong>（均為「人間失敗者」，以生命見證超越界）：</p>
+
+<table>
+<thead>
+<tr><th>聖哲</th><th>文明</th><th>命運</th></tr>
+</thead>
+<tbody>
+<tr><td>蘇格拉底</td><td>希臘</td><td>被誣告判死刑</td></tr>
+<tr><td>釋迦牟尼</td><td>印度</td><td>兩百多年後才廣傳，最終幾乎被趕出印度</td></tr>
+<tr><td>孔子</td><td>中國</td><td>被稱「喪家之狗」，思想被帝王工具化為法家服務</td></tr>
+<tr><td>耶穌</td><td>猶太</td><td>被釘死十字架，精神在中世紀變成教條</td></tr>
+</tbody>
+</table>
+
+<ul>
+<li>雅斯培警告：在今天開放自由的時代，若仍無法覺醒，他們的原始精神將永遠消失</li>
+</ul>
+
+<h3>界限狀況（Limit Situations）</h3>
+
+<p>遭遇生命極限時，才被迫面對根本問題：</p>
+
+<p>1. <strong>身體的界限</strong>：重大疾病、面臨死亡——命運女神「沒有不敢做的事」</p>
+<p>2. <strong>心智的界限</strong>：知性永遠有極限，誠實面對無知才能謙卑成長</p>
+<p>3. <strong>道德的界限</strong>：「從小沒有作過弊的請舉手」——人人心裡都有黑暗的衝動</p>
+<p>4. <strong>存在的界限</strong>：沒有信仰，生命歸結為「等死」（以各種名義的忙碌掩蓋）</p>
+
+<p><strong>佛洛斯特《未走之路》</strong>：年輕時的偏差，一輩子回不了頭</p>
+
+<h3>刹那（密碼）</h3>
+
+<ul>
+<li>解開人生密碼的一刹那等於永恆，豁然開朗，知道自己的生命在追求什麼</li>
+<li>例子：</li>
+<li>戀愛的刹那發現理想的自我（柏拉圖：透過戀愛發現理想自我）</li>
+<li>馬丁·路德：「我信罪之赦」→「信就得救」（因信稱義，開啟宗教改革，1517 年）</li>
+<li>奧古斯丁：聽到「拿起來念」，翻開聖經讀到「讓自己清潔」，一刹那覺悟</li>
+<li>馬克吐溫：「人生只有兩天最重要：出生那天，和知道自己為什麼而活的那天」</li>
+</ul>
+
+<h3>超越界（Transcendence）/ 統設者（The Encompassing）</h3>
+
+<ul>
+<li><strong>無所制約者</strong>：存在不需要任何前提條件（不能說「假如世界存在，上帝才存在」）</li>
+<li>若沒有超越界，所有的一切不可理解、不可理喻</li>
+<li><strong>靈魂不死</strong>（康德的道德論證）：</li>
+<li>若道德真實存在，善惡報應必需圓滿</li>
+<li>人死時無法完全圓滿 → 需要靈魂不死</li>
+<li>執行報應需要最高力量 → 上帝存在</li>
+<li>道德若是假的，人的世界容易瓦解（法律容易被操弄，不夠可靠）</li>
+</ul>
+
+<hr class="rule">
+
+<h2>五、加百列·馬塞爾（Gabriel Marcel）</h2>
+
+<h3>有（Having）與是（Being）</h3>
+
+<ul>
+<li>「你有什麼」≠「你是什麼」</li>
+<li>現代人以擁有的東西代表生命的內涵與價值</li>
+<li><strong>"To possess is to be possessed."（擁有就是被擁有）</strong></li>
+<li>有的越多，被擁有的越多</li>
+<li>三個階段：租房→房子的客人；買一棟→房子的主人；買五棟→房子的奴隸</li>
+<li>真正的「是」（Being）：你這個人本身的存在，不能被財富、頭銜取代</li>
+</ul>
+
+<h3>問題（Problem）與奧秘（Mystery）</h3>
+
+<ul>
+<li><strong>問題</strong>：預設有答案，解決後消失</li>
+<li><strong>奧秘</strong>：人的生命是奧秘，不能「解決」，只能<strong>一起活下去</strong></li>
+<li>「問題兒童」不是找到問題就解決了——他是一個人</li>
+<li>心理醫師用解決問題的方式面對奧秘，到最後自己也瀕臨崩潰</li>
+</ul>
+
+<h3>直接互相臨在</h3>
+
+<ul>
+<li>真正的奧秘需要兩個人以<strong>主體身份</strong>在<strong>現場</strong>直接互動</li>
+<li>群眾演講有群眾效益，但無法取代一對一的直接臨在</li>
+<li>存在主義的核心：你和另一個完整的主體，彼此相遇</li>
+</ul>
+
+<hr class="rule">
+
+<h2>六、結語：四位思想家的核心提醒</h2>
+
+<table>
+<thead>
+<tr><th>思想家</th><th>核心主張</th></tr>
+</thead>
+<tbody>
+<tr><td>齊克果</td><td>存在 = 選擇成為自己；跨越感性→倫理→宗教，生命才有嚴肅性</td></tr>
+<tr><td>尼采</td><td>上帝死了→重新固定價值；精神三變（駱駝→獅子→嬰兒）；發揮權利意志</td></tr>
+<tr><td>雅斯培</td><td>界限狀況迫使面對自己；把握解開密碼的刹那；認識超越界</td></tr>
+<tr><td>馬塞爾</td><td>不以「有」代替「是」；人生是奧秘，不是可解決的問題</td></tr>
+</tbody>
+</table>
+
+<hr class="rule"></div>
+  <div id="tab-terms"    class="tab-pane index-section"><h2>關鍵專有名詞</h2>
+
+<ul>
+<li><strong>存在主義（Existentialism）</strong>：20 世紀中期興起的哲學思潮，關注個人生命的價值、選擇與責任</li>
+<li><strong>意義之網</strong>：社會學比喻，個人脫離群體則生命失去意義</li>
+<li><strong>存在（Existence）</strong>：齊克果重新定義——選擇成為自己的可能性，只用於個人，是動詞非名詞</li>
+<li><strong>感性階段（Aesthetic Stage）</strong>：齊克果人生三階段之一，只注意當下感覺，今朝有酒今朝醉</li>
+<li><strong>倫理階段（Ethical Stage）</strong>：齊克果人生三階段之二，在時間中連接自我，守諾言承擔責任</li>
+<li><strong>宗教階段（Religious Stage）</strong>：齊克果人生三階段之三，生命與超越界建立聯繫</li>
+<li><strong>宗教 A / 宗教 B</strong>：齊克果的區分——A 指一般宗教情操，B 特指基督教新教</li>
+<li><strong>上帝死了（God is Dead）</strong>：尼采的命題，意指西方社會價值觀的根已腐朽，需重新固定一切價值</li>
+<li><strong>超人（Überman / Overman）</strong>：尼采，Übermensch——走過去的人，身心經過考驗磨礪而成的人類精英；非 Superman</li>
+<li><strong>精神三變</strong>：尼采，駱駝（服從）→獅子（自主）→嬰兒（永遠的新開始）</li>
+<li><strong>權利意志（Will to Power）</strong>：尼采，the will to power，每個生命追求力量最大發揮的本能</li>
+<li><strong>文化軸心時代（Axial Age）</strong>：雅斯培提出，西元前 800–200 年各大文明同時出現覺醒人物</li>
+<li><strong>四大聖哲</strong>：蘇格拉底、釋迦牟尼、孔子、耶穌——在軸心時代提出個人覺醒觀念</li>
+<li><strong>界限狀況（Limit Situations）</strong>：雅斯培，生命遭遇極限（疾病、死亡、心智、道德）才被迫面對根本問題</li>
+<li><strong>刹那（密碼）</strong>：雅斯培，解開人生密碼的那一刹那等於永恆，豁然開朗</li>
+<li><strong>超越界（Transcendence）/ 統設者（The Encompassing）</strong>：雅斯培，無所制約的存在，萬物依此才可被理解</li>
+<li><strong>靈魂不死</strong>：康德的道德論證——道德真實則善惡報應需在死後圓滿，故靈魂不死，上帝存在</li>
+<li><strong>有（Having）vs 是（Being）</strong>：馬塞爾，擁有的東西不等於你是什麼</li>
+<li><strong>To possess is to be possessed</strong>：馬塞爾，擁有就是被擁有，有的越多被佔據越多</li>
+<li><strong>問題（Problem）vs 奧秘（Mystery）</strong>：馬塞爾，人的生命是奧秘，不能「解決」，只能一起活下去</li>
+<li><strong>直接互相臨在</strong>：馬塞爾，兩個主體在現場直接相遇，是存在主義的核心精神</li>
+<li><strong>因信稱義</strong>：馬丁·路德宗教改革的核心——信就得救，不需靠善行積累</li>
+<li><strong>驕傲（Pride）</strong>：天主教七大死罪之首，倫理階段最大陷阱</li>
+</ul>
+
+<hr class="rule"></div>
+  <div id="tab-timeline" class="tab-pane index-section"><h2>時間軸</h2>
+
+<table>
+<thead>
+<tr><th>年代</th><th>事件</th></tr>
+</thead>
+<tbody>
+<tr><td>西元前 800–200 年</td><td>文化軸心時代（雅斯培提出）：蘇格拉底、釋迦牟尼、孔子、耶穌相繼出現</td></tr>
+<tr><td>354–430 年</td><td>奧古斯丁，天主教教父，聽到「拿起來念」後覺悟</td></tr>
+<tr><td>1517 年</td><td>馬丁·路德宗教改革，因信稱義，反對贖罪券</td></tr>
+<tr><td>1813–1855 年</td><td>齊克果（Kierkegaard），丹麥，存在主義始祖</td></tr>
+<tr><td>1844–1900 年</td><td>尼采（Nietzsche），德國，「上帝死了」、精神三變、權利意志</td></tr>
+<tr><td>1883–1969 年</td><td>雅斯培（Jaspers），德國，界限狀況、軸心時代、超越界</td></tr>
+<tr><td>1889–1976 年</td><td>海德格（Heidegger），德國，存在主義，1933–34 年任弗萊堡大學校長（納粹時期污點）</td></tr>
+<tr><td>1889–1973 年</td><td>馬塞爾（Marcel），法國，「有」vs「是」、問題 vs 奧秘</td></tr>
+</tbody>
+</table>
+
+<hr class="rule"></div>
+  <div id="tab-people"   class="tab-pane index-section"><h2>重要人物</h2>
+
+<ul>
+<li><strong>齊克果（Søren Kierkegaard，1813–1855，丹麥）</strong>：存在主義始祖，重新定義「存在」為選擇成為自己；提出人生三種絕望與三個階段（感性→倫理→宗教）；信仰深厚，強調個人單獨面對神的責任</li>
+<li><strong>尼采（Friedrich Nietzsche，1844–1900，德國）</strong>：提出「上帝死了」、重新固定一切價值；提倡超人（Überman）、精神三變（駱駝→獅子→嬰兒）、權利意志；1890 年精神分裂，最後十年在療養院度過</li>
+<li><strong>雅斯培（Karl Jaspers，1883–1969，德國）</strong>：存在主義哲學家，深通心理學與醫學；提出文化軸心時代、四大聖哲、界限狀況、刹那密碼、超越界；納粹時代因妻為猶太人而受迫害</li>
+<li><strong>馬塞爾（Gabriel Marcel，1889–1973，法國）</strong>：法國存在主義哲學家；提出「有」vs「是」、「to possess is to be possessed」、問題 vs 奧秘、直接互相臨在</li>
+<li><strong>海德格（Martin Heidegger，1889–1976，德國）</strong>：德國存在主義哲學家，名聲卓著；1933–34 年在納粹統治下任弗萊堡大學校長，成為終身污點；戰後被禁止教學與出國</li>
+<li><strong>馬丁·路德（Martin Luther，1483–1546，德國）</strong>：天主教神父，聽到「我信罪之赦」後覺悟「因信稱義」，1517 年發起宗教改革，創立基督教新教</li>
+<li><strong>奧古斯丁（Augustine of Hippo，354–430，北非）</strong>：天主教重要教父，早年才華洋溢、生活放縱；中年聽到「拿起來念」後覺悟，投身神學，著《懺悔錄》、《上帝之城》</li>
+<li><strong>史懷哲（Albert Schweitzer，1875–1965，法國/加彭）</strong>：醫療傳教士，在非洲行醫以「替白種人贖罪」；獲 1952 年諾貝爾和平獎</li>
+<li><strong>范古（Vincent van Gogh，1853–1890，荷蘭）</strong>：後印象派畫家，臨終說「我這一生是徹底的失敗」——因為任何理想一旦落實，便否定了其他無限可能（黑格爾：存在就是否定）</li>
+<li><strong>孔子（西元前 551–479，中國魯國）</strong>：儒家創始人，被稱「喪家之狗」；軸心時代四大聖哲之一，思想被後代帝王工具化</li>
+<li><strong>釋迦牟尼（Siddhartha Gautama，約西元前 563–483，印度）</strong>：佛教創始人，軸心時代四大聖哲之一，兩百多年後因阿育王支持才廣傳，最終幾乎被趕出印度</li>
+<li><strong>羅伯特·佛洛斯特（Robert Frost，1874–1963，美國）</strong>：美國詩人，《未走之路》（The Road Not Taken）象徵人生無法回頭的選擇</li>
+</ul></div>
+
+</div>
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
