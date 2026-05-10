@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哲學與人生：荒謬之超越</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+  :root {
+    --ink: #1a1610;
+    --paper: #f7f3ec;
+    --accent: #8b2e10;
+    --rule: #c8b99a;
+    --muted: #6b5e4e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px;
+    line-height: 1.95;
+    padding: 60px 20px 100px;
+  }
+
+  .book-wrap { max-width: 740px; margin: 0 auto; }
+
+  .chapter-header {
+    border-top: 3px solid var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding: 40px 0 32px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .chapter-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+
+  .chapter-source { margin-top: 18px; font-size: 13px; color: var(--muted); }
+  .chapter-source a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+  .chapter-source a:hover { text-decoration: underline; }
+
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid var(--rule);
+    margin-bottom: 44px;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    padding: 10px 22px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 700; }
+
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.18rem; font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin: 48px 0 16px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.02rem; font-weight: 700;
+    color: var(--ink);
+    margin: 34px 0 10px;
+  }
+
+  p { margin-bottom: 18px; text-align: justify; }
+  ul { margin: 4px 0 20px 1.4em; }
+  li { margin-bottom: 6px; text-align: justify; }
+
+  blockquote {
+    border-left: 3px solid var(--rule);
+    padding: 4px 20px;
+    margin: 20px 0;
+    color: var(--muted);
+    font-style: italic;
+  }
+  blockquote p { margin-bottom: 6px; }
+
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin: 44px 0; }
+  strong { font-weight: 700; }
+
+  .index-section h2 { font-size: 1.05rem; margin-top: 36px; }
+  .index-section ul { margin-left: 1.2em; }
+  .index-section li { font-size: 15px; margin-bottom: 8px; line-height: 1.7; }
+
+  table { border-collapse: collapse; width: 100%; margin: 1.2em 0; font-size: 0.95em; }
+  th, td { border: 1px solid var(--rule); padding: 0.45em 0.8em; text-align: left; vertical-align: top; }
+  th { background: rgba(200, 185, 154, 0.25); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="book-wrap">
+
+  <div class="chapter-header">
+    <div class="chapter-label">台大開放式課程：哲學與人生</div>
+    <div class="chapter-title">哲學與人生：荒謬之超越</div>
+    <div class="chapter-source">
+      <a href="https://www.youtube.com/watch?v=dAvKkrIsneo" target="_blank" rel="noopener">課程影片</a>
+      <a href="index.html#life">回課程首頁</a>
+    </div>
+  </div>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('full',this)">完整稿</button>
+    <button class="tab-btn" onclick="showTab('outline',this)">大綱</button>
+    <button class="tab-btn" onclick="showTab('terms',this)">專有名詞</button>
+    <button class="tab-btn" onclick="showTab('timeline',this)">時間軸</button>
+    <button class="tab-btn" onclick="showTab('people',this)">重要人物</button>
+  </nav>
+
+  <div id="tab-full"     class="tab-pane active">
+<h2>一、存在主義的分類：沙特的人文主義宣言</h2>
+
+<p>沙特在 1964 年發表〈存在主義是一種人文主義〉，嘗試將存在主義納入人文主義的傳統。人文主義強調宇宙的核心價值在人身上，而非神明或物質。然而，人文主義本身可分為兩種：</p>
+
+<ul>
+<li><strong>封閉的人文主義</strong>：人是一切，是最後的終極實在，人之外沒有更高的存在。</li>
+<li><strong>開放的人文主義</strong>：人的生命嚮往超越，因此需要超越界作為嚮往的目標。</li>
+</ul>
+
+<p>沙特進一步將存在主義區分為有神論與無神論兩種：</p>
+
+<table>
+<thead>
+<tr><th>類型</th><th>代表人物</th></tr>
+</thead>
+<tbody>
+<tr><td>有神的存在主義</td><td>雅斯培（德語系）、馬塞爾（法語系）</td></tr>
+<tr><td>無神的存在主義</td><td>海德格（德語系）、沙特（法語系）</td></tr>
+</tbody>
+</table>
+
+<p>然而，沙特的分類文章一出，被點名的另外三人——雅斯培、馬塞爾、海德格——統統起來反對，拒絕「存在主義者」的標籤。存在主義的精神本就是要活出自己，被貼上集體標籤，本身就違反了存在主義的精神。</p>
+
+<hr class="rule">
+
+<h2>二、海德格：二十世紀最重要的西方哲學家</h2>
+
+<h3>思想核心</h3>
+
+<p>海德格是二十世紀影響最廣的西方哲學家，其影響遍及哲學、神學、藝術、文學、美學各領域。他的切入點非常高明：<strong>要理解存在，必須從提出存在問題的那個存在者出發</strong>，也就是從人出發。</p>
+
+<p>人的生命最大的特色是<strong>時間性</strong>（Zeitlichkeit）。萬物之中，只有人類對時間有明確的意識，因此產生特殊的焦慮——時間一去不復返，生命有終點，那就是死亡。</p>
+
+<blockquote>
+<p><strong>「人是走向死亡的存在者。」</strong></p>
+</blockquote>
+
+<p>這句格言提醒我們：生命有限，必須儘早做出真正的抉擇，否則到死亡來臨時一切都太晚了。</p>
+
+<h3>持有（Dasein）與存在</h3>
+
+<p>海德格用「<strong>持有</strong>」（Dasein，意為「在此」）描述人的存在狀態：每個人都「在此」，但「在此」還不等於真正的存在。要從持有轉化為存在，必須透過抉擇，讓自己與存有（Being）建立關係。</p>
+
+<p>如何理解這個觀念？正如一滴水若放在地面，終將被太陽蒸發；唯有丟入大海，才能永存。持有（人）透過抉擇與存有（大海）建立關係，才能成為真正意義上的存在。</p>
+
+<h3>存有學的差異</h3>
+
+<p>海德格哲學最重要的突破是發現<strong>存有學的差異</strong>（ontological difference）：<strong>存有（Being，大寫）與萬物（beings，小寫）截然不同</strong>。</p>
+
+<p>這個區別在道家哲學中表達得更清楚：「道不等於物。」道是萬物的來源與歸宿，萬物充滿變化、有生有死；若不能分辨作為根源的「道（存有）」與充滿變化的「萬物（存在者）」，便只能活在相對的世界中。</p>
+
+<p>亞里斯多德從自然界出發試圖掌握形上本體，如同用無數個「零」相加，終究無法等於「一」，因為自然界本質上是流變的。康德也因此指出，透過理性找不到形而上的東西，唯有透過道德實踐（實踐理性）才能肯定本體世界的存在。</p>
+
+<h3>真切性（Eigentlichkeit，屬己性）</h3>
+
+<p>海德格強調 authenticity（真切性），其德文原義是「屬己性」（Eigentlichkeit）——屬於自己的，而非屬於別人的。</p>
+
+<p>一般人的生命常屬於社會、家庭、職場，卻未必屬於自己。只有當一個人真正屬於自己，才能成為「中空的管道」，讓存有透過他展現真理的光輝。</p>
+
+<p>在這裡，真理不再是「命題與事實的相應」，而是「存有的開顯」（aletheia）——正如童話中的小孩才能看出國王沒有穿衣服，因為他夠真誠，不受利害關係左右。</p>
+
+<h3>海德格與老子</h3>
+
+<p>海德格晚年崇拜老子，認為老子對「道與物之差異」的把握正合乎他的「存有學的差異」。他曾與旅歐的中國學者蕭思義教授合作，每週六下午在家中共同翻譯《老子》道德經，但翻到第八章〈上善若水〉時，兩人意見不合，不歡而散，合譯計畫就此中斷。</p>
+
+<hr class="rule">
+
+<h2>三、沙特：存在先於本質</h2>
+
+<h3>在即（en-soi）與未即（pour-soi）</h3>
+
+<p>沙特的哲學從黑格爾的概念出發，區分兩種存在模式：</p>
+
+<ul>
+<li><strong>在即</strong>（en-soi，在他自己）：客觀世界的萬物，太陽就是太陽，沒有選擇餘地。</li>
+<li><strong>未即</strong>（pour-soi，意識）：人的意識，能夠反思自身、隨時選擇焦點的主動能力。</li>
+</ul>
+
+<p>意識的本質是<strong>製造虛無</strong>的能力：當我想著某人時，其他一切都變成虛無；當焦點轉移，原先的人也被虛無化。沙特用一個生動的例子說明：到咖啡館找 Peter，腦海中有 Peter 的印象，所有非 Peter 的人都被否定——最終發現 Peter 根本不在，連 Peter 本身也被虛無化。這就是意識的運作方式。</p>
+
+<h3>存在先於本質</h3>
+
+<blockquote>
+<p><strong>「存在先於本質。」</strong></p>
+</blockquote>
+
+<p>這是沙特最核心的命題。人的本質不是預先給定的，而是由過去的「存在的選擇」累積而成。你今天是什麼樣的人，都是你過去每一個選擇的結果。若你從未真正選擇過，你的「本質」只不過是父母、老師、社會捏塑的產物，那你根本沒有真正存在過。</p>
+
+<h3>他人即地獄</h3>
+
+<blockquote>
+<p><strong>「他人就是我的地獄。」</strong></p>
+</blockquote>
+
+<p>出自沙特的劇本，說明人與人之間的深層隔閡：每個人的意識都不斷變化，人與人真正的相互理解根本不可能。</p>
+
+<h3>沙特的生平</h3>
+
+<p>沙特（1905–1980）是巴黎知識份子的代表。他與西蒙·德·波伏娃（女性主義代表人物）結識後同居，兩人拒絕結婚——因為婚姻是社會制度，接受即是不夠存在主義。他們選擇真誠地面對彼此，直到沙特去世。</p>
+
+<p>1964 年，沙特獲諾貝爾文學獎，但公開拒絕領獎。原因之一是：卡謬早在 1957 年就獲獎，比他小八歲的卡謬比他早七年得獎，這口氣他吞不下去。</p>
+
+<hr class="rule">
+
+<h2>四、卡謬：荒謬的超越</h2>
+
+<h3>生平背景</h3>
+
+<p>卡謬（1913–1960）出生於法屬北非阿爾及利亞，父親在第一次世界大戰（馬恩河之役）陣亡，母親靠為人洗衣撫養他長大。他說：「我生命裡有的只有兩個東西——陽光與海洋，它們是無限的豐盛，絕對不吝嗇的。」</p>
+
+<p>這樣的成長環境讓他的生命力紮根於自然界，也讓他與在巴黎書齋中成長的沙特形成鮮明對比。他的第一本書《異鄉人》（The Stranger/The Outsider）一炮而紅，甚至是由沙特第一個推薦的。</p>
+
+<h3>荒謬的定義</h3>
+
+<p>卡謬認為，荒謬不是人本身，也不是世界本身，而是<strong>人與世界之間的一種遭遇（encounter）</strong>：</p>
+
+<blockquote>
+<p>人有對意義與理解的強烈需求，而世界卻保持沉默。這種落差，就是荒謬。</p>
+</blockquote>
+
+<p>正如真正的悲劇不是好人遇到壞人，而是兩個好人之間發生衝突——因為那才無從解決，無從究責。</p>
+
+<h3>《西西弗斯的神話》</h3>
+
+<p>在希臘神話中，西西弗斯因洩露神的秘密而被天神懲罰：推石頭上山，但石頭到達山頂後又滾落，如此無窮無盡。</p>
+
+<p>卡謬以此比喻現代人的處境：在失去超越信仰的世界中，人的生活日復一日，最終只是走向死亡。他以此提出了哲學史上最震撼的開場白：</p>
+
+<blockquote>
+<p><strong>「真正嚴肅的哲學問題只有一個，就是自殺。判斷生命是否值得活下去，等於回答這個哲學上的根本問題。」</strong></p>
+</blockquote>
+
+<p>為什麼自殺？因為你發現人生無法被理解，活著沒有意義。卡謬分析兩種自殺：</p>
+
+<p>1. <strong>肉體的自殺</strong>：違反生物求生本能，是一種逃避。</p>
+<p>2. <strong>思想上的自殺</strong>：當人想不通問題，便轉向宗教信仰，用信仰代替思考——卡謬稱此為逃避，是另一種自殺。</p>
+
+<p>然而，卡謬的答案不是自殺，而是：</p>
+
+<blockquote>
+<p><strong>「你必須想像西西弗斯是快樂的。」</strong></p>
+</blockquote>
+
+<p>西西弗斯推石頭到山頂，石頭滾落的那一刻，肩膀輕鬆了，他慢慢走向山腳，走向他的命運。荒謬不是結論，而是出發點。</p>
+
+<h3>從荒謬引申的三個結論</h3>
+
+<p>1. <strong>我的反抗</strong>：說「這是荒謬的」，代表你心中有標準，知道什麼才是不荒謬的。反抗是認識真理的方式。卡謬說：<strong>「我反抗，所以我們存在。」</strong>（注意：不是「我存在」，而是「我們存在」——反抗不是為個人，而是為人性、為人類的處境。）</p>
+
+<p>2. <strong>我的自由</strong>：一切都是荒謬的，代表沒有任何限制原則，人擁有無限的自由。這是真正創作的基礎——去除所有框框，才能有真正的創造。</p>
+
+<p>3. <strong>我的熱情</strong>：發現荒謬後，卡謬說他的第一個衝動是想寫一本「幸福手冊」。生命的「量」取代「值」——不是成為一個「好人」的固定本質，而是不斷去做你認為好的事情。</p>
+
+<h3>沙特與卡謬的辯論</h3>
+
+<p>在參加巴黎抗德運動期間，兩人共同辦《戰鬥報》。有一天在小酒館辯論「人有沒有絕對自由」，雙方各引古代哲學家互不相讓。最後卡謬問：「沙特先生，如果你相信人有絕對自由，那你可以把我交給納粹、說我是抗德分子嗎？」沙特沉默後說：「我做不到。」卡謬接著說：「因此，人沒有絕對自由。」這一招讓沙特無從辯駁。</p>
+
+<p>卡謬 1957 年以 44 歲的年齡獲得諾貝爾文學獎，是文學獎史上最年輕的得主之一。1960 年 1 月 4 日，他搭朋友的車前往法國南部（口袋裡還裝著一張沒有退掉的火車票），因車禍去世，享年 47 歲。</p>
+
+<h3>《誤會》：幸福不是一切，人還有責任</h3>
+
+<p>卡謬的劇本《誤會》講述一個離家多年、功成名就的兒子，決定回家給母親和妹妹帶去財富。他沒有第一時間表明身份，以旅客身份入住母親開的旅館。但妹妹為了逃離山區的貧苦生活，習慣謀殺單身旅客牟財。最終，兒子被下毒殺害，身份證掉落才被發現，母親知道自己殺了親生兒子後上吊，妹妹也選擇自殺。</p>
+
+<p>這個故事說明：善意不能保護人免於悲劇，而是充滿善意的誤解構成了最大的悲劇。</p>
+
+<p>劇中最打動人的一句話：</p>
+
+<blockquote>
+<p><strong>「幸福不是一切，人還有責任。」</strong></p>
+</blockquote>
+
+<p>幸福若沒有責任，便是空洞的。</p>
+
+<h3>《瘟疫》：團結的可能</h3>
+
+<p>《瘟疫》（1947）描寫一座被封鎖的城市在瘟疫中，醫生（科學）與牧師（神學）——平常相互對立——攜手合作，說明在人類苦難面前，連神學與科學的對立也能被超越。</p>
+
+<h3>團結（solidarity）與孤單（solitaire）</h3>
+
+<p>卡謬在〈放逐與王國〉中，描寫一位藝術家遺作上有一個字，模糊到難以分辨是 <strong>solidarity</strong>（團結）還是 <strong>solitaire</strong>（孤單）——兩字只差一個字母（D 或 T）。這個無法確認的字，象徵人在群體與自我之間永恆的張力：</p>
+
+<ul>
+<li>太傾向團結，容易喪失自我；</li>
+<li>太傾向孤單，容易成為與世隔絕的怪人。</li>
+</ul>
+
+<hr class="rule">
+
+<h2>五、孤獨的三個層次</h2>
+
+<p>面對人本質上的孤獨，傅教授提出三個修煉層次：</p>
+
+<p>1. <strong>忍受孤獨</strong>：人在本質上是孤單的，從出生到死亡。不斷需要朋友聯絡，反而證明內心孤單。</p>
+<p>2. <strong>接受孤獨</strong>：理解人生確實如此，孤單時不再有情緒上的痛苦。</p>
+<p>3. <strong>享受孤獨</strong>：在獨處時充分儲備能量，才能在面對群體時真正有所給予。</p>
+
+<hr class="rule">
+
+<h2>六、結語</h2>
+
+<p>無論是海德格的「屬己性」、沙特的「存在先於本質」，還是卡謬的「荒謬的超越」，存在主義最終都指向同一個問題：</p>
+
+<blockquote>
+<p><strong>「認識你自己，凡事皆無過度。」</strong></p>
+</blockquote>
+
+<p>這兩句刻在德爾菲神殿上的銘言，跨越兩千五百年，依然是哲學最根本的呼喚。</p>
+</div>
+  <div id="tab-outline"  class="tab-pane">
+<h2>一、存在主義的分類（沙特的架構）</h2>
+
+<ul>
+<li>沙特〈存在主義是一種人文主義〉（1964）</li>
+<li>人文主義兩種：<strong>封閉</strong>（人是終極實在）vs <strong>開放</strong>（人嚮往超越界）</li>
+<li>沙特的分類：</li>
+</ul>
+
+<table>
+<thead>
+<tr><th>類型</th><th>代表</th></tr>
+</thead>
+<tbody>
+<tr><td>有神論存在主義</td><td>雅斯培（德）、馬塞爾（法）</td></tr>
+<tr><td>無神論存在主義</td><td>海德格（德）、沙特（法）</td></tr>
+</tbody>
+</table>
+
+<ul>
+<li>文章發表後，另三人全部反對「存在主義者」標籤——存在主義本身拒絕被貼標籤</li>
+</ul>
+
+<hr class="rule">
+
+<h2>二、海德格（Martin Heidegger, 1889–1976）</h2>
+
+<h3>核心立場</h3>
+<ul>
+<li>二十世紀影響最廣的西方哲學家（哲學、神學、藝術、文學、美學）</li>
+<li>切入點：從「提出存在問題的那個存在者」出發，即從人出發</li>
+</ul>
+
+<h3>時間性與死亡</h3>
+<ul>
+<li>人是唯一具有時間意識的存在者 → 產生特殊焦慮</li>
+<li>時間一去不復返，生命有終點 = 死亡</li>
+<li><strong>「人是走向死亡的存在者。」</strong></li>
+<li>代表作：《存有與時間》（<em>Sein und Zeit</em> / <em>Being and Time</em>）</li>
+</ul>
+
+<h3>持有（Dasein）與存在</h3>
+<ul>
+<li>Dasein = 在此（持有）；每個人都「在此」，但尚未真正存在</li>
+<li>持有 → 存在：必須透過<strong>抉擇</strong>，與<strong>存有（Being）</strong>建立關係</li>
+<li>比喻：一滴水放在地面會蒸發；丟入大海才能永存</li>
+</ul>
+
+<h3>存有學的差異（Ontological Difference）</h3>
+<ul>
+<li><strong>存有</strong>（Being，大寫）≠ <strong>存在者</strong>（beings，小寫複數）</li>
+<li>對應道家：「道不等於物」</li>
+<li>批判：從自然界或人出發（如亞里斯多德），無數零相加仍不能等於一</li>
+<li>康德：形上本體需透過道德實踐（實踐理性）才能肯定</li>
+</ul>
+
+<h3>真切性（Eigentlichkeit = 屬己性 = authenticity）</h3>
+<ul>
+<li>德文原義：「屬於我自己的」</li>
+<li>一般人的生命屬於社會、家庭、職場，未必屬於自己</li>
+<li>真誠的人成為「中空管道」，讓存有透過他展現真理</li>
+<li>真理：不再是「命題與事實的相應」，而是<strong>存有的開顯</strong>（aletheia）</li>
+</ul>
+
+<h3>海德格與老子</h3>
+<ul>
+<li>研讀各種語文版本的《老子》，認為道家把握了存有學差異</li>
+<li>與旅歐學者<strong>蕭思義</strong>教授合作翻譯《道德經》（每週六在海德格家）</li>
+<li>翻到第八章〈上善若水〉時意見不合，不歡而散，計畫中止</li>
+</ul>
+
+<hr class="rule">
+
+<h2>三、沙特（Jean-Paul Sartre, 1905–1980）</h2>
+
+<h3>在即（en-soi）vs 未即（pour-soi）</h3>
+
+<table>
+<thead>
+<tr><th>概念</th><th>法文</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td>在即</td><td>en-soi</td><td>客觀萬物，沒有選擇餘地</td></tr>
+<tr><td>未即</td><td>pour-soi</td><td>人的意識，主動選擇焦點</td></tr>
+</tbody>
+</table>
+
+<ul>
+<li>意識的本質：<strong>製造虛無</strong>的能力</li>
+<li>例：到咖啡館找 Peter → 一切非 Peter 被虛無化 → Peter 不在，Peter 也被虛無化</li>
+</ul>
+
+<h3>核心命題</h3>
+<ul>
+<li><strong>「存在先於本質。」</strong>（Existence precedes essence）</li>
+<li>本質是過去選擇的結果，不是預先給定的</li>
+<li>若從未真正選擇，你的本質是他人捏塑的，你根本沒有真正存在</li>
+<li><strong>「他人就是我的地獄。」</strong></li>
+<li>人與人無法真正理解，意識隨時在變化</li>
+</ul>
+
+<h3>生平</h3>
+<ul>
+<li>與西蒙·德·波伏娃同居，拒絕結婚（婚姻是社會制度 = 不夠存在主義）</li>
+<li>1964 年獲諾貝爾文學獎，公開拒絕領獎</li>
+<li>原因之一：卡謬（比他小 8 歲）早在 1957 年已得獎</li>
+</ul>
+
+<hr class="rule">
+
+<h2>四、卡謬（Albert Camus, 1913–1960）</h2>
+
+<h3>生平背景</h3>
+<ul>
+<li>出生於法屬北非阿爾及利亞，父親在一戰馬恩河之役陣亡</li>
+<li>母親洗衣撫養他長大；從小與陽光、海洋為伴</li>
+<li>第一本書《異鄉人》（<em>The Stranger</em>）→ 沙特第一個推薦</li>
+<li>1957 年諾貝爾文學獎（44 歲，文學獎史上最年輕得主之一）</li>
+<li>1960 年 1 月 4 日車禍去世，享年 47 歲</li>
+</ul>
+
+<h3>荒謬的定義</h3>
+<ul>
+<li>荒謬（absurdity）= 人對意義的需求 + 世界的沉默 = <strong>兩者之間的遭遇</strong></li>
+<li>真正的悲劇：不是好人遇到壞人，而是<strong>兩個好人之間的衝突</strong></li>
+</ul>
+
+<h3>《西西弗斯的神話》（<em>The Myth of Sisyphus</em>）</h3>
+<ul>
+<li>神話背景：西西弗斯因洩露神的秘密，被罰永遠推石上山，石頭又滾落</li>
+<li>比喻現代人：失去超越信仰後，生活日復一日，最終走向死亡</li>
+<li>開場白：<strong>「真正嚴肅的哲學問題只有一個，就是自殺。」</strong></li>
+<li>自殺的兩種類型：</li>
+</ul>
+<p>1. 肉體自殺：違反求生本能，是逃避</p>
+<p>2. <strong>思想上的自殺</strong>：以宗教信仰取代思考，卡謬稱之為逃避</p>
+<ul>
+<li>結論：<strong>「你必須想像西西弗斯是快樂的。」</strong></li>
+<li>荒謬不是結論，而是出發點；人可以選擇自己的態度</li>
+</ul>
+
+<h3>從荒謬引申的三個結論</h3>
+
+<table>
+<thead>
+<tr><th>結論</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>反抗</strong>（revolt）</td><td>說「這是荒謬的」代表你有標準，知道何為不荒謬。「<strong>我反抗，所以我們存在。</strong>」（不是個人，是為人類而反抗）</td></tr>
+<tr><td><strong>自由</strong>（freedom）</td><td>一切都荒謬 = 沒有任何限制原則 = 無限自由 = 真正創作的基礎</td></tr>
+<tr><td><strong>熱情</strong>（passion）</td><td>生命的「量」取代「值」——不斷做你認為好的事，而非執著於成為「好人」的固定本質</td></tr>
+</tbody>
+</table>
+
+<h3>沙特與卡謬的辯論</h3>
+<ul>
+<li>地點：巴黎小酒館（抗德運動期間）</li>
+<li>辯題：人有沒有絕對自由？</li>
+<li>卡謬問沙特：「如果你相信絕對自由，你可以把我交給納粹嗎？」</li>
+<li>沙特：「我做不到。」</li>
+<li>卡謬：「因此，人沒有絕對自由。」</li>
+</ul>
+
+<h3>《誤會》（<em>The Misunderstanding</em>）</h3>
+<ul>
+<li>情節：功成名就的兒子回家探望，以旅客身份入住母親的旅館</li>
+<li>母親與妹妹為謀財習慣殺害單身旅客</li>
+<li>兒子下毒身亡，身份證掉落才暴露身份</li>
+<li>母親上吊，妹妹自殺</li>
+<li>主題：善意無法保護人免於荒謬的悲劇</li>
+<li>核心名句：<strong>「幸福不是一切，人還有責任。」</strong></li>
+</ul>
+
+<h3>《瘟疫》（<em>The Plague</em>, 1947）</h3>
+<ul>
+<li>一座城市遭瘟疫封鎖，醫生（科學）與牧師（神學）攜手合作</li>
+<li>說明：面對人類苦難，科學與宗教的對立可以超越</li>
+</ul>
+
+<h3>團結（solidarity）vs 孤單（solitaire）</h3>
+<ul>
+<li>出自〈放逐與王國〉中的短篇小說</li>
+<li>藝術家遺作上有一個字模糊：SOLIDARITY（團結，D）or SOLITAIRE（孤單，T）</li>
+<li>象徵人在群體與自我之間的永恆張力：</li>
+<li>完全融入群體 → 喪失自我</li>
+<li>完全孤立 → 成為怪人</li>
+<li>兩者都需要，但現代人常過於傾向群體</li>
+</ul>
+
+<hr class="rule">
+
+<h2>五、孤獨的三個層次</h2>
+
+<p>1. <strong>忍受孤獨</strong>：人本質上是孤單的，出生到死亡皆然；不能忍受孤獨，即不能忍受自己</p>
+<p>2. <strong>接受孤獨</strong>：理解人生如此，孤單時不再有情緒波動</p>
+<p>3. <strong>享受孤獨</strong>：獨處時儲備能量，才能在面對群體時真正有所給予</p>
+
+<hr class="rule">
+
+<h2>六、結語</h2>
+
+<blockquote>
+<p><strong>「認識你自己，凡事皆無過度。」</strong></p>
+<p>——德爾菲（Delphi）神殿銘言</p>
+</blockquote>
+
+<p>存在主義的各家——海德格的屬己性、沙特的「存在先於本質」、卡謬的荒謬超越——最終都指向同一個呼喚：認識自己，真誠面對自己的存在。</p>
+
+<hr class="rule"></div>
+  <div id="tab-terms"    class="tab-pane index-section"><h2>關鍵專有名詞</h2>
+
+<table>
+<thead>
+<tr><th>名詞</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td>存有學的差異</td><td>海德格：存有（Being，大寫）≠ 存在者（beings，小寫），對應道家「道不等於物」</td></tr>
+<tr><td>持有（Dasein）</td><td>海德格德文：「在此」，人的存在狀態；持有透過抉擇才能成為真正的存在</td></tr>
+<tr><td>真切性（屬己性）</td><td>Eigentlichkeit；authenticity；屬於自己的，而非屬於他人或社會的</td></tr>
+<tr><td>存有的開顯</td><td>真理不是命題與事實的相應，而是存有透過真誠的人而展現（aletheia）</td></tr>
+<tr><td>時間性</td><td>Zeitlichkeit；人是唯一有明確時間意識的存在者，由此產生存在的焦慮</td></tr>
+<tr><td>在即（en-soi）</td><td>沙特：客觀萬物，沒有選擇餘地的存在方式</td></tr>
+<tr><td>未即（pour-soi）</td><td>沙特：人的意識，主動選擇焦點的能動力量</td></tr>
+<tr><td>存在先於本質</td><td>沙特：人的本質由選擇累積而成，不是預先給定</td></tr>
+<tr><td>他人即地獄</td><td>沙特：人與人無法真正理解，他人的凝視是自我的束縛</td></tr>
+<tr><td>荒謬</td><td>卡謬：人對意義的需求與世界的沉默之間的遭遇（encounter）</td></tr>
+<tr><td>思想上的自殺</td><td>卡謬：以宗教信仰取代思考，是一種逃避</td></tr>
+<tr><td>solidarity vs solitaire</td><td>團結（D）vs 孤單（T）；卡謬〈放逐與王國〉中藝術家遺作的模糊字</td></tr>
+<tr><td>開放的人文主義</td><td>人嚮往超越，因此需要超越界作為目標（有神論存在主義的立場）</td></tr>
+<tr><td>封閉的人文主義</td><td>人是一切，人之外沒有更高的存在（無神論存在主義的立場）</td></tr>
+<tr><td>軸心時代</td><td>雅斯培（L07）：西元前 500 年前後，東西方同時出現偉大思想家的歷史現象</td></tr>
+</tbody>
+</table>
+
+<hr class="rule"></div>
+  <div id="tab-timeline" class="tab-pane index-section"><h2>時間軸</h2>
+
+<table>
+<thead>
+<tr><th>年代</th><th>事件</th></tr>
+</thead>
+<tbody>
+<tr><td>1889</td><td>海德格（Martin Heidegger）出生</td></tr>
+<tr><td>1905</td><td>沙特（Jean-Paul Sartre）出生</td></tr>
+<tr><td>1913</td><td>卡謬（Albert Camus）出生</td></tr>
+<tr><td>1927</td><td>海德格《存有與時間》（<em>Being and Time</em>）出版</td></tr>
+<tr><td>1939–1945</td><td>第二次世界大戰；沙特與卡謬參加巴黎地下抗德運動，共同辦《戰鬥報》</td></tr>
+<tr><td>1942</td><td>卡謬《異鄉人》（<em>The Stranger</em>）、《西西弗斯的神話》出版</td></tr>
+<tr><td>1944</td><td>沙特《禁閉》（含「他人即地獄」）上演</td></tr>
+<tr><td>1945</td><td>二戰結束；存在主義在法國大為流行</td></tr>
+<tr><td>1947</td><td>卡謬《瘟疫》（<em>The Plague</em>）出版</td></tr>
+<tr><td>1957</td><td>卡謬獲諾貝爾文學獎（44 歲，最年輕文學獎得主之一）</td></tr>
+<tr><td>1960</td><td>卡謬 1 月 4 日因車禍去世，享年 47 歲</td></tr>
+<tr><td>1964</td><td>沙特獲諾貝爾文學獎，公開拒絕領獎；發表〈存在主義是一種人文主義〉</td></tr>
+<tr><td>1973</td><td>長沙馬王堆帛書老子出土（比王弼本早約 400 年）</td></tr>
+<tr><td>1976</td><td>海德格去世</td></tr>
+<tr><td>1980</td><td>沙特去世（西蒙·德·波伏娃為其送終）</td></tr>
+</tbody>
+</table>
+
+<hr class="rule"></div>
+  <div id="tab-people"   class="tab-pane index-section"><h2>重要人物</h2>
+
+<table>
+<thead>
+<tr><th>人物</th><th>生卒</th><th>介紹</th></tr>
+</thead>
+<tbody>
+<tr><td>海德格（Martin Heidegger）</td><td>1889–1976</td><td>德國哲學家；二十世紀影響最廣的西方哲學家；代表作《存有與時間》；提出存有學的差異、持有（Dasein）、真切性（Eigentlichkeit）</td></tr>
+<tr><td>沙特（Jean-Paul Sartre）</td><td>1905–1980</td><td>法國存在主義哲學家、作家；提出「存在先於本質」「他人即地獄」；1964 年拒絕諾貝爾文學獎</td></tr>
+<tr><td>西蒙·德·波伏娃（Simone de Beauvoir）</td><td>1908–1986</td><td>法國存在主義哲學家、女性主義代表人物；與沙特長期同居但拒絕結婚</td></tr>
+<tr><td>卡謬（Albert Camus）</td><td>1913–1960</td><td>法裔阿爾及利亞哲學家、作家；荒謬哲學代表；1957 年諾貝爾文學獎；代表作《異鄉人》《西西弗斯的神話》《瘟疫》</td></tr>
+<tr><td>蕭思義</td><td>20 世紀</td><td>旅歐中國學者（後任文化大學副校長）；曾與海德格合譯《道德經》，翻至第八章後不歡而散</td></tr>
+<tr><td>西西弗斯（Sisyphus）</td><td>神話</td><td>希臘神話人物；因洩露神的秘密被罰永遠推石上山；卡謬以其象徵荒謬中的人類處境</td></tr>
+<tr><td>普羅米修士（Prometheus）</td><td>神話</td><td>希臘神話人物；從天上偷取火種給人類，被視為文化與藝術的開始</td></tr>
+<tr><td>王弼</td><td>226–249</td><td>魏晉哲學家；注解《易經》與《老子》；才活二十四歲，被視為中國哲學史上的天才</td></tr>
+<tr><td>亞里斯多德（Aristotle）</td><td>384–322 BC</td><td>古希臘哲學家；代表作《形上學》（後人命名，意為「放在自然學後面的書」）</td></tr>
+<tr><td>康德（Immanuel Kant）</td><td>1724–1804</td><td>德國哲學家；主張透過理性找不到形上本體，唯有道德實踐（實踐理性）才能肯定本體世界</td></tr>
+</tbody>
+</table></div>
+
+</div>
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
