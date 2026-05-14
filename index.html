@@ -232,6 +232,7 @@
   <div class="course-nav">
     <button class="course-btn active" onclick="switchCourse('religion',this)">宗教哲學</button>
     <button class="course-btn" onclick="switchCourse('life',this)">哲學與人生</button>
+    <button class="course-btn" onclick="switchCourse('integrate',this)">整合</button>
   </div>
 
   <nav class="tab-nav">
@@ -2235,7 +2236,7 @@ function switchCourse(course, btn) {
   document.querySelectorAll('.course-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
   document.querySelectorAll('.course-section').forEach(function(el) {
-    el.style.display = (el.dataset.course === course) ? '' : 'none';
+    el.style.display = (course === 'integrate' || el.dataset.course === course) ? '' : 'none';
   });
   var activePane = document.querySelector('.tab-pane.active');
   if (activePane && activePane.id === 'tab-timeline') tlRender();
@@ -2392,7 +2393,7 @@ function showTab(name, btn) {
   }
 
   function tlRender() {
-    MIN_YEAR = currentCourse === 'life' ? -1100 : -1050;
+    MIN_YEAR = (currentCourse === 'life' || currentCourse === 'integrate') ? -1100 : -1050;
     const canvas = document.getElementById('tl-canvas');
     if (!canvas) return;
     const w = canvasWidth();
@@ -2429,7 +2430,9 @@ function showTab(name, btn) {
     }
 
     const tooltip = document.getElementById('tl-tooltip');
-    var evArr = currentCourse === 'life' ? (window.TL_LIFE_EVENTS || []) : events;
+    var evArr = currentCourse === 'integrate'
+      ? events.concat(window.TL_LIFE_EVENTS || [])
+      : currentCourse === 'life' ? (window.TL_LIFE_EVENTS || []) : events;
     evArr.forEach(function(ev) {
       const x = yearToX(ev.year);
       const trackY = ev.side === 'east' ? TRACK_EAST : TRACK_WEST;
