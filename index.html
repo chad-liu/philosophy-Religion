@@ -1958,8 +1958,6 @@ function showTab(name, btn) {
 
   window.TL_LIFE_EVENTS = [
     // ── 東方 ──
-    { year: -3000, label: '伏羲畫八卦（傳說）',                    side: 'east' },
-    { year: -2000, label: '大禹得洛書（傳說）',                    side: 'east' },
     { year: -1046, label: '周文王演易，西周建立，周公制禮作樂',       side: 'east' },
     { year:  -770, label: '春秋時代開始，禮樂崩壞，百家思想萌芽',     side: 'east' },
     { year:  -571, label: '老子誕生',                             side: 'east' },
@@ -2034,7 +2032,7 @@ function showTab(name, btn) {
   }
 
   function tlRender() {
-    MIN_YEAR = currentCourse === 'life' ? -3100 : -1050;
+    MIN_YEAR = currentCourse === 'life' ? -1100 : -1050;
     const canvas = document.getElementById('tl-canvas');
     if (!canvas) return;
     const w = canvasWidth();
