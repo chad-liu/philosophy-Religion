@@ -1956,6 +1956,39 @@ function showTab(name, btn) {
     { year:  2001, label: '911 恐怖攻擊',              side: 'west' },
   ];
 
+  window.TL_LIFE_EVENTS = [
+    // ── 東方 ──
+    { year: -1046, label: '周文王演易，制禮作樂（西周建立）',  side: 'east' },
+    { year:  -571, label: '老子誕生',                       side: 'east' },
+    { year:  -551, label: '孔子誕生',                       side: 'east' },
+    { year:  -479, label: '孔子逝世',                       side: 'east' },
+    { year:  -372, label: '孟子誕生',                       side: 'east' },
+    { year:  -369, label: '莊子誕生',                       side: 'east' },
+    { year:  -221, label: '秦始皇統一，結束戰國百家爭鳴',     side: 'east' },
+    { year:  1130, label: '朱熹誕生',                       side: 'east' },
+    { year:  1919, label: '五四運動',                       side: 'east' },
+    { year:  1973, label: '馬王堆帛書《老子》出土',           side: 'east' },
+    // ── 西方 ──
+    { year:  -624, label: '泰勒斯誕生（西方哲學之父）',       side: 'west' },
+    { year:  -469, label: '蘇格拉底誕生',                   side: 'west' },
+    { year:  -428, label: '柏拉圖誕生',                     side: 'west' },
+    { year:  -384, label: '亞里斯多德誕生',                  side: 'west' },
+    { year:    -4, label: '耶穌誕生',                       side: 'west' },
+    { year:   354, label: '奧古斯丁誕生',                   side: 'west' },
+    { year:  1473, label: '哥白尼誕生',                     side: 'west' },
+    { year:  1517, label: '馬丁路德宗教改革',                side: 'west' },
+    { year:  1596, label: '笛卡兒誕生',                     side: 'west' },
+    { year:  1724, label: '康德誕生',                       side: 'west' },
+    { year:  1809, label: '達爾文誕生',                     side: 'west' },
+    { year:  1844, label: '尼采誕生',                       side: 'west' },
+    { year:  1859, label: '達爾文《物種起源》出版',           side: 'west' },
+    { year:  1889, label: '海德格誕生',                     side: 'west' },
+    { year:  1905, label: '沙特誕生',                       side: 'west' },
+    { year:  1913, label: '卡繆誕生',                       side: 'west' },
+    { year:  1942, label: '沙特《存在與虛無》、卡繆《異鄉人》', side: 'west' },
+    { year:  1996, label: '複製羊桃莉誕生',                  side: 'west' },
+  ];
+
   function pxPerYear() { return BASE_PX * ZOOM_LEVELS[zoomIdx]; }
   function yearToX(year) { return Math.round((year - MIN_YEAR) * pxPerYear()); }
   function canvasWidth() { return Math.round((MAX_YEAR - MIN_YEAR) * pxPerYear()); }
