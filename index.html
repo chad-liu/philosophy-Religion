@@ -183,9 +183,10 @@
   .sr-go { padding:10px 18px; background:var(--accent); color:var(--paper); border:none; border-radius:6px; cursor:pointer; font-family:'Noto Serif TC',serif; font-size:14px; white-space:nowrap; }
   .sr-go:hover { opacity:.85; }
   .sr-filters { display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
-  .sf { background:none; border:1px solid var(--rule); border-radius:20px; padding:4px 14px; font-size:13px; font-family:'Noto Serif TC',serif; color:var(--muted); cursor:pointer; }
-  .sf:hover { background:var(--rule); }
-  .sf.active { background:var(--accent); color:var(--paper); border-color:var(--accent); }
+  .sf, .sc { background:none; border:1px solid var(--rule); border-radius:20px; padding:4px 14px; font-size:13px; font-family:'Noto Serif TC',serif; color:var(--muted); cursor:pointer; }
+  .sf:hover, .sc:hover { background:var(--rule); }
+  .sf.active, .sc.active { background:var(--accent); color:var(--paper); border-color:var(--accent); }
+  .sr-course-filters { margin-top:-6px; }
   .sr-range { display:flex; align-items:center; gap:8px; margin-bottom:20px; font-size:13px; color:var(--muted); flex-wrap:wrap; }
   .sr-range input { width:90px; padding:5px 8px; border:1px solid var(--rule); border-radius:4px; font-size:13px; background:var(--paper); color:var(--ink); outline:none; }
   .sr-hint { color:var(--muted); text-align:center; padding:40px 0; font-size:14px; }
@@ -2196,6 +2197,11 @@
     <button class="sf" onclick="srSetFilter('person',this)">重要人物</button>
     <button class="sf" onclick="srSetFilter('time',this)">時間軸</button>
   </div>
+  <div class="sr-filters sr-course-filters">
+    <button class="sc active" onclick="srSetCourse('all',this)">全部課程</button>
+    <button class="sc" onclick="srSetCourse('R',this)">宗教哲學</button>
+    <button class="sc" onclick="srSetCourse('L',this)">哲學與人生</button>
+  </div>
   <div class="sr-range" id="sr-range">
     <span>時間範圍：</span>
     <input type="number" id="sr-from" placeholder="起始年" oninput="srDoSearch()">
@@ -3163,10 +3169,18 @@ const SI=[{"t":"term","l":"R01","n":"哲學（Philosophy）","d":"源自古希�
 
 (function(){
   let curFilter = 'all';
+  let curCourse = 'all';
 
   window.srSetFilter = function(f, btn) {
     curFilter = f;
     document.querySelectorAll('.sf').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    srDoSearch();
+  };
+
+  window.srSetCourse = function(c, btn) {
+    curCourse = c;
+    document.querySelectorAll('.sc').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     srDoSearch();
   };
@@ -3184,6 +3198,7 @@ const SI=[{"t":"term","l":"R01","n":"哲學（Philosophy）","d":"源自古希�
 
     const filtered = SI.filter(function(e) {
       if (curFilter !== 'all' && e.t !== curFilter) return false;
+      if (curCourse !== 'all' && (!e.l || e.l[0] !== curCourse)) return false;
       // Time range only applies to timeline entries
       if (hasRange && e.t === 'time') {
         const y = e.y;
