@@ -1890,7 +1890,7 @@ function showTab(name, btn) {
 }
 
 (function() {
-  const MIN_YEAR = -1050, MAX_YEAR = 2050;
+  let MIN_YEAR = -1050; const MAX_YEAR = 2050;
   const ZOOM_LEVELS = [1, 2, 4, 8];
   const BASE_PX = 0.2;
   const TRACK_EAST = 55, TRACK_WEST = 130, CANVAS_H = 180;
@@ -1958,35 +1958,70 @@ function showTab(name, btn) {
 
   window.TL_LIFE_EVENTS = [
     // ── 東方 ──
-    { year: -1046, label: '周文王演易，制禮作樂（西周建立）',  side: 'east' },
-    { year:  -571, label: '老子誕生',                       side: 'east' },
-    { year:  -551, label: '孔子誕生',                       side: 'east' },
-    { year:  -479, label: '孔子逝世',                       side: 'east' },
-    { year:  -372, label: '孟子誕生',                       side: 'east' },
-    { year:  -369, label: '莊子誕生',                       side: 'east' },
-    { year:  -221, label: '秦始皇統一，結束戰國百家爭鳴',     side: 'east' },
-    { year:  1130, label: '朱熹誕生',                       side: 'east' },
-    { year:  1919, label: '五四運動',                       side: 'east' },
-    { year:  1973, label: '馬王堆帛書《老子》出土',           side: 'east' },
+    { year: -3000, label: '伏羲畫八卦（傳說）',                    side: 'east' },
+    { year: -2000, label: '大禹得洛書（傳說）',                    side: 'east' },
+    { year: -1046, label: '周文王演易，西周建立，周公制禮作樂',       side: 'east' },
+    { year:  -770, label: '春秋時代開始，禮樂崩壞，百家思想萌芽',     side: 'east' },
+    { year:  -571, label: '老子誕生',                             side: 'east' },
+    { year:  -551, label: '孔子誕生',                             side: 'east' },
+    { year:  -479, label: '孔子逝世',                             side: 'east' },
+    { year:  -475, label: '戰國時代，百家爭鳴',                    side: 'east' },
+    { year:  -372, label: '孟子誕生',                             side: 'east' },
+    { year:  -369, label: '莊子誕生',                             side: 'east' },
+    { year:  -313, label: '荀子誕生',                             side: 'east' },
+    { year:  -221, label: '秦統一，百家爭鳴結束',                   side: 'east' },
+    { year:  -206, label: '漢朝建立',                             side: 'east' },
+    { year:   226, label: '王弼注《老子》《易經》，開創魏晉玄學',     side: 'east' },
+    { year:  1130, label: '朱熹誕生',                             side: 'east' },
+    { year:  1200, label: '朱熹逝世',                             side: 'east' },
+    { year:  1313, label: '四書列入元朝科舉',                      side: 'east' },
+    { year:  1877, label: '王國維誕生',                            side: 'east' },
+    { year:  1919, label: '五四運動',                             side: 'east' },
+    { year:  1973, label: '馬王堆帛書《老子》出土',                 side: 'east' },
+    { year:  1993, label: '郭店竹簡《老子》出土',                   side: 'east' },
     // ── 西方 ──
-    { year:  -624, label: '泰勒斯誕生（西方哲學之父）',       side: 'west' },
-    { year:  -469, label: '蘇格拉底誕生',                   side: 'west' },
-    { year:  -428, label: '柏拉圖誕生',                     side: 'west' },
-    { year:  -384, label: '亞里斯多德誕生',                  side: 'west' },
-    { year:    -4, label: '耶穌誕生',                       side: 'west' },
-    { year:   354, label: '奧古斯丁誕生',                   side: 'west' },
-    { year:  1473, label: '哥白尼誕生',                     side: 'west' },
-    { year:  1517, label: '馬丁路德宗教改革',                side: 'west' },
-    { year:  1596, label: '笛卡兒誕生',                     side: 'west' },
-    { year:  1724, label: '康德誕生',                       side: 'west' },
-    { year:  1809, label: '達爾文誕生',                     side: 'west' },
-    { year:  1844, label: '尼采誕生',                       side: 'west' },
-    { year:  1859, label: '達爾文《物種起源》出版',           side: 'west' },
-    { year:  1889, label: '海德格誕生',                     side: 'west' },
-    { year:  1905, label: '沙特誕生',                       side: 'west' },
-    { year:  1913, label: '卡繆誕生',                       side: 'west' },
-    { year:  1942, label: '沙特《存在與虛無》、卡繆《異鄉人》', side: 'west' },
-    { year:  1996, label: '複製羊桃莉誕生',                  side: 'west' },
+    { year:  -624, label: '泰勒斯誕生（西方哲學之父）',              side: 'west' },
+    { year:  -570, label: '畢達哥拉斯誕生',                        side: 'west' },
+    { year:  -496, label: '索福克里斯誕生',                        side: 'west' },
+    { year:  -469, label: '蘇格拉底誕生',                          side: 'west' },
+    { year:  -428, label: '柏拉圖誕生',                            side: 'west' },
+    { year:  -399, label: '蘇格拉底被判死刑',                      side: 'west' },
+    { year:  -384, label: '亞里斯多德誕生',                        side: 'west' },
+    { year:    -4, label: '耶穌誕生',                              side: 'west' },
+    { year:   354, label: '奧古斯丁誕生',                          side: 'west' },
+    { year:   476, label: '西羅馬帝國滅亡',                        side: 'west' },
+    { year:  1054, label: '東西教會大分裂',                        side: 'west' },
+    { year:  1265, label: '但丁誕生',                              side: 'west' },
+    { year:  1473, label: '哥白尼誕生',                            side: 'west' },
+    { year:  1483, label: '馬丁路德誕生',                          side: 'west' },
+    { year:  1517, label: '馬丁路德宗教改革',                      side: 'west' },
+    { year:  1561, label: '培根誕生',                              side: 'west' },
+    { year:  1564, label: '莎士比亞、伽利略誕生',                   side: 'west' },
+    { year:  1596, label: '笛卡兒誕生',                            side: 'west' },
+    { year:  1632, label: '洛克誕生',                              side: 'west' },
+    { year:  1642, label: '牛頓誕生',                              side: 'west' },
+    { year:  1687, label: '牛頓《自然哲學數學原理》出版',            side: 'west' },
+    { year:  1712, label: '盧梭誕生',                              side: 'west' },
+    { year:  1724, label: '康德誕生',                              side: 'west' },
+    { year:  1748, label: '邊沁誕生',                              side: 'west' },
+    { year:  1759, label: '席勒誕生',                              side: 'west' },
+    { year:  1806, label: '約翰彌爾誕生',                          side: 'west' },
+    { year:  1809, label: '達爾文誕生',                            side: 'west' },
+    { year:  1813, label: '齊克果誕生',                            side: 'west' },
+    { year:  1818, label: '馬克思誕生',                            side: 'west' },
+    { year:  1844, label: '尼采誕生',                              side: 'west' },
+    { year:  1856, label: '佛洛伊德誕生',                          side: 'west' },
+    { year:  1859, label: '達爾文《物種起源》出版；柏格森誕生',      side: 'west' },
+    { year:  1875, label: '榮格誕生',                              side: 'west' },
+    { year:  1879, label: '馮特建立心理學實驗室',                   side: 'west' },
+    { year:  1881, label: '德日進誕生',                            side: 'west' },
+    { year:  1883, label: '雅斯培誕生',                            side: 'west' },
+    { year:  1889, label: '海德格誕生',                            side: 'west' },
+    { year:  1905, label: '沙特誕生',                              side: 'west' },
+    { year:  1908, label: '馬斯洛誕生',                            side: 'west' },
+    { year:  1913, label: '卡繆誕生',                              side: 'west' },
+    { year:  1942, label: '沙特《存在與虛無》、卡繆《異鄉人》同年出版', side: 'west' },
+    { year:  1996, label: '複製羊桃莉誕生',                        side: 'west' },
   ];
 
   function pxPerYear() { return BASE_PX * ZOOM_LEVELS[zoomIdx]; }
@@ -1999,6 +2034,7 @@ function showTab(name, btn) {
   }
 
   function tlRender() {
+    MIN_YEAR = currentCourse === 'life' ? -3100 : -1050;
     const canvas = document.getElementById('tl-canvas');
     if (!canvas) return;
     const w = canvasWidth();
