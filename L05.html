@@ -631,11 +631,16 @@ function showTab(name, btn) {
 <script>
 (function() {
   var terms = [];
-  document.querySelectorAll('#tab-terms h3').forEach(function(h3) {
-    var text = h3.textContent.trim();
-    var pi = text.indexOf('（');
-    if (pi > 0) text = text.slice(0, pi).trim();
-    if (text) terms.push(text);
+  document.querySelectorAll('#tab-terms li').forEach(function(li) {
+    var text = li.textContent;
+    var idx = text.indexOf('：');
+    if (idx === -1) idx = text.indexOf(':');
+    if (idx > 0) {
+      var term = text.slice(0, idx).trim();
+      var pi = term.indexOf('（');
+      if (pi > 0) term = term.slice(0, pi).trim();
+      if (term) terms.push(term);
+    }
   });
   terms.sort(function(a, b) { return b.length - a.length; });
   var paragraphs = document.querySelectorAll('#tab-full p');
