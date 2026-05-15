@@ -187,6 +187,25 @@
   .sf:hover, .sc:hover { background:var(--rule); }
   .sf.active, .sc.active { background:var(--accent); color:var(--paper); border-color:var(--accent); }
   .sr-course-filters { margin-top:-6px; }
+  .st-summary { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:28px; }
+  .st-card { flex:1; min-width:180px; border:1px solid var(--rule); border-radius:8px; padding:16px 20px; }
+  .st-card-title { font-size:14px; font-weight:600; color:var(--muted); margin-bottom:10px; }
+  .st-card-nums { display:flex; gap:14px; flex-wrap:wrap; }
+  .st-card-nums span { font-size:13px; color:var(--ink); }
+  .st-card-nums em { font-style:normal; font-size:20px; font-family:'Playfair Display',serif; color:var(--accent); margin-right:2px; }
+  .st-card-total { margin-top:10px; font-size:13px; color:var(--muted); }
+  .st-card-total strong { font-size:20px; color:var(--ink); font-family:'Playfair Display',serif; }
+  .st-card-all { border-color:var(--accent); text-align:center; }
+  .st-card-all .st-card-total { font-size:14px; margin-top:14px; }
+  .st-card-all .st-card-total strong { font-size:2.4em; display:block; }
+  .st-tables { display:flex; gap:28px; flex-wrap:wrap; }
+  .st-table-wrap { flex:1; min-width:220px; }
+  .st-table-wrap h3 { font-size:15px; margin-bottom:10px; color:var(--ink); font-family:'Noto Serif TC',serif; }
+  .st-table { width:100%; border-collapse:collapse; font-size:13px; }
+  .st-table th { border-bottom:2px solid var(--rule); padding:6px 10px; text-align:center; color:var(--muted); font-weight:600; }
+  .st-table td { border-bottom:1px solid var(--rule); padding:5px 10px; text-align:center; }
+  .st-table tr:hover td { background:rgba(200,185,154,.15); }
+  .st-total td { border-top:2px solid var(--rule); font-weight:600; background:rgba(200,185,154,.1); }
   .sr-range { display:flex; align-items:center; gap:8px; margin-bottom:20px; font-size:13px; color:var(--muted); flex-wrap:wrap; }
   .sr-range input { width:90px; padding:5px 8px; border:1px solid var(--rule); border-radius:4px; font-size:13px; background:var(--paper); color:var(--ink); outline:none; }
   .sr-hint { color:var(--muted); text-align:center; padding:40px 0; font-size:14px; }
@@ -243,6 +262,7 @@
     <button class="tab-btn tab-content" onclick="showTab('people',this)">重要人物</button>
     <button class="tab-btn tab-integrate" style="display:none" onclick="showTab('search',this)">搜尋</button>
     <button class="tab-btn tab-integrate" style="display:none" onclick="showTab('qa',this)">問答</button>
+    <button class="tab-btn tab-integrate" style="display:none" onclick="showTab('stats',this)">統計</button>
   </nav>
 
   <div id="tab-courses" class="tab-pane active">
@@ -2224,6 +2244,10 @@
   </div>
   <div id="qa-history"><p class="sr-hint">輸入問題後點擊「提問」，系統將根據 R01–R15 和 L01–L15 課程逐字稿回答。</p></div>
   </div>
+
+  <div id="tab-stats" class="tab-pane">
+    <div id="stats-content"></div>
+  </div>
 </div>
 <script>
 var currentCourse = 'religion';
@@ -2267,6 +2291,82 @@ function showTab(name, btn) {
   document.getElementById('tab-' + name).classList.add('active');
   btn.classList.add('active');
   if (name === 'timeline') tlRender();
+  if (name === 'stats') statsRender();
+}
+
+function statsRender() {
+  var el = document.getElementById('stats-content');
+  if (!el || el.dataset.rendered) return;
+  el.dataset.rendered = '1';
+
+  var byLec = {};
+  SI.forEach(function(e) {
+    if (!byLec[e.l]) byLec[e.l] = {term:0, person:0, time:0};
+    byLec[e.l][e.t] = (byLec[e.l][e.t] || 0) + 1;
+  });
+
+  var rT = {term:0, person:0, time:0}, lT = {term:0, person:0, time:0};
+  Object.keys(byLec).forEach(function(lec) {
+    var d = byLec[lec], t = lec[0] === 'R' ? rT : lT;
+    t.term += d.term||0; t.person += d.person||0; t.time += d.time||0;
+  });
+
+  function row(lec) {
+    var d = byLec[lec] || {};
+    var tot = (d.term||0)+(d.person||0)+(d.time||0);
+    return '<tr><td><a href="'+lec+'.html" style="color:var(--accent);text-decoration:none;">'+lec+'</a></td><td>'+(d.term||0)+'</td><td>'+(d.person||0)+'</td><td>'+(d.time||0)+'</td><td><strong>'+tot+'</strong></td></tr>';
+  }
+  function sumRow(t) {
+    return '<tr class="st-total"><td>合計</td><td>'+t.term+'</td><td>'+t.person+'</td><td>'+t.time+'</td><td><strong>'+(t.term+t.person+t.time)+'</strong></td></tr>';
+  }
+
+  var rRows = '', lRows = '';
+  for (var i = 1; i <= 15; i++) {
+    var n = i < 10 ? '0'+i : ''+i;
+    rRows += row('R'+n);
+    lRows += row('L'+n);
+  }
+
+  var rTotal = rT.term+rT.person+rT.time;
+  var lTotal = lT.term+lT.person+lT.time;
+
+  el.innerHTML =
+    '<div class="st-summary">'+
+      '<div class="st-card">'+
+        '<div class="st-card-title">宗教哲學（R01–R15）</div>'+
+        '<div class="st-card-nums">'+
+          '<span><em>'+rT.term+'</em> 術語</span>'+
+          '<span><em>'+rT.person+'</em> 人物</span>'+
+          '<span><em>'+rT.time+'</em> 時間軸</span>'+
+        '</div>'+
+        '<div class="st-card-total">共 <strong>'+rTotal+'</strong> 筆</div>'+
+      '</div>'+
+      '<div class="st-card">'+
+        '<div class="st-card-title">哲學與人生（L01–L15）</div>'+
+        '<div class="st-card-nums">'+
+          '<span><em>'+lT.term+'</em> 術語</span>'+
+          '<span><em>'+lT.person+'</em> 人物</span>'+
+          '<span><em>'+lT.time+'</em> 時間軸</span>'+
+        '</div>'+
+        '<div class="st-card-total">共 <strong>'+lTotal+'</strong> 筆</div>'+
+      '</div>'+
+      '<div class="st-card st-card-all">'+
+        '<div class="st-card-title">兩門課合計</div>'+
+        '<div class="st-card-total"><strong>'+(rTotal+lTotal)+'</strong> 筆</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="st-tables">'+
+      '<div class="st-table-wrap">'+
+        '<h3>宗教哲學各講</h3>'+
+        '<table class="st-table"><thead><tr><th>講次</th><th>術語</th><th>人物</th><th>時間軸</th><th>合計</th></tr></thead>'+
+        '<tbody>'+rRows+sumRow(rT)+'</tbody></table>'+
+      '</div>'+
+      '<div class="st-table-wrap">'+
+        '<h3>哲學與人生各講</h3>'+
+        '<table class="st-table"><thead><tr><th>講次</th><th>術語</th><th>人物</th><th>時間軸</th><th>合計</th></tr></thead>'+
+        '<tbody>'+lRows+sumRow(lT)+'</tbody></table>'+
+      '</div>'+
+    '</div>';
 }
 
 (function() {
