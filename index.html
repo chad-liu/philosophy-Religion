@@ -2555,6 +2555,10 @@ function graphDraw(course) {
     g.attr('transform', event.transform);
   }));
 
+  svg.on('click', function() {
+    if (selectedNode) { selectedNode = null; resetHighlight(); }
+  });
+
   var sim = d3.forceSimulation(nodes)
     .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(function(d) { return 70 - d.weight * 4; }))
     .force('charge', d3.forceManyBody().strength(-130))
@@ -2567,9 +2571,16 @@ function graphDraw(course) {
     .attr('stroke-width', function(d) { return 1 + d.weight * 0.4; });
 
   var drag = d3.drag()
-    .on('start', function(event, d) { if (!event.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+    .on('start', function(event, d) { if (!event.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; d._x0 = event.x; d._y0 = event.y; })
     .on('drag',  function(event, d) { d.fx = event.x; d.fy = event.y; })
-    .on('end',   function(event, d) { if (!event.active) sim.alphaTarget(0); d.fx = null; d.fy = null; });
+    .on('end',   function(event, d) {
+      if (!event.active) sim.alphaTarget(0);
+      d.fx = null; d.fy = null;
+      if (Math.hypot(event.x - d._x0, event.y - d._y0) < 5) {
+        if (selectedNode === d.id) { selectedNode = null; resetHighlight(); }
+        else { selectedNode = d.id; highlight(d); }
+      }
+    });
 
   var tip = document.getElementById('graph-tooltip');
   var node = g.append('g').selectAll('g').data(nodes).join('g').call(drag)
@@ -2601,6 +2612,32 @@ function graphDraw(course) {
     .attr('dx', function(d) { return d.r + 3; })
     .attr('dy', '0.35em')
     .attr('pointer-events', 'none');
+
+  var selectedNode = null;
+
+  function highlight(d) {
+    var neighbors = new Set([d.id]);
+    links.forEach(function(l) {
+      var s = l.source.id || l.source, t = l.target.id || l.target;
+      if (s === d.id) neighbors.add(t);
+      if (t === d.id) neighbors.add(s);
+    });
+    node.select('circle')
+      .attr('fill-opacity', function(n) { return neighbors.has(n.id) ? 0.9 : 0.08; })
+      .attr('stroke-width',  function(n) { return n.id === d.id      ? 2.5 : 1.5;  });
+    node.select('text')
+      .attr('fill-opacity', function(n) { return neighbors.has(n.id) ? 1 : 0.12; });
+    link.attr('stroke-opacity', function(l) {
+      var s = l.source.id || l.source, t = l.target.id || l.target;
+      return (s === d.id || t === d.id) ? 0.7 : 0.04;
+    });
+  }
+
+  function resetHighlight() {
+    node.select('circle').attr('fill-opacity', 0.85).attr('stroke-width', 1.5);
+    node.select('text').attr('fill-opacity', 1);
+    link.attr('stroke-opacity', 0.5);
+  }
 
   sim.on('tick', function() {
     link.attr('x1', function(d) { return d.source.x; })
