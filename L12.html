@@ -704,15 +704,15 @@ function showTab(name, btn) {
 (function() {
   var terms = [];
   document.querySelectorAll('#tab-terms li').forEach(function(li) {
-    var text = li.textContent;
+    var text = li.textContent.trim();
     var idx = text.indexOf('：');
     if (idx === -1) idx = text.indexOf(':');
-    if (idx > 0) {
-      var term = text.slice(0, idx).trim();
-      var pi = term.indexOf('（');
-      if (pi > 0) term = term.slice(0, pi).trim();
-      if (term) terms.push(term);
-    }
+    var term = idx > 0 ? text.slice(0, idx).trim() : text;
+    var pi = term.indexOf('（');
+    if (pi > 0) term = term.slice(0, pi).trim();
+    var si = term.indexOf('／');
+    if (si > 0) term = term.slice(0, si).trim();
+    if (term) terms.push(term);
   });
   terms.sort(function(a, b) { return b.length - a.length; });
   var paragraphs = document.querySelectorAll('#tab-full p');
