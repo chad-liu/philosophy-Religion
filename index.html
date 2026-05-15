@@ -2555,8 +2555,11 @@ function graphDraw(course) {
     g.attr('transform', event.transform);
   }));
 
-  svg.on('click', function() {
-    if (selectedNode) { selectedNode = null; resetHighlight(); }
+  svg.on('pointerup', function(event) {
+    var tag = event.target.tagName.toLowerCase();
+    if (tag !== 'circle' && tag !== 'line' && selectedNode) {
+      selectedNode = null; resetHighlight();
+    }
   });
 
   var sim = d3.forceSimulation(nodes)
@@ -2571,12 +2574,12 @@ function graphDraw(course) {
     .attr('stroke-width', function(d) { return 1 + d.weight * 0.4; });
 
   var drag = d3.drag()
-    .on('start', function(event, d) { if (!event.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; d._x0 = event.x; d._y0 = event.y; })
+    .on('start', function(event, d) { if (!event.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; d._cx = event.sourceEvent.clientX; d._cy = event.sourceEvent.clientY; })
     .on('drag',  function(event, d) { d.fx = event.x; d.fy = event.y; })
     .on('end',   function(event, d) {
       if (!event.active) sim.alphaTarget(0);
       d.fx = null; d.fy = null;
-      if (Math.hypot(event.x - d._x0, event.y - d._y0) < 5) {
+      if (Math.hypot(event.sourceEvent.clientX - d._cx, event.sourceEvent.clientY - d._cy) < 5) {
         if (selectedNode === d.id) { selectedNode = null; resetHighlight(); }
         else { selectedNode = d.id; highlight(d); }
       }
