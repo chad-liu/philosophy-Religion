@@ -219,6 +219,11 @@
   .st-bar-fill { height:100%; border-radius:3px; background:rgba(139,46,16,.65); display:flex; align-items:center; padding:0 8px; min-width:2px; }
   .st-bar-pct { font-size:11px; color:#fff; white-space:nowrap; }
   .st-bar-count { width:55px; text-align:right; color:var(--muted); flex-shrink:0; }
+  #graph-svg-wrap svg { width:100%; display:block; border:1px solid var(--rule); border-radius:8px; background:var(--paper); cursor:grab; }
+  #graph-svg-wrap svg:active { cursor:grabbing; }
+  .graph-legend { display:flex; gap:16px; align-items:center; font-size:13px; color:var(--muted); margin-bottom:10px; flex-wrap:wrap; }
+  .gl-dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:4px; vertical-align:middle; }
+  .graph-tip { position:fixed; background:var(--ink); color:var(--paper); padding:8px 12px; border-radius:6px; font-size:13px; pointer-events:none; z-index:999; max-width:220px; line-height:1.5; }
   .sr-range { display:flex; align-items:center; gap:8px; margin-bottom:20px; font-size:13px; color:var(--muted); flex-wrap:wrap; }
   .sr-range input { width:90px; padding:5px 8px; border:1px solid var(--rule); border-radius:4px; font-size:13px; background:var(--paper); color:var(--ink); outline:none; }
   .sr-hint { color:var(--muted); text-align:center; padding:40px 0; font-size:14px; }
@@ -276,6 +281,7 @@
     <button class="tab-btn tab-integrate" style="display:none" onclick="showTab('search',this)">搜尋</button>
     <button class="tab-btn tab-integrate" style="display:none" onclick="showTab('qa',this)">問答</button>
     <button class="tab-btn tab-integrate" style="display:none" onclick="showTab('stats',this)">統計</button>
+    <button class="tab-btn tab-integrate" style="display:none" onclick="showTab('graph',this)">關係圖</button>
   </nav>
 
   <div id="tab-courses" class="tab-pane active">
@@ -2262,6 +2268,23 @@
   <div id="tab-stats" class="tab-pane">
     <div id="stats-content"></div>
   </div>
+
+  <div id="tab-graph" class="tab-pane">
+    <div id="graph-content">
+      <div class="st-course-btns" id="graph-filter-btns">
+        <button class="stc active" onclick="graphSetCourse('all',this)">全部課程</button>
+        <button class="stc" onclick="graphSetCourse('R',this)">宗教哲學</button>
+        <button class="stc" onclick="graphSetCourse('L',this)">哲學與人生</button>
+      </div>
+      <div class="graph-legend">
+        <span class="gl-dot" style="background:#8b2e10"></span>宗教哲學
+        <span class="gl-dot" style="background:#b07d2e"></span>哲學與人生
+        <span class="gl-dot" style="background:#1a1610"></span>兩課皆有
+      </div>
+      <div id="graph-svg-wrap"></div>
+      <div id="graph-tooltip" class="graph-tip" style="display:none"></div>
+    </div>
+  </div>
 </div>
 <script>
 var currentCourse = 'religion';
@@ -2306,6 +2329,7 @@ function showTab(name, btn) {
   btn.classList.add('active');
   if (name === 'timeline') tlRender();
   if (name === 'stats') statsRender();
+  if (name === 'graph') graphRender();
 }
 
 window.PERSON_COUNTS = [{"n": "孔子", "R": 313, "L": 353}, {"n": "孟子", "R": 101, "L": 154}, {"n": "莊子", "R": 134, "L": 92}, {"n": "耶穌", "R": 142, "L": 46}, {"n": "老子", "R": 71, "L": 85}, {"n": "柏拉圖", "R": 26, "L": 95}, {"n": "蘇格拉底", "R": 29, "L": 91}, {"n": "康德", "R": 56, "L": 46}, {"n": "亞里斯多德", "R": 12, "L": 68}, {"n": "尼采", "R": 31, "L": 44}, {"n": "佛洛伊德", "R": 38, "L": 27}, {"n": "子路", "R": 37, "L": 19}, {"n": "海德格", "R": 8, "L": 47}, {"n": "卡繆", "R": 4, "L": 51}, {"n": "朱熹", "R": 30, "L": 23}, {"n": "沙特", "R": 0, "L": 51}, {"n": "黑格爾", "R": 25, "L": 22}, {"n": "荀子", "R": 30, "L": 14}, {"n": "達爾文", "R": 17, "L": 23}, {"n": "顏淵", "R": 18, "L": 19}, {"n": "釋迦牟尼", "R": 27, "L": 9}, {"n": "馬塞爾", "R": 0, "L": 34}, {"n": "曾參", "R": 17, "L": 17}, {"n": "德日進", "R": 7, "L": 23}, {"n": "柏格森", "R": 0, "L": 27}, {"n": "費希特", "R": 21, "L": 5}, {"n": "懷德海", "R": 0, "L": 25}, {"n": "惠施", "R": 0, "L": 24}, {"n": "劉邦", "R": 17, "L": 6}, {"n": "項羽", "R": 17, "L": 5}, {"n": "馬克思", "R": 15, "L": 6}, {"n": "司馬遷", "R": 11, "L": 10}, {"n": "宰我", "R": 20, "L": 1}, {"n": "哥白尼", "R": 6, "L": 13}, {"n": "雅斯培", "R": 6, "L": 13}, {"n": "秦始皇", "R": 12, "L": 7}, {"n": "曾點", "R": 16, "L": 3}, {"n": "笛卡兒", "R": 1, "L": 18}, {"n": "薩特", "R": 18, "L": 0}, {"n": "榮格", "R": 3, "L": 15}, {"n": "舜", "R": 5, "L": 13}, {"n": "周公", "R": 4, "L": 13}, {"n": "大衛王", "R": 15, "L": 1}, {"n": "叔本華", "R": 12, "L": 4}, {"n": "亞伯拉罕", "R": 15, "L": 1}, {"n": "子貢", "R": 13, "L": 3}, {"n": "程頤", "R": 13, "L": 3}, {"n": "荷馬", "R": 1, "L": 14}, {"n": "席勒", "R": 0, "L": 15}, {"n": "卡謬", "R": 14, "L": 0}, {"n": "摩西", "R": 14, "L": 0}, {"n": "方東美", "R": 6, "L": 8}, {"n": "奧古斯丁", "R": 9, "L": 4}, {"n": "斯賓諾莎", "R": 9, "L": 4}, {"n": "胡塞爾", "R": 0, "L": 13}, {"n": "齊克果", "R": 0, "L": 13}, {"n": "巴哈", "R": 9, "L": 4}, {"n": "馬可波羅", "R": 9, "L": 4}, {"n": "老莊", "R": 12, "L": 0}, {"n": "馬丁路德", "R": 12, "L": 0}, {"n": "堯", "R": 7, "L": 4}, {"n": "惠子", "R": 11, "L": 0}, {"n": "王弼", "R": 1, "L": 10}, {"n": "伏羲氏", "R": 0, "L": 11}, {"n": "牛頓", "R": 2, "L": 8}, {"n": "費爾巴哈", "R": 9, "L": 1}, {"n": "黃帝", "R": 6, "L": 4}, {"n": "約伯", "R": 10, "L": 0}, {"n": "萊布尼茲", "R": 8, "L": 2}, {"n": "培根", "R": 0, "L": 10}, {"n": "萊布尼玆", "R": 0, "L": 10}, {"n": "韓非", "R": 3, "L": 7}, {"n": "畢卡索", "R": 0, "L": 10}, {"n": "以撒", "R": 9, "L": 0}, {"n": "休謨", "R": 6, "L": 3}, {"n": "戚夫人", "R": 9, "L": 0}, {"n": "雅各", "R": 8, "L": 1}, {"n": "約瑟", "R": 5, "L": 4}, {"n": "歌德", "R": 0, "L": 9}, {"n": "愛因斯坦", "R": 2, "L": 7}, {"n": "公孫龍", "R": 0, "L": 9}, {"n": "多瑪斯", "R": 8, "L": 0}, {"n": "賈伯斯", "R": 0, "L": 8}, {"n": "托勒密", "R": 0, "L": 8}, {"n": "但丁", "R": 1, "L": 7}, {"n": "王陽明", "R": 6, "L": 2}, {"n": "伽利略", "R": 2, "L": 5}, {"n": "大禹", "R": 1, "L": 6}, {"n": "伯夷", "R": 6, "L": 1}, {"n": "董仲舒", "R": 1, "L": 6}, {"n": "顏回", "R": 5, "L": 2}, {"n": "湯恩比", "R": 1, "L": 6}, {"n": "伏爾泰", "R": 0, "L": 7}, {"n": "芝諾", "R": 0, "L": 7}, {"n": "顏元", "R": 0, "L": 7}, {"n": "梵谷", "R": 0, "L": 7}, {"n": "田立克", "R": 2, "L": 5}, {"n": "馬斯洛", "R": 1, "L": 6}, {"n": "西塞羅", "R": 3, "L": 3}, {"n": "涂爾幹", "R": 2, "L": 4}, {"n": "羅素", "R": 3, "L": 3}, {"n": "惠帝", "R": 6, "L": 0}, {"n": "笛卡爾", "R": 5, "L": 1}, {"n": "梁漱溟", "R": 6, "L": 0}, {"n": "普羅塔哥拉", "R": 0, "L": 6}, {"n": "索福克里斯", "R": 0, "L": 6}, {"n": "莎士比亞", "R": 1, "L": 5}, {"n": "周文王", "R": 0, "L": 6}, {"n": "箕子", "R": 0, "L": 6}, {"n": "赫拉克利特", "R": 0, "L": 6}, {"n": "塞尚", "R": 0, "L": 6}, {"n": "威廉．詹姆士", "R": 0, "L": 6}, {"n": "士萊馬赫", "R": 0, "L": 6}, {"n": "君士坦丁大帝", "R": 0, "L": 6}, {"n": "威廉·詹姆士", "R": 5, "L": 0}, {"n": "王國維", "R": 2, "L": 3}, {"n": "張載", "R": 5, "L": 0}, {"n": "安瑟姆", "R": 5, "L": 0}, {"n": "杜威", "R": 0, "L": 5}, {"n": "王應麟", "R": 0, "L": 5}, {"n": "埃斯奇勒斯", "R": 0, "L": 5}, {"n": "塞萬提斯", "R": 0, "L": 5}, {"n": "西蒙·波娃", "R": 0, "L": 5}, {"n": "貝多芬", "R": 0, "L": 5}, {"n": "司馬談", "R": 0, "L": 5}, {"n": "伊尹", "R": 2, "L": 3}, {"n": "艾耶爾", "R": 0, "L": 5}, {"n": "蘇卡諾", "R": 0, "L": 5}, {"n": "波普", "R": 0, "L": 5}, {"n": "馮特", "R": 0, "L": 4}, {"n": "彼拉多", "R": 2, "L": 2}, {"n": "列維納斯", "R": 0, "L": 4}, {"n": "杜普瑞", "R": 4, "L": 0}, {"n": "黃宗羲", "R": 4, "L": 0}, {"n": "所羅門王", "R": 4, "L": 0}, {"n": "漢明帝", "R": 4, "L": 0}, {"n": "楊振寧", "R": 2, "L": 2}, {"n": "高爾吉亞", "R": 0, "L": 4}, {"n": "巴門尼德", "R": 0, "L": 4}, {"n": "馬丁·路德", "R": 0, "L": 4}, {"n": "李約瑟", "R": 0, "L": 4}, {"n": "歐里庇得斯", "R": 0, "L": 4}, {"n": "海明威", "R": 0, "L": 4}, {"n": "川端康成", "R": 0, "L": 4}, {"n": "三島由紀夫", "R": 0, "L": 4}, {"n": "海飛茲", "R": 0, "L": 4}, {"n": "錢穆", "R": 0, "L": 4}, {"n": "波普爾", "R": 0, "L": 4}, {"n": "艾略特", "R": 1, "L": 3}, {"n": "弗蘭克", "R": 0, "L": 4}, {"n": "孫中山", "R": 2, "L": 1}, {"n": "魯班", "R": 2, "L": 1}, {"n": "商湯", "R": 1, "L": 2}, {"n": "玄奘", "R": 3, "L": 0}, {"n": "法顯", "R": 2, "L": 1}, {"n": "艾愷", "R": 3, "L": 0}, {"n": "東郭子", "R": 3, "L": 0}, {"n": "陳樹菊", "R": 3, "L": 0}, {"n": "塔利斯", "R": 0, "L": 3}, {"n": "吳志輝", "R": 0, "L": 3}, {"n": "墨翟", "R": 0, "L": 3}, {"n": "孔穎達", "R": 0, "L": 3}, {"n": "柳下惠", "R": 1, "L": 2}, {"n": "蕭師毅", "R": 0, "L": 3}, {"n": "紀伯倫", "R": 0, "L": 3}, {"n": "蕭伯納", "R": 0, "L": 3}, {"n": "馬丁．路德", "R": 0, "L": 3}, {"n": "傅斯年", "R": 0, "L": 3}, {"n": "華生", "R": 0, "L": 2}, {"n": "斯金納", "R": 0, "L": 2}, {"n": "保羅·田立克", "R": 2, "L": 0}, {"n": "約翰·希克", "R": 2, "L": 0}, {"n": "伯夷、叔齊", "R": 1, "L": 1}, {"n": "巴斯卡爾", "R": 2, "L": 0}, {"n": "趙翼", "R": 2, "L": 0}, {"n": "劉伶", "R": 1, "L": 1}, {"n": "大衛·休謨", "R": 2, "L": 0}, {"n": "海因里希·施里曼", "R": 0, "L": 2}, {"n": "泰勒斯", "R": 0, "L": 2}, {"n": "畢達哥拉斯", "R": 1, "L": 1}, {"n": "利瑪竇", "R": 0, "L": 2}, {"n": "杜斯妥也夫斯基", "R": 0, "L": 2}, {"n": "寇謙之", "R": 1, "L": 0}, {"n": "哈馬紹", "R": 1, "L": 0}, {"n": "麥可·傑克森", "R": 1, "L": 0}, {"n": "洛克", "R": 1, "L": 0}, {"n": "卡西勒", "R": 1, "L": 0}, {"n": "托爾斯泰", "R": 1, "L": 0}, {"n": "鄭成功", "R": 1, "L": 0}, {"n": "傅毅", "R": 1, "L": 0}, {"n": "朱士行", "R": 1, "L": 0}, {"n": "林清玄", "R": 1, "L": 0}, {"n": "丁小龍", "R": 1, "L": 0}, {"n": "阮籍", "R": 1, "L": 0}, {"n": "T. S. 艾略特", "R": 1, "L": 0}, {"n": "盧梭", "R": 0, "L": 1}, {"n": "柯林頓", "R": 0, "L": 1}, {"n": "蔡爾豐", "R": 0, "L": 1}, {"n": "梭羅", "R": 0, "L": 1}, {"n": "邊沁", "R": 0, "L": 1}, {"n": "約翰·彌爾", "R": 0, "L": 1}, {"n": "羅爾斯", "R": 0, "L": 1}, {"n": "文天祥", "R": 0, "L": 1}, {"n": "季桓子", "R": 0, "L": 1}, {"n": "安德烈．波伽利", "R": 0, "L": 1}, {"n": "蒙田", "R": 0, "L": 1}, {"n": "珍古德", "R": 0, "L": 1}, {"n": "伯里克利", "R": 0, "L": 1}, {"n": "阿德勒", "R": 0, "L": 1}, {"n": "契訶夫", "R": 0, "L": 1}];
@@ -2438,6 +2462,153 @@ function chartRender(course) {
   });
 
   barsEl.innerHTML = html || '<p class="sr-hint">無資料。</p>';
+}
+
+// ── 關係圖 ───────────────────────────────────────────────
+var graphCourse = 'all';
+
+function graphRender() {
+  if (!window._graphInited) {
+    window._graphInited = true;
+    if (!window.d3) {
+      var s = document.createElement('script');
+      s.src = 'https://d3js.org/d3.v7.min.js';
+      s.onload = function() { graphDraw(graphCourse); };
+      document.head.appendChild(s);
+    } else {
+      graphDraw(graphCourse);
+    }
+  }
+}
+
+function graphSetCourse(c, btn) {
+  graphCourse = c;
+  document.querySelectorAll('#graph-filter-btns .stc').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  graphDraw(c);
+}
+
+function graphDraw(course) {
+  if (!window.d3) return;
+  var wrap = document.getElementById('graph-svg-wrap');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+
+  // ── 1. 從 SI 建立 lecPersons ──
+  var lecPersons = {};
+  SI.forEach(function(e) {
+    if (e.t !== 'person') return;
+    var lec = e.l;
+    if (course === 'R' && lec[0] !== 'R') return;
+    if (course === 'L' && lec[0] !== 'L') return;
+    var base = e.n.indexOf('（') > 0 ? e.n.slice(0, e.n.indexOf('（')).trim() : e.n.trim();
+    if (!lecPersons[lec]) lecPersons[lec] = [];
+    lecPersons[lec].push(base);
+  });
+
+  // ── 2. 建邊 ──
+  var edgeMap = {};
+  Object.values(lecPersons).forEach(function(persons) {
+    for (var i = 0; i < persons.length; i++) {
+      for (var j = i + 1; j < persons.length; j++) {
+        var key = [persons[i], persons[j]].sort().join('|||');
+        edgeMap[key] = (edgeMap[key] || 0) + 1;
+      }
+    }
+  });
+
+  // ── 3. 取 Top 60 節點 ──
+  var pc = window.PERSON_COUNTS || [];
+  var sorted = pc.map(function(p) {
+    var val = course === 'R' ? p.R : course === 'L' ? p.L : p.R + p.L;
+    return {id: p.n, R: p.R, L: p.L, total: p.R + p.L, val: val};
+  }).filter(function(p) { return p.val > 0; });
+  sorted.sort(function(a, b) { return b.val - a.val; });
+  var top60 = sorted.slice(0, 60);
+  var nodeSet = {};
+  top60.forEach(function(p) { nodeSet[p.id] = p; });
+
+  // ── 4. 過濾邊（weight ≥ 2，兩端均在 Top 60）──
+  var links = [];
+  Object.keys(edgeMap).forEach(function(key) {
+    if (edgeMap[key] < 2) return;
+    var parts = key.split('|||');
+    if (nodeSet[parts[0]] && nodeSet[parts[1]]) {
+      links.push({source: parts[0], target: parts[1], weight: edgeMap[key]});
+    }
+  });
+
+  var nodes = top60.map(function(p) {
+    var r = 4 + Math.sqrt(p.val) * 0.6;
+    var col = (p.R > 0 && p.L > 0) ? '#1a1610' : p.R > 0 ? '#8b2e10' : '#b07d2e';
+    return {id: p.id, r: r, color: col, R: p.R, L: p.L, total: p.total};
+  });
+
+  // ── 5. D3 simulation ──
+  var W = wrap.clientWidth || 800;
+  var H = 520;
+
+  var svg = d3.select(wrap).append('svg').attr('width', W).attr('height', H);
+  var g = svg.append('g');
+
+  svg.call(d3.zoom().scaleExtent([0.3, 4]).on('zoom', function(event) {
+    g.attr('transform', event.transform);
+  }));
+
+  var sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(function(d) { return 70 - d.weight * 4; }))
+    .force('charge', d3.forceManyBody().strength(-130))
+    .force('center', d3.forceCenter(W / 2, H / 2))
+    .force('collide', d3.forceCollide(function(d) { return d.r + 3; }));
+
+  var link = g.append('g').selectAll('line').data(links).join('line')
+    .attr('stroke', '#c8b99a')
+    .attr('stroke-opacity', 0.5)
+    .attr('stroke-width', function(d) { return 1 + d.weight * 0.4; });
+
+  var drag = d3.drag()
+    .on('start', function(event, d) { if (!event.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+    .on('drag',  function(event, d) { d.fx = event.x; d.fy = event.y; })
+    .on('end',   function(event, d) { if (!event.active) sim.alphaTarget(0); d.fx = null; d.fy = null; });
+
+  var tip = document.getElementById('graph-tooltip');
+  var node = g.append('g').selectAll('g').data(nodes).join('g').call(drag)
+    .on('mouseover', function(event, d) {
+      var connCount = links.filter(function(l) { return l.source.id === d.id || l.target.id === d.id; }).length;
+      tip.style.display = 'block';
+      tip.innerHTML = '<strong>' + d.id + '</strong><br>宗教哲學：' + d.R + ' 次<br>哲學與人生：' + d.L + ' 次<br>共現連線：' + connCount + ' 條';
+      tip.style.left = (event.clientX + 14) + 'px';
+      tip.style.top  = (event.clientY - 10) + 'px';
+    })
+    .on('mousemove', function(event) {
+      tip.style.left = (event.clientX + 14) + 'px';
+      tip.style.top  = (event.clientY - 10) + 'px';
+    })
+    .on('mouseout', function() { tip.style.display = 'none'; });
+
+  node.append('circle')
+    .attr('r', function(d) { return d.r; })
+    .attr('fill', function(d) { return d.color; })
+    .attr('fill-opacity', 0.85)
+    .attr('stroke', '#f7f3ec')
+    .attr('stroke-width', 1.5);
+
+  node.append('text')
+    .text(function(d) { return d.id; })
+    .attr('font-size', function(d) { return Math.max(9, Math.min(13, d.r * 0.9)) + 'px'; })
+    .attr('font-family', 'Noto Serif TC, serif')
+    .attr('fill', 'var(--ink)')
+    .attr('dx', function(d) { return d.r + 3; })
+    .attr('dy', '0.35em')
+    .attr('pointer-events', 'none');
+
+  sim.on('tick', function() {
+    link.attr('x1', function(d) { return d.source.x; })
+        .attr('y1', function(d) { return d.source.y; })
+        .attr('x2', function(d) { return d.target.x; })
+        .attr('y2', function(d) { return d.target.y; });
+    node.attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')'; });
+  });
 }
 
 (function() {
