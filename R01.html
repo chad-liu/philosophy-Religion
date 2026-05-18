@@ -142,14 +142,6 @@
   .index-section li { font-size: 15px; margin-bottom: 8px; line-height: 1.7; }
   .person-hi { background: rgba(168, 216, 240, 0.45); border-radius: 2px; padding: 0 1px; }
   .term-hi   { background: rgba(255, 182, 193, 0.45); border-radius: 2px; padding: 0 1px; }
-  #tab-mindmap { overflow: hidden; }
-  #mm-wrap { width: 100%; height: 600px; cursor: grab; }
-  #mm-wrap:active { cursor: grabbing; }
-  .mm-node circle { fill: var(--paper); stroke: var(--accent); stroke-width: 1.5; }
-  .mm-node.depth-1 circle { fill: var(--rule); stroke: var(--muted); }
-  .mm-node.depth-2 circle { fill: var(--paper); stroke: var(--rule); }
-  .mm-node text { font-family: 'Noto Serif TC', serif; font-size: 11px; fill: var(--ink); }
-  .mm-link { fill: none; stroke: var(--rule); stroke-width: 1.2; stroke-opacity: 0.7; }
 </style>
 </head>
 <body>
@@ -167,7 +159,6 @@
     <button class="tab-btn" onclick="showTab('terms',this)">專有名詞</button>
     <button class="tab-btn" onclick="showTab('timeline',this)">時間軸</button>
     <button class="tab-btn" onclick="showTab('people',this)">重要人物</button>
-    <button class="tab-btn" onclick="showTab('mindmap',this)">心智圖</button>
   </nav>
 
   <div id="tab-full"     class="tab-pane active">
@@ -832,9 +823,6 @@
 <li>威廉·詹姆士（William James）：心理學家兼哲學家，根據對人類歷史的研究得出「有神存在比無神存在更容易解釋人類現象」的結論</li>
 <li>耶穌：基督宗教核心人物，文中引其言論說明信仰必須以行為證明，而非僅止於口頭認同</li>
 </ul></div>
-  <div id="tab-mindmap" class="tab-pane">
-    <div id="mm-wrap"></div>
-  </div>
 
 </div>
 <script>
@@ -917,90 +905,6 @@ function showTab(name, btn) {
       });
     });
   });
-})();
-</script>
-<script>
-(function() {
-  var mmInited = false;
-  var _orig = window.showTab;
-  window.showTab = function(name, btn) {
-    _orig(name, btn);
-    if (name === 'mindmap' && !mmInited) {
-      mmInited = true;
-      if (!window.d3) {
-        var s = document.createElement('script');
-        s.src = 'https://d3js.org/d3.v7.min.js';
-        s.onload = drawMindmap;
-        document.head.appendChild(s);
-      } else {
-        drawMindmap();
-      }
-    }
-  };
-
-  function buildTree() {
-    var title = document.querySelector('.chapter-title');
-    var root = { name: title ? title.textContent.trim() : '', children: [] };
-    var cur = null;
-    document.querySelectorAll('#tab-outline h2, #tab-outline h3').forEach(function(el) {
-      if (el.tagName === 'H2') {
-        cur = { name: el.textContent.trim(), children: [] };
-        root.children.push(cur);
-      } else if (el.tagName === 'H3' && cur) {
-        cur.children.push({ name: el.textContent.trim() });
-      }
-    });
-    return root;
-  }
-
-  function drawMindmap() {
-    var wrap = document.getElementById('mm-wrap');
-    if (!wrap || wrap.querySelector('svg')) return;
-    var W = wrap.clientWidth || 800, H = 600;
-    var R = Math.min(W, H) / 2 - 80;
-
-    var treeLayout = d3.tree()
-      .size([2 * Math.PI, R])
-      .separation(function(a, b) { return (a.parent === b.parent ? 1 : 2) / a.depth; });
-
-    var root = d3.hierarchy(buildTree());
-    treeLayout(root);
-
-    var svg = d3.select(wrap).append('svg').attr('width', W).attr('height', H);
-    var g = svg.append('g').attr('transform', 'translate(' + (W/2) + ',' + (H/2) + ')');
-
-    svg.call(d3.zoom().scaleExtent([0.3, 4]).on('zoom', function(ev) {
-      g.attr('transform', ev.transform.translate(W/2, H/2));
-    }));
-
-    g.append('g').selectAll('path')
-      .data(root.links()).join('path')
-      .attr('class', 'mm-link')
-      .attr('d', d3.linkRadial()
-        .angle(function(d) { return d.x; })
-        .radius(function(d) { return d.y; }));
-
-    var node = g.append('g').selectAll('g')
-      .data(root.descendants()).join('g')
-      .attr('class', function(d) { return 'mm-node depth-' + d.depth; })
-      .attr('transform', function(d) {
-        return 'rotate(' + (d.x * 180 / Math.PI - 90) + ') translate(' + d.y + ',0)';
-      });
-
-    node.append('circle').attr('r', function(d) {
-      return d.depth === 0 ? 9 : d.depth === 1 ? 5 : 3.5;
-    });
-
-    node.append('text')
-      .attr('dy', '0.31em')
-      .attr('x', function(d) { return d.x < Math.PI === !d.children ? 10 : -10; })
-      .attr('text-anchor', function(d) { return d.x < Math.PI === !d.children ? 'start' : 'end'; })
-      .attr('transform', function(d) { return d.x >= Math.PI ? 'rotate(180)' : null; })
-      .text(function(d) {
-        var t = d.data.name;
-        return t.length > 20 ? t.slice(0, 19) + '…' : t;
-      });
-  }
 })();
 </script>
 </body>
